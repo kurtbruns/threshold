@@ -6,6 +6,7 @@ baseURL = "https://example.com/"
 locale = "en-us"
 title = "Threshold"
 enableRobotsTXT = true
+enableEmoji = true   # render :shortcode: emoji (e.g. :tada: → 🎉) alongside pasted emoji
 
 [params]
   # Used for the site <meta description> when a page doesn't set its own.
@@ -24,17 +25,6 @@ enableRobotsTXT = true
   quality = 82
   resampleFilter = "Lanczos"
 
-# Top navigation menu — edit these entries to change the header links.
-[menus]
-  [[menus.main]]
-    name = "Home"
-    pageRef = "/"
-    weight = 1
-  [[menus.main]]
-    name = "Blog"
-    pageRef = "/blog"
-    weight = 2
-  [[menus.main]]
-    name = "About"
-    pageRef = "/about"
-    weight = 3
+# The top navigation menu is built from each page's front-matter: set
+# `menus: main` (with a `weight` for order) on a page to list it in the header.
+# Example: see content/_index.md, content/pages/_index.md, content/about/index.md.
