@@ -46,12 +46,10 @@
 }
 
 .site-main {
-  padding-block: 3rem;
+  padding-block: 1rem;
 }
 
 .site-footer {
-  padding-block: 2rem;
-  border-block-start: 1px solid var(--border-color);
+  padding-block: 3rem;
   color: var(--font-color-subtle);
-  font-size: 0.875rem;
 }

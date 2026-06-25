@@ -19,7 +19,7 @@
 
   /* Sizes */
   --line-height: 1.6;
-  --container-width: 48rem;       /* max width of the reading column */
+  --container-width: 47.5rem;       /* max width of the reading column */
   --gutter: 1.25rem;              /* space on the left and right edges */
   --header-height: 4rem;
 }
