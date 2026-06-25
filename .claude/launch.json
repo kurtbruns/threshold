@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Preview site (Hugo server)",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["scripts/dev-hugo.sh"],
+      "port": 1313,
+      "autoPort": true
+    }
+  ]
+}

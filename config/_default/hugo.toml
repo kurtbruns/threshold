@@ -1,0 +1,26 @@
+# Threshold — site configuration
+# Day-to-day site settings live here. The look (colors, fonts, spacing) lives
+# in the styles under assets/ — see the docs for theming.
+
+baseURL = "https://example.com/"
+locale = "en-us"
+title = "Threshold"
+enableRobotsTXT = true
+
+[params]
+  # Used for the site <meta description> when a page doesn't set its own.
+  description = "A new website built with Threshold."
+
+# Hugo version pin — the single source of truth for which Hugo to use.
+# Read by scripts/hugo-version.sh (and CI). Requires the *extended* build,
+# which is needed for image processing and asset bundling.
+[module]
+  [module.hugoVersion]
+    min = "0.161.1"
+    extended = true
+
+# Allow raw HTML inside Markdown, so pasted embeds/snippets render as written.
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

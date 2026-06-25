@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="{{ or site.Language.Locale `en` }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ block "title" . }}{{ with .Title }}{{ . }} · {{ end }}{{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ block "description" . }}{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }}">
+
+  {{- /* Site styles and scripts load here. */ -}}
+  {{- block "head" . }}{{ end -}}
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-title" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+  </header>
+
+  <main class="site-main">
+    {{- block "main" . }}{{ .Content }}{{ end -}}
+  </main>
+
+  <footer class="site-footer">
+    <p>© {{ now.Year }} {{ site.Title }}</p>
+  </footer>
+</body>
+</html>
