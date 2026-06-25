@@ -97,3 +97,14 @@ th, td {
   border-block-end: 1px solid var(--border-color);
   text-align: start;
 }
+
+figure {
+  margin-block: 1.5rem;
+}
+
+figcaption {
+  margin-block-start: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--font-color-subtle);
+  text-align: center;
+}

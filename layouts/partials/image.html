@@ -1,0 +1,46 @@
+{{- /* Responsive <picture> for a raster image resource.
+       Params:
+         image   (resource, required)
+         alt     (string)
+         sizes   (string, optional — defaults to the content column)
+         loading (string, optional — "lazy" by default; use "eager" above the fold)
+         class   (string, optional — added to the <img>)
+       Generates WebP + original-format variants at several widths, never
+       upscaling, with intrinsic width/height to avoid layout shift. */ -}}
+{{- $img := .image -}}
+{{- $alt := .alt | default "" -}}
+{{- $sizes := .sizes | default "(min-width: 48rem) 768px, calc(100vw - 2.5rem)" -}}
+{{- $loading := .loading | default "lazy" -}}
+{{- $class := .class | default "" -}}
+
+{{- /* Cap the largest delivered width. */ -}}
+{{- $max := 1600 -}}
+{{- $src := $img -}}
+{{- if gt $img.Width $max -}}
+  {{- $src = $img.Resize (printf "%dx q82" $max) -}}
+{{- end -}}
+
+{{- /* Widths to generate: standard steps below the source, plus the source. */ -}}
+{{- $widths := slice -}}
+{{- range (slice 480 768 1024 1600) -}}
+  {{- if lt . $src.Width -}}{{- $widths = $widths | append . -}}{{- end -}}
+{{- end -}}
+{{- $widths = $widths | append $src.Width -}}
+
+{{- $jpeg := slice -}}
+{{- $webp := slice -}}
+{{- range $w := $widths -}}
+  {{- $jpeg = $jpeg | append (printf "%s %dw" ($src.Resize (printf "%dx q82" $w)).RelPermalink $w) -}}
+  {{- $webp = $webp | append (printf "%s %dw" ($src.Resize (printf "%dx webp q82" $w)).RelPermalink $w) -}}
+{{- end -}}
+
+{{- /* A modest fallback src for browsers without srcset support. */ -}}
+{{- $fw := cond (gt $src.Width 768) 768 $src.Width -}}
+{{- $fallback := $src.Resize (printf "%dx q82" $fw) -}}
+
+<picture>
+  <source type="image/webp" srcset="{{ delimit $webp ", " }}" sizes="{{ $sizes }}">
+  <img src="{{ $fallback.RelPermalink }}" srcset="{{ delimit $jpeg ", " }}" sizes="{{ $sizes }}"
+       width="{{ $src.Width }}" height="{{ $src.Height }}"
+       alt="{{ $alt }}" loading="{{ $loading }}" decoding="async"{{ with $class }} class="{{ . }}"{{ end }}>
+</picture>

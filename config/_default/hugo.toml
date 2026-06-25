@@ -19,6 +19,11 @@ enableRobotsTXT = true
     min = "0.161.1"
     extended = true
 
+# Image processing defaults (used when Hugo resizes photos).
+[imaging]
+  quality = 82
+  resampleFilter = "Lanczos"
+
 # Allow raw HTML inside Markdown, so pasted embeds/snippets render as written.
 [markup]
   [markup.goldmark]

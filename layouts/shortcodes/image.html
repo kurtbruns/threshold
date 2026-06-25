@@ -1,0 +1,15 @@
+{{- /* {{< image src="photo.jpg" alt="..." caption="..." >}}
+       A responsive image wrapped in a <figure> with an optional caption.
+       For a plain image with no caption, just use Markdown: ![alt](photo.jpg) */ -}}
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $caption := .Get "caption" -}}
+{{- $img := or (.Page.Resources.GetMatch $src) (resources.Get $src) -}}
+{{- if $img -}}
+<figure>
+  {{ partial "image.html" (dict "image" $img "alt" $alt) }}
+  {{- with $caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end -}}
+</figure>
+{{- else -}}
+  {{- errorf "image shortcode: could not find image %q (used in %s)" $src .Position -}}
+{{- end -}}
