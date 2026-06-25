@@ -3,22 +3,31 @@
 .site-nav ul {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  align-items: center;
+  gap: 1.25rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
+/* Neutralize the content-list spacing so items align on one row. */
+.site-nav li {
+  margin: 0;
+}
+
 .site-nav a {
   color: var(--font-color-subtle);
   text-decoration: none;
+  text-underline-offset: 0.3em;
+  text-decoration-thickness: 2px;
 }
 
 .site-nav a:hover {
   color: var(--font-color);
 }
 
+/* Mark the current page with an underline, not bold — bold reflows the row. */
 .site-nav a[aria-current="page"] {
   color: var(--font-color);
-  font-weight: 600;
+  text-decoration: underline;
 }
