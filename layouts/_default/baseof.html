@@ -6,6 +6,7 @@
   <title>{{ block "title" . }}{{ with .Title }}{{ . }} · {{ end }}{{ site.Title }}{{ end }}</title>
   <meta name="description" content="{{ block "description" . }}{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}{{ end }}">
 
+  {{- partialCached "head/favicons.html" . -}}
   {{- partialCached "pipes/style.html" . -}}
   {{- block "head" . }}{{ end -}}
 </head>
