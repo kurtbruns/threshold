@@ -1,19 +1,10 @@
 <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-  <!-- Adaptive favicon: re-colors itself for the OS light/dark theme. No JS.
-       Light: dark door frame, transparent background.
-       Dark:  dark door slab on a light backdrop (so it stays visible). -->
+  <!-- Adaptive favicon, transparent background. No JS: the mark re-colors for
+       the OS theme — dark on light themes, light on dark themes. -->
   <style>
-    .bg    { fill: none; }
-    .panel { fill: #f8f8f8; }
-    .ink   { fill: #404040; }
-    @media (prefers-color-scheme: dark) {
-      .bg    { fill: #ededed; }
-      .panel { fill: #1a1a1a; }
-      .ink   { fill: #ededed; }
-    }
+    .mark { fill: #404040; }
+    @media (prefers-color-scheme: dark) { .mark { fill: #ededed; } }
   </style>
-  <rect class="bg" width="48" height="48"/>
-  <rect class="panel" x="14.2041" y="9.30603" width="19.5918" height="29.3878"/>
-  <path class="ink" d="M32.816 37.5918V14.082C32.816 12.0533 31.1718 10.4084 29.1432 10.4082H18.8571C16.8283 10.4082 15.1832 12.0533 15.1832 14.082V37.5918H32.816ZM39.4274 42H8.57288V37.5918H10.775V14.082C10.775 9.61869 14.3937 6.00004 18.8571 6H29.1432C33.6064 6.00019 37.2242 9.61878 37.2242 14.082V37.5918H39.4274V42Z"/>
-  <circle class="ink" cx="27.8704" cy="24.5409" r="2.5"/>
+  <path class="mark" d="M32.816 37.5918V14.082C32.816 12.0533 31.1718 10.4084 29.1432 10.4082H18.8571C16.8283 10.4082 15.1832 12.0533 15.1832 14.082V37.5918H32.816ZM39.4274 42H8.57288V37.5918H10.775V14.082C10.775 9.61869 14.3937 6.00004 18.8571 6H29.1432C33.6064 6.00019 37.2242 9.61878 37.2242 14.082V37.5918H39.4274V42Z"/>
+  <circle class="mark" cx="27.8704" cy="24.5409" r="2.5"/>
 </svg>
