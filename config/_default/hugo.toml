@@ -24,12 +24,6 @@ enableRobotsTXT = true
   quality = 82
   resampleFilter = "Lanczos"
 
-# Allow raw HTML inside Markdown, so pasted embeds/snippets render as written.
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
-
 # Top navigation menu — edit these entries to change the header links.
 [menus]
   [[menus.main]]
