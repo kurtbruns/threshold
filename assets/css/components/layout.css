@@ -1,28 +1,48 @@
 /* Layout — the page frame: header, main, footer. */
 
-.site-header,
+/* Header: a clean, sticky bar. Full-width background + hairline border, with the
+   content constrained to the reading column. */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--background);
+  border-block-end: 1px solid var(--border-color);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: var(--header-height);
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--font-color);
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-decoration: none;
+}
+
+.site-brand__logo {
+  display: block;
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
 .site-main,
 .site-footer {
   width: 100%;
   max-width: var(--container-width);
   margin-inline: auto;
   padding-inline: var(--gutter);
-}
-
-.site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  min-height: var(--header-height);
-  border-block-end: 1px solid var(--border-color);
-}
-
-.site-title {
-  font-weight: 700;
-  font-size: 1.125rem;
-  color: var(--font-color);
-  text-decoration: none;
 }
 
 .site-main {

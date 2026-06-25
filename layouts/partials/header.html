@@ -1,4 +1,9 @@
 <header class="site-header">
-  <a class="site-title" href="{{ "/" | relURL }}">{{ site.Title }}</a>
-  {{ partial "nav.html" . }}
+  <div class="site-header__inner">
+    <a class="site-brand" href="{{ "/" | relURL }}" aria-label="{{ site.Title }} — home">
+      {{ partial "logo.html" . }}
+      <span class="site-brand__name">{{ site.Title }}</span>
+    </a>
+    {{ partial "nav.html" . }}
+  </div>
 </header>
