@@ -1,51 +1,48 @@
 # Theming
 
-Threshold's entire look is controlled by **design tokens** — CSS variables
-defined at the top of [`assets/css/main.css`](../assets/css/main.css) (the
-"TOKENS" section). Change a token and it cascades everywhere. **Dark mode is
-automatic**, based on the visitor's system setting.
+Threshold's look lives in plain CSS under `assets/css/`, split the way you'd
+expect:
 
-## The quickest changes
+- **`variables.css`** — the **colors, fonts, and key sizes** as CSS variables.
+  Change one value and it updates everywhere. **Dark mode is automatic.**
+- **`reset.css`** — a few baseline defaults (on top of vendored modern-normalize).
+- **`components/`** — one file per **component**: `scaffolding.css` (the basic
+  elements — text, links, lists, code, tables), `layout.css` (header / main /
+  footer), and any new piece you add.
 
-| You want to… | Change this token |
+The build concatenates these into one fingerprinted file, so splitting them up
+costs nothing in page weight. **To add a new component, create
+`components/<name>.css` and add it to the list in
+`layouts/partials/pipes/style.html`** (just like adding an `@import`).
+
+## The quickest changes (edit `variables.css`)
+
+| You want to… | Change this variable |
 | --- | --- |
-| Rebrand the accent (links, focus, highlights) | `--color-accent` |
-| Change the page background / text color | `--color-bg`, `--color-text` |
-| Use a different body or heading font | `--font-body`, `--font-heading` (see fonts guide) |
-| Make the reading column wider / narrower | `--container` |
+| Rebrand links / buttons / highlights | `--primary-color` |
+| Change the page background / text color | `--background`, `--font-color` |
+| Use a different body or heading font | `--font-body`, `--font-heading` |
+| Make the reading column wider / narrower | `--container-width` |
 | Adjust the left/right page padding | `--gutter` |
 
-## Token groups
+## The variables
 
-- **Color** — `--color-bg`, `--color-surface`, `--color-text`,
-  `--color-text-muted`, `--color-border`, `--color-accent`,
-  `--color-accent-contrast`.
-- **Typography** — `--font-sans`, `--font-mono`, `--font-body`,
-  `--font-heading`, the type scale (`--text-sm` … `--text-3xl`), and line
-  heights (`--leading-normal`, `--leading-tight`).
-- **Spacing** — `--space-1` … `--space-8`.
-- **Radius** — `--radius-sm`, `--radius-md`, `--radius-lg`, `--radius-full`.
-- **Layout** — `--container`, `--container-wide`, `--gutter`.
+- **Colors** — `--background`, `--background-soft`, `--font-color`,
+  `--font-color-subtle`, `--border-color`, `--primary-color`,
+  `--primary-contrast`.
+- **Fonts** — `--font-body`, `--font-heading`, `--font-mono`.
+- **Sizes** — `--line-height`, `--container-width`, `--gutter`,
+  `--header-height`.
 
 ## Dark mode
 
-Light values live in `:root`. The dark overrides live in the
-`@media (prefers-color-scheme: dark)` block right below them — edit those values
-to tune the dark palette. You don't need a toggle; the browser chooses based on
-the operating-system theme.
-
-## The CSS reset
-
-Browser normalization is handled by **modern-normalize** (MIT), vendored at
-`assets/css/vendor/modern-normalize.css` and bundled *before* `main.css`. It's
-kept pristine so you can update it later by re-downloading the pinned version.
-The few opinionated extras on top (image `max-width`, `prefers-reduced-motion`,
-`text-wrap`, …) live in the "Base defaults" section of `main.css`.
+Light values are the default in `variables.css`. The dark overrides sit in the
+`@media (prefers-color-scheme: dark)` block right below them — edit those to
+tune the dark palette. No toggle needed; the browser follows the OS theme.
 
 ## Tips
 
-- Prefer changing **tokens** over editing individual element rules — that's what
-  keeps the whole site consistent.
+- Prefer changing a **variable** over editing a component — that keeps the whole
+  site consistent.
 - Colors accept any CSS color value (`#hex`, `rgb()`, `hsl()`, `oklch()`, …).
-- After editing, the preview reloads automatically; for a production build run
-  `hugo --minify`.
+- The preview reloads as you edit; for a production build run `hugo --minify`.

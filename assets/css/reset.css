@@ -1,0 +1,48 @@
+/* Reset — a few opinionated defaults on top of vendored modern-normalize.
+   modern-normalize handles cross-browser consistency; these add the modern
+   niceties it intentionally leaves out. */
+
+/* Start from a clean slate; spacing is set intentionally in scaffolding.css. */
+* {
+  margin: 0;
+}
+
+body {
+  min-height: 100svh;
+  line-height: var(--line-height);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Media never overflows its container (essential for real photos). */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Opt-in unstyled lists via role="list". */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  padding: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

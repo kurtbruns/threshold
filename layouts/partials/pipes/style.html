@@ -1,10 +1,15 @@
-{{- /* Build the site stylesheet: vendored modern-normalize first, then our
-       styles, concatenated into a single file.
-       Production: minify + content-hash fingerprint (cache-busting) + SRI.
-       Development: served as-is so it's readable in devtools. */ -}}
-{{- $normalize := resources.Get "css/vendor/modern-normalize.css" -}}
-{{- $main := resources.Get "css/main.css" -}}
-{{- $css := slice $normalize $main | resources.Concat "css/bundle.css" -}}
+{{- /* Build the site stylesheet by concatenating these files in order. To add a
+       component, create css/components/<name>.css and add it to this list (just
+       like adding an @import). Production: minify + content-hash fingerprint
+       (cache-busting) + SRI. Development: served as-is for readable devtools. */ -}}
+{{- $sheets := slice
+      (resources.Get "css/vendor/modern-normalize.css")
+      (resources.Get "css/variables.css")
+      (resources.Get "css/reset.css")
+      (resources.Get "css/components/scaffolding.css")
+      (resources.Get "css/components/layout.css")
+-}}
+{{- $css := $sheets | resources.Concat "css/bundle.css" -}}
 {{- if hugo.IsProduction -}}
   {{- $css = $css | resources.Minify | resources.Fingerprint "sha256" -}}
 {{- end -}}

@@ -1,0 +1,37 @@
+/* Variables — the site's colors, fonts, and key sizes.
+   Change a value here and it updates everywhere. Dark mode is automatic:
+   the dark overrides live in the @media block at the bottom. */
+
+:root {
+  /* Colors — light theme (the default) */
+  --background: #ffffff;          /* page background */
+  --background-soft: #f6f6f7;     /* cards, code blocks, subtle fills */
+  --font-color: #1a1a1a;          /* body text */
+  --font-color-subtle: #666666;   /* secondary text, captions, footer */
+  --border-color: #e5e5e7;        /* hairlines and dividers */
+  --primary-color: #2563eb;       /* links, buttons, highlights — your brand color */
+  --primary-contrast: #ffffff;    /* readable text on top of a primary-colored fill */
+
+  /* Fonts */
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: var(--font-body);  /* give headings their own font here if you like */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* Sizes */
+  --line-height: 1.6;
+  --container-width: 48rem;       /* max width of the reading column */
+  --gutter: 1.25rem;              /* space on the left and right edges */
+  --header-height: 4rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #18181b;
+    --background-soft: #232327;
+    --font-color: #ededed;
+    --font-color-subtle: #a1a1aa;
+    --border-color: #2e2e33;
+    --primary-color: #60a5fa;
+    --primary-contrast: #0b0b0c;
+  }
+}
