@@ -34,6 +34,14 @@ Light values live in `:root`. The dark overrides live in the
 to tune the dark palette. You don't need a toggle; the browser chooses based on
 the operating-system theme.
 
+## The CSS reset
+
+Browser normalization is handled by **modern-normalize** (MIT), vendored at
+`assets/css/vendor/modern-normalize.css` and bundled *before* `main.css`. It's
+kept pristine so you can update it later by re-downloading the pinned version.
+The few opinionated extras on top (image `max-width`, `prefers-reduced-motion`,
+`text-wrap`, …) live in the "Base defaults" section of `main.css`.
+
 ## Tips
 
 - Prefer changing **tokens** over editing individual element rules — that's what

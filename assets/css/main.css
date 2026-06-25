@@ -1,8 +1,10 @@
 /* =============================================================================
    Threshold — main stylesheet
 
-   How this file is organized:
-     1. Reset    — a small, modern baseline so browsers agree on the basics
+   Cross-browser normalization comes first from
+   assets/css/vendor/modern-normalize.css (vendored, MIT), which the build
+   bundles ahead of this file. This file then adds:
+     1. Base defaults — opinionated modern extras normalize leaves out
      2. Tokens   — the design "knobs": colors, fonts, spacing, etc. (:root)
      3. Base     — default styling for HTML elements, built on the tokens
      4. Layout   — the page frame (header, main, footer)
@@ -12,20 +14,11 @@
    ============================================================================= */
 
 
-/* 1. RESET ------------------------------------------------------------------ */
+/* 1. BASE DEFAULTS (on top of modern-normalize) ----------------------------- */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
+/* Start from a clean slate; spacing is re-applied intentionally in section 3. */
 * {
   margin: 0;
-}
-
-html {
-  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -43,17 +36,14 @@ p {
   text-wrap: pretty;
 }
 
+/* Media never overflows its container (essential for real photos). */
 img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
   height: auto;
 }
 
-input, button, textarea, select {
-  font: inherit;
-  color: inherit;
-}
-
+/* Opt-in unstyled lists via role="list". */
 ul[role="list"],
 ol[role="list"] {
   list-style: none;
