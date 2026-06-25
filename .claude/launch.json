@@ -7,6 +7,13 @@
       "runtimeArgs": ["scripts/dev-hugo.sh"],
       "port": 1313,
       "autoPort": true
+    },
+    {
+      "name": "Preview site — structural changes (no fast render)",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["scripts/dev-hugo.sh", "--disableFastRender"],
+      "port": 1313,
+      "autoPort": true
     }
   ]
 }

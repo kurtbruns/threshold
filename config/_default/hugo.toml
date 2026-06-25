@@ -13,8 +13,10 @@ enableEmoji = true   # render :shortcode: emoji (e.g. :tada: → 🎉) alongside
   description = "A new website built with Threshold."
 
 # Hugo version pin — the single source of truth for which Hugo to use.
-# Read by scripts/hugo-version.sh (and CI). Requires the *extended* build,
-# which is needed for image processing and asset bundling.
+# Read by scripts/hugo-version.sh (and CI). Requires the *extended* build: the
+# responsive-image pipeline encodes WebP (layouts/partials/image.html), and only
+# the extended edition can encode WebP. The usual installs are already extended
+# (Homebrew's `hugo`, the headline release binary, Snap, Chocolatey).
 [module]
   [module.hugoVersion]
     min = "0.161.1"

@@ -66,7 +66,13 @@ embed something custom (a video, an iframe, a widget), **author a small shortcod
 the shortcode for them.
 
 ## Preview & publish
-- **Preview:** start the "Preview site" server and open the page; reload as you edit.
+- **Preview:** start the **"Preview site"** server and open the page; reload as you edit — it
+  hot-reloads ordinary content edits.
+- **After structural changes** (new pages or sections, moving/renaming a page bundle, editing
+  `config/`): use the **"Preview site — structural changes (no fast render)"** config, or restart
+  the server. Fast render only re-renders *changed* pages, so a move/rename can leave a stale route
+  (a 404 on the new path) even when the site is fine. When a route looks wrong but `hugo --gc
+  --minify` builds it into `public/`, the preview is stale, not the site.
 - **Build check:** `hugo --gc --minify` should finish without errors.
 - **Publish:** Threshold is host-agnostic — going live is a `git push` to their host (a build
   runs automatically first and blocks the push if it fails).
