@@ -108,3 +108,17 @@ figcaption {
   color: var(--font-color-subtle);
   text-align: center;
 }
+
+.post-meta {
+  margin-block: 0.25rem 1rem;
+  font-size: 0.875rem;
+  color: var(--font-color-subtle);
+}
+
+.summary {
+  margin-block: 1.5rem;
+}
+
+.summary h2 {
+  margin-block: 0 0.25rem;
+}

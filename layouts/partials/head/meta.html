@@ -1,0 +1,32 @@
+{{- /* SEO meta: title, description, canonical, Open Graph, Twitter, RSS. */ -}}
+{{- $siteTitle := site.Title -}}
+{{- $title := cond .IsHome $siteTitle (printf "%s · %s" .Title $siteTitle) -}}
+{{- $desc := or .Description (.Summary | plainify | chomp | truncate 200) site.Params.description -}}
+
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}">
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{- /* Social image: the page's `image` front matter, else its first image. */ -}}
+{{- $res := "" -}}
+{{- with .Params.image -}}{{ $res = $.Resources.GetMatch . }}{{- end -}}
+{{- if and (not $res) .Resources -}}{{- with .Resources.ByType "image" -}}{{ $res = index . 0 }}{{- end -}}{{- end -}}
+{{- $ogImage := "" -}}
+{{- with $res -}}{{ $ogImage = (.Fill "1200x630 q82").Permalink -}}{{- end -}}
+
+<meta property="og:title" content="{{ .Title | default $siteTitle }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:type" content="{{ cond .IsPage `article` `website` }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ $siteTitle }}">
+{{- with $ogImage }}
+<meta property="og:image" content="{{ . }}">{{ end }}
+
+<meta name="twitter:card" content="{{ cond (ne $ogImage `` ) `summary_large_image` `summary` }}">
+<meta name="twitter:title" content="{{ .Title | default $siteTitle }}">
+<meta name="twitter:description" content="{{ $desc }}">
+{{- with $ogImage }}
+<meta name="twitter:image" content="{{ . }}">{{ end }}
+
+{{- with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" title="{{ $siteTitle }}" href="{{ .Permalink }}">{{ end }}

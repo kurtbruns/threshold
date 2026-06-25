@@ -1,0 +1,24 @@
+/* Navigation — the header menu. */
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  color: var(--font-color-subtle);
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  color: var(--font-color);
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--font-color);
+  font-weight: 600;
+}
