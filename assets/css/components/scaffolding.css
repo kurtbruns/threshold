@@ -100,10 +100,12 @@ th, td {
 
 figure {
   margin-block: 1.5rem;
+  /* Center the figure — visible when `width` caps it below the text column. */
+  margin-inline: auto;
 }
 
 figcaption {
-  margin-block-start: 0.5rem;
+  margin-block-start: 1rem;
   font-size: 0.875rem;
   color: var(--font-color-subtle);
   text-align: center;

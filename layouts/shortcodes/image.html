@@ -1,13 +1,29 @@
-{{- /* {{< image src="photo.jpg" alt="..." caption="..." >}}
+{{- /* {{< image src="photo.jpg" alt="..." caption="..." width="480" >}}
        A responsive image wrapped in a <figure> with an optional caption.
+       Centered by default; `width` caps how wide it can grow (a bare number is
+       read as pixels, or pass any CSS length like "30rem").
        For a plain image with no caption, just use Markdown: ![alt](photo.jpg) */ -}}
 {{- $src := .Get "src" -}}
 {{- $alt := .Get "alt" | default "" -}}
 {{- $caption := .Get "caption" -}}
+{{- $width := .Get "width" -}}
 {{- $img := or (.Page.Resources.GetMatch $src) (resources.Get $src) -}}
 {{- if $img -}}
-<figure>
-  {{ partial "image.html" (dict "image" $img "alt" $alt) }}
+  {{- /* Normalize the width to a CSS length: a bare number becomes pixels
+         (width="480" → "480px"); any other length is used as-is. */ -}}
+  {{- $maxw := "" -}}
+  {{- with $width -}}
+    {{- $w := printf "%v" . -}}
+    {{- $maxw = $w -}}
+    {{- if findRE `^[0-9]+$` $w -}}{{- $maxw = printf "%spx" $w -}}{{- end -}}
+  {{- end -}}
+  {{- /* Tell the browser the rendered size so it fetches a right-sized source. */ -}}
+  {{- $sizes := "(min-width: 48rem) 768px, calc(100vw - 2.5rem)" -}}
+  {{- if and (ne $maxw "") (not (strings.Contains $maxw "%")) -}}
+    {{- $sizes = printf "(min-width: %s) %s, calc(100vw - 2.5rem)" $maxw $maxw -}}
+  {{- end -}}
+<figure{{ with $maxw }} style="max-width: {{ . }}"{{ end }}>
+  {{ partial "image.html" (dict "image" $img "alt" $alt "sizes" $sizes) }}
   {{- with $caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end -}}
 </figure>
 {{- else -}}
