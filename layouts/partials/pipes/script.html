@@ -1,0 +1,15 @@
+{{- /* Bundle the site JavaScript from assets/js/app.js with Hugo's built-in
+       esbuild. Write feature code as ES modules and import them from app.js.
+       Production: minify + content-hash fingerprint + SRI.
+       Development: external source map for debugging. */ -}}
+{{- $opts := dict
+      "minify" hugo.IsProduction
+      "sourceMap" (cond hugo.IsProduction "" "external")
+      "format" "iife"
+      "target" "es2020"
+-}}
+{{- $js := resources.Get "js/app.js" | js.Build $opts -}}
+{{- if hugo.IsProduction -}}
+  {{- $js = $js | resources.Fingerprint "sha256" -}}
+{{- end -}}
+<script defer src="{{ $js.RelPermalink }}"{{ if hugo.IsProduction }} integrity="{{ $js.Data.Integrity }}"{{ end }}></script>
