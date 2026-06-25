@@ -6,8 +6,8 @@
   /* Colors — light theme (the default) */
   --background: #ffffff;          /* page background */
   --background-soft: #f6f6f7;     /* cards, code blocks, subtle fills */
-  --font-color: #1a1a1a;          /* body text */
-  --font-color-subtle: #666666;   /* secondary text, captions, footer */
+  --font-color: #404040;          /* body text */
+  --font-color-subtle: #676767;   /* secondary text, captions, footer */
   --border-color: #e5e5e7;        /* hairlines and dividers */
   --primary-color: #2563eb;       /* links, buttons, highlights — your brand color */
   --primary-contrast: #ffffff;    /* readable text on top of a primary-colored fill */
