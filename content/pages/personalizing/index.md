@@ -28,7 +28,7 @@ Your site's name and description live in `config/_default/hugo.toml`. Ask Claude
 ## Logo and icon
 
 - The header logo is `assets/icons/logo.svg` — swap that file, or ask Claude to draw a new mark.
-- The browser-tab icon lives in `assets/favicons/`.
+- The browser-tab icon (favicon) is `assets/favicons/icon.png` — swap that file for your own.
 
 ## The menu
 

@@ -16,8 +16,7 @@
   {{- end }}
 
   {{- /* Favicon — replace assets/favicons/icon.png to change the browser-tab icon;
-         the sizes below are generated automatically. (Want a light/dark adaptive
-         icon? Add your own SVG favicon here.) */ -}}
+         the sizes below are generated automatically. */ -}}
   {{- with resources.Get "favicons/icon.png" }}
   <link rel="icon" href="{{ (.Resize "32x32 png").RelPermalink }}" sizes="32x32" type="image/png">
   <link rel="icon" href="{{ (.Resize "48x48 png").RelPermalink }}" sizes="48x48" type="image/png">
