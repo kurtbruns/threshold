@@ -15,11 +15,9 @@
   <link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .Permalink }}">
   {{- end }}
 
-  {{- /* Favicons. Replace the two files in assets/favicons/ to change the icon;
-         the PNG sizes below are generated automatically. */ -}}
-  {{- with resources.Get "favicons/icon.svg" }}
-  <link rel="icon" href="{{ .RelPermalink }}" type="image/svg+xml">
-  {{- end }}
+  {{- /* Favicon — replace assets/favicons/icon.png to change the browser-tab icon;
+         the sizes below are generated automatically. (Want a light/dark adaptive
+         icon? Add your own SVG favicon here.) */ -}}
   {{- with resources.Get "favicons/icon.png" }}
   <link rel="icon" href="{{ (.Resize "32x32 png").RelPermalink }}" sizes="32x32" type="image/png">
   <link rel="icon" href="{{ (.Resize "48x48 png").RelPermalink }}" sizes="48x48" type="image/png">
