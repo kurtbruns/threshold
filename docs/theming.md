@@ -34,6 +34,14 @@ costs nothing in page weight. **To add a new component, create
 - **Sizes** — `--line-height`, `--container-width`, `--gutter`,
   `--header-height`.
 
+## Fonts
+
+The site ships with fast **system fonts** (no network requests). To use a custom
+font, run the **`/change-font`** skill: it sends you to Google Fonts to browse,
+then downloads and **self-hosts** your pick (no calls to Google), wires up the
+`@font-face`, and points the font variables at it. You can also change fonts by
+hand anytime via `--font-body` / `--font-heading` in `variables.css`.
+
 ## Dark mode
 
 Light values are the default in `variables.css`. The dark overrides sit in the
