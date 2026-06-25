@@ -1,7 +1,7 @@
 {{- /* Build the site stylesheet from assets/css/app.css.
        Production: minify + content-hash fingerprint (cache-busting) + SRI.
        Development: served as-is so it's readable in devtools. */ -}}
-{{- $css := resources.Get "css/app.css" -}}
+{{- $css := resources.Get "css/main.css" -}}
 {{- if hugo.IsProduction -}}
   {{- $css = $css | resources.Minify | resources.Fingerprint "sha256" -}}
 {{- end -}}
