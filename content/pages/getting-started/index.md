@@ -27,6 +27,14 @@ Claude keeps a live preview running while you work, so the site updates as you g
 - **[Personalizing](/pages/personalizing/)** — colors, fonts, your logo, and site identity.
 - **[Blog](/blog/)** — how the example blog works.
 
-## When it feels like yours
+## Shortcuts you can ask for
 
-Ask Claude to **publish** — that builds the site and pushes your changes live. And when you're done with the examples, ask it to **clear the demo content** for a clean slate.
+Claude already understands your whole site, so most things are just a plain request. A few common jobs also have a named shortcut:
+
+- **`/change-font`** — browse Google Fonts and self-host your pick.
+- **`/publish`** — build, check, and push your site live.
+- **Clear the demo content** — start from a blank slate when you're done with the examples.
+
+## Going live
+
+The first time you publish, you connect a host to your repo — a one-time setup. Ask Claude to walk you through it; after that, going live is just **`/publish`**.

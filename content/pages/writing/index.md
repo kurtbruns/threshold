@@ -64,4 +64,8 @@ When you want a caption — or to cap how wide an image gets — use the `image`
 
 {{< image src="images/sculpture.jpg" alt="A mirror-polished sculpture reflecting a blue sky" caption="A chrome sculpture catching the afternoon sky." width="480" >}}
 
+## Embedding videos and other things
+
+Raw HTML is turned off on purpose — it keeps your pages clean and safe. When you want to embed something custom (a video, a map, an interactive widget), ask Claude to make a **shortcode** for it: a small, reusable tag like the `image` one above. You write something like `{{</* video … */>}}` in your page, Claude builds the piece once, and you can reuse it anywhere.
+
 That's the whole toolkit. Anything you can write in Markdown renders with this same clean styling — so go ahead and make it your own.
