@@ -1,0 +1,8 @@
+{{ define "main" }}
+<article>
+  <h1>{{ .Title }}</h1>
+  {{ $author := or .Params.author site.Params.author }}
+  {{ if or $author (not .Date.IsZero) }}<p class="post-meta">{{ with $author }}By {{ . }}{{ end }}{{ if and $author (not .Date.IsZero) }} · {{ end }}{{ if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>{{ end }}</p>{{ end }}
+  {{ .Content }}
+</article>
+{{ end }}

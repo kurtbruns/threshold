@@ -11,6 +11,9 @@ enableEmoji = true   # render :shortcode: emoji (e.g. :tada: → 🎉) alongside
 [params]
   # Used for the site <meta description> when a page doesn't set its own.
   description = "A new website built with Threshold."
+  # The site owner — shown as the byline on blog posts. A single post can
+  # override it with its own `author` in front matter.
+  author = "Your Name"
 
 # Hugo version pin — the single source of truth for which Hugo to use.
 # Read by scripts/hugo-version.sh (and CI). Requires the *extended* build: the
