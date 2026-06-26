@@ -38,7 +38,7 @@ Homebrew installs the **extended** edition of Hugo, which this kit needs. Git sh
 
 ## Quick start
 
-1. Get your own copy by cloning this repository:
+1. Get your own copy. On GitHub click **Use this template** to create your own repository (recommended), or clone this one directly:
    ```bash
    git clone https://github.com/kurtbruns/threshold.git my-site
    cd my-site
