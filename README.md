@@ -1,81 +1,85 @@
 # Threshold
 
-A Hugo static-site starter kit you shape with **Claude Code** — build and run your website by conversation, no coding required.
+Threshold is a starter kit for building a website with [Claude Code](https://claude.com/claude-code). You describe the site you want in plain language, and Claude makes the changes, shows you a preview, and publishes when you're ready. You don't need to know HTML, CSS, or how to use a code editor.
 
-Clone it, open it in Claude Code, and tell it what you want: *"rename the site to Maria's Kitchen,"* *"add a page about my work,"* *"make the links green,"* *"add these photos."* Claude edits the files, previews the result, and publishes when you're ready. The repo ships the context and skills Claude needs to do all of this for you.
+It's built on [Hugo](https://gohugo.io/), a fast website generator. Your site ends up as ordinary files that you own and can host anywhere for little to no cost.
 
-## What you get
+## What you can do
 
-- **Run it by talking.** No HTML, CSS, or commands to memorize — describe changes in plain language.
-- **Real photos, handled for you.** Drop in a camera photo; the kit makes it responsive and fast, and strips GPS location data automatically.
-- **Theme by variable.** The whole look comes from a handful of CSS variables — change one and it updates everywhere. Dark mode is automatic.
-- **Yours, with no lock-in.** Plain Hugo, plain CSS and JavaScript — no npm, no frameworks. Deploy to any static host with a `git push`.
-- **A few handy skills:** `/change-font` (self-host a Google Font), `/publish` (build + push live), and a blank-canvas reset.
+Tell Claude what you want in your own words:
 
-## Before you start
+- "Rename the site to Maria's Kitchen."
+- "Write an About page about me."
+- "Add a blog post about my trip to Japan."
+- "Make the links green and the headings bigger."
 
-You'll install three things: **Hugo** (builds the site), **Claude Code** (your assistant), and a way to get this project onto your computer. Pick the path that fits you.
+Claude takes care of the details behind each request. Photos are a good example. Drop in a picture straight from your phone, and Threshold resizes it into a fast-loading version, so large images never slow your pages down. It also removes the GPS location your phone records inside each photo, so you never publish the spot where it was taken. The look is just as easy to manage: colors, fonts, and spacing all come from a short list of settings, so one change updates the whole site, and dark mode works on its own.
 
-### Path A — Homebrew (macOS, comfortable in the terminal)
+Your changes aren't set in stone. If something isn't right, ask Claude to undo it or take the site back to an earlier version.
+
+## Before you begin
+
+You need three things on your computer: Hugo, which builds the site; Claude Code, which makes the changes; and a copy of this project. Choose the setup that matches how you like to work.
+
+### With Homebrew (macOS, terminal)
+
+If you're comfortable in the terminal and use [Homebrew](https://brew.sh/), install everything at once:
 
 ```bash
-# Hugo (extended edition) + GitHub CLI
+# Hugo (extended edition) and the GitHub CLI
 brew install hugo gh
 
 # Claude Code
 brew install --cask claude-code
 ```
 
-Homebrew installs the **extended** edition of Hugo, which this kit needs. Git ships with macOS already; if `git` isn't found, run `xcode-select --install`.
+Homebrew installs the extended edition of Hugo, which this kit requires. Git already comes with macOS. If `git` isn't found, run `xcode-select --install` to add it.
 
-### Path B — Friendly (any OS, no terminal required)
+### Without the terminal (any operating system)
 
-1. **Hugo** — follow the official guide and choose the **extended** edition: <https://gohugo.io/installation/>. (On Windows the quickest is `winget install Hugo.Hugo.Extended`.)
-2. **Claude Code** — the easiest start is the **Desktop app**, which works without the terminal: <https://claude.com/claude-code>. You'll need a paid Claude plan (**Pro** or **Max**) — the free plan doesn't include Claude Code.
-3. **This project on your computer** — install **GitHub Desktop** (<https://desktop.github.com/>) and use it to clone this repository, or download it from the GitHub page via **Code → Download ZIP**.
+If you'd rather not use the terminal, install each piece from its own download page:
 
-> **Why "extended"?** Threshold encodes WebP images, which only Hugo's **extended** edition can do. Homebrew, `winget Hugo.Hugo.Extended`, and the official release binaries are all extended.
+1. **Hugo.** Follow the [official install guide](https://gohugo.io/installation/) and choose the **extended** edition. On Windows, the quickest option is `winget install Hugo.Hugo.Extended`.
+2. **Claude Code.** The [desktop app](https://claude.com/claude-code) is the easiest way to start, and it works without the terminal. Claude Code requires a paid Claude plan, either Pro or Max. The free plan doesn't include it.
+3. **This project.** Install [GitHub Desktop](https://desktop.github.com/) and use it to clone this repository. You can also download the project from its GitHub page under **Code → Download ZIP**.
+
+> **Why the extended edition?** Threshold converts your images to WebP, a modern format that only Hugo's extended edition can produce. Homebrew, `winget Hugo.Hugo.Extended`, and the official release binaries all give you the extended edition.
+
+Not sure you installed everything correctly? Once the project is open in Claude Code, run `/setup`. It checks what's on your computer and walks you through anything that's missing.
 
 ## Quick start
 
-1. Get your own copy. On GitHub click **Use this template** to create your own repository (recommended), or clone this one directly:
+1. **Get your own copy.** On GitHub, click **Use this template** to create your own repository. This is the recommended path. You can also clone this repository directly:
    ```bash
    git clone https://github.com/kurtbruns/threshold.git my-site
    cd my-site
    ```
-2. Open the folder in Claude Code:
+2. **Open the project in Claude Code.** From the project folder, run:
    ```bash
    claude
    ```
-   (Or open the folder in the Claude Code desktop app or VS Code extension.)
-3. **Just ask.** Try *"show me the site,"* *"rename it to …,"* *"write an About page about me,"* or *"add a blog post about my trip."* Claude makes the change and shows you a live preview.
+   You can also open the folder in the Claude Code desktop app or the VS Code extension.
+3. **Get set up.** Type `/setup`. It checks that Hugo and the other pieces are installed, helps you add anything that's missing, and starts a live preview of your site.
+4. **Ask for what you want.** Try "rename it to …," "write an About page about me," or "add a blog post about my trip." Claude makes the change and shows you the result.
 
-New here? The site you just cloned **is** a short guide — open it and read **Getting started**, **Writing**, and **Personalizing**. Once it feels like yours, ask Claude to **clear the demo content** for a clean slate.
+The site you just downloaded is itself a short guide. Open it and read **Getting started**, **Writing**, and **Personalizing**. When it feels like yours, ask Claude to clear the example content and give you a clean slate.
+
+## Handy commands
+
+A few common tasks have their own command. Type it to Claude like any other request:
+
+- `/setup` gets a fresh download ready. It checks your tools and starts a live preview. Run this one first.
+- `/change-font` sets the site to a Google Font and self-hosts it for speed and privacy.
+- `/launch` puts your site on the internet for the first time. Run it once, when you're ready to go live.
+- `/publish` builds the site and pushes it live.
+- `/nuclear` clears the example content so you can start from a blank canvas.
 
 ## Going live
 
-Threshold is **host-agnostic**: it builds to plain static files and commits nothing host-specific, so you're never locked in. Connect any static host to your repo once, then publishing is a `git push` — or just ask Claude to **`/publish`**. Step-by-step instructions for Cloudflare, Netlify, and GitHub Pages are in [`docs/deploying.md`](docs/deploying.md).
+When you're ready to go live, run `/launch`. It puts your site on the internet for the first time: it gets the project onto GitHub and connects a host (Cloudflare Pages or GitHub Pages) that rebuilds the site whenever it changes. After that, sending your latest changes live is a single `/publish`.
 
-## What's where
-
-| Folder | What's in it |
-| --- | --- |
-| `content/` | Your pages and posts (Markdown) |
-| `assets/css/` | The look — `variables.css` plus per-piece components |
-| `assets/js/` | A little interactivity, bundled by Hugo |
-| `config/` | Site settings: name, menu, image defaults |
-| `.claude/` | The context and skills that let Claude run your site |
-| `docs/` | Human references — deploying and troubleshooting |
-
-Most of the time you won't touch these directly — you'll ask Claude. But it's all plain files if you ever want to.
-
-## Under the hood (for the curious)
-
-- **Hugo extended, no `package.json`** — Hugo natively fingerprints CSS, bundles JS (esbuild), and processes images.
-- **Plain CSS**, organized as variables + components. **Plain ES modules** for JavaScript.
-- **Markdown only** — raw HTML is off; custom embeds are authored as small Hugo shortcodes.
-- New features are added as CSS + JS through Hugo's pipeline — no new dependencies.
+Threshold builds to plain static files and isn't tied to any one host, so you're never locked in. The [deployment guide](docs/deploying.md) covers the hosts in detail, including other options like Netlify.
 
 ## License
 
-[MIT](LICENSE) © 2026 Kurt Bruns. Use it, change it, and build whatever you like.
+[MIT](LICENSE) © 2026 Kurt Bruns
