@@ -21,6 +21,10 @@ A few things that occasionally trip people up, and how to fix them. When in doub
 
 Emoji shortcodes are enabled in this kit (`enableEmoji` in the config). Pasted emoji always work; if a `:name:` isn't converting, it's probably not a known emoji alias — paste the emoji directly instead.
 
+## A build fails with "Broken internal link"
+
+Threshold checks every internal link when it builds. If a page links to another page (or a file) that doesn't exist, the build stops and names the link and the page it's on — for example, a link to `/pages/about/` when the page actually lives at `/about/`. Fix the link to point at the real page (ask Claude if you're unsure of the path) and the build passes. This is on purpose — it means a broken link can never reach your live site.
+
 ## Still stuck?
 
 Ask Claude Code, and paste any error message you see — most build errors say exactly what's wrong, often a version mismatch or a typo in a page's front-matter.

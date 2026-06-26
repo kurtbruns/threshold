@@ -1,0 +1,23 @@
+{{- /* Markdown link render hook — validates internal links at build time.
+       Any link that isn't external (has a URL scheme), isn't protocol-relative
+       (//…), and isn't a bare in-page anchor (#…) must resolve to a page or a
+       page resource. If it doesn't, the build fails with a clear error, so a
+       broken internal link can never ship. External links (https, mailto, tel,
+       …), protocol-relative links, and #anchors pass through as authored. */ -}}
+{{- $u := .Destination -}}
+{{- $parsed := urls.Parse $u -}}
+{{- if or $parsed.Scheme (strings.HasPrefix $u "//") (strings.HasPrefix $u "#") -}}
+<a href="{{ $u | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if strings.HasPrefix $parsed.Scheme "http" }} rel="noopener"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- else -}}
+  {{- /* Preserve any ?query / #fragment when re-emitting the resolved URL. */ -}}
+  {{- $suffix := "" -}}
+  {{- with $parsed.RawQuery }}{{ $suffix = printf "?%s" . }}{{ end -}}
+  {{- with $parsed.Fragment }}{{ $suffix = printf "%s#%s" $suffix . }}{{ end -}}
+  {{- with .Page.GetPage $parsed.Path -}}
+<a href="{{ .RelPermalink }}{{ $suffix }}"{{ with $.Title }} title="{{ . }}"{{ end }}>{{ $.Text | safeHTML }}</a>
+  {{- else with (or ($.PageInner.Resources.GetMatch (path.Base $parsed.Path)) (resources.Get $parsed.Path)) -}}
+<a href="{{ .RelPermalink }}{{ $suffix }}"{{ with $.Title }} title="{{ . }}"{{ end }}>{{ $.Text | safeHTML }}</a>
+  {{- else -}}
+    {{- errorf "Broken internal link %q on page %q — it matches no page or resource." $u $.Page -}}
+  {{- end -}}
+{{- end -}}
