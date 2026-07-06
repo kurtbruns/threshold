@@ -8,10 +8,30 @@ body {
   background: var(--background);
 }
 
+/* Vertical rhythm — "spacing after": every flow block owns the gap that
+   follows it (margin-bottom only, no top margin), so the space between two
+   blocks is set by a single value and never depends on margin-collapsing.
+   1.5rem is the site's spacing unit — headings share the same gap below, so
+   everything lines up on one rhythm. */
+p, ul, ol, dl, blockquote, pre, table {
+  margin-block: 0 1.5rem;
+}
+
+/* Headings share the 1.5rem gap below (so they sit on the same rhythm as the
+   body) and reserve extra space *above* so each one reads as the start of a new
+   section. The larger gap above — not a tighter gap below — is what sets the
+   section apart. */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
-  margin-block: 2rem 0.75rem;
+  margin-block: 2.5rem 1.5rem;
+}
+
+/* The first heading in a container opens the page rather than breaking from a
+   previous section, so it keeps the normal 1.5rem top instead of the 2.5rem
+   section break. */
+:is(h1, h2, h3, h4, h5, h6):first-child {
+  margin-block-start: 1.5rem;
 }
 
 h1 { font-size: 2.25rem; }
@@ -19,17 +39,15 @@ h2 { font-size: 1.75rem; }
 h3 { font-size: 1.375rem; }
 h4 { font-size: 1.125rem; }
 
-/* Vertical rhythm for flowing content */
-p, ul, ol, blockquote, pre, table, figure {
-  margin-block: 1rem;
-}
-
 ul, ol {
   padding-inline-start: 1.5rem;
 }
 
-li + li {
-  margin-block-start: 0.5rem;
+/* A list nested inside a list item drops its bottom gap — the spacing after the
+   nested list is owned by the parent <li>, so it shouldn't add 1.5rem of its
+   own. Covers every combination of nesting (ul or ol inside either). */
+li > ul, li > ol {
+  margin-block-end: 0;
 }
 
 a {
@@ -48,8 +66,7 @@ a:hover {
 }
 
 ::selection {
-  background: var(--primary-color);
-  color: var(--primary-contrast);
+  background-color: var(--selection-bg);
 }
 
 code, kbd, samp, pre {
@@ -99,7 +116,7 @@ th, td {
 }
 
 figure {
-  margin-block: 1.5rem;
+  margin-block: 0 1.5rem;
   /* Center the figure — visible when `width` caps it below the text column. */
   margin-inline: auto;
 }
@@ -111,6 +128,13 @@ figcaption {
   text-align: center;
 }
 
+/* Keep a byline tucked under its post title. Without this, the title's 1.5rem
+   bottom margin (the section rhythm) would override the meta line's tight top
+   and leave it floating. */
+h1:has(+ .post-meta) {
+  margin-block-end: 0.25rem;
+}
+
 .post-meta {
   margin-block: 0.25rem 1rem;
   font-size: 0.875rem;
@@ -118,9 +142,9 @@ figcaption {
 }
 
 .summary {
-  margin-block: 1.5rem;
+  margin-block: 0 1.5rem;
 }
 
 .summary h2 {
-  margin-block: 0 0.25rem;
+  margin-block: 0 0.5rem;
 }

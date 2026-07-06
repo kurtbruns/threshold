@@ -1,10 +1,24 @@
 ---
-title: "Personalizing"
-description: "Colors, fonts, your logo, and site identity."
-weight: 3
+title: "Personalize"
+description: "Layout, colors, fonts, your logo, and site identity."
+weight: 2
 ---
 
-Make the site look and feel like yours. Most changes are one sentence to Claude Code away — *"make the links green,"* *"use a rounded heading font,"* *"rename the site."* Here's what's under the hood, in case you want to poke at it directly.
+Change the look and feel of the site to make it yours.
+
+
+
+The pages of the site live in the `content/` folder. This is where you would create a project, essay, or other piece of writing.
+
+
+
+## Layout
+
+TODO:
+
+TODO: Mention that the site is light & dark responsive
+
+TODO: https://1linelayouts.com/
 
 ## Colors, fonts, and spacing
 
@@ -26,6 +40,8 @@ The site ships with fast system fonts, so there are no third-party requests. To 
 Your site's name and description live in `config/_default/hugo.toml`. Ask Claude to *"rename the site to …"* or *"update the tagline,"* and it edits them there.
 
 ## Logo and icon
+
+TODO: https://fonts.google.com/icons
 
 - The header logo is `assets/icons/logo.svg` — swap that file, or ask Claude to draw a new mark.
 - The browser-tab icon (favicon) is `assets/favicons/icon.png` — swap that file for your own.

@@ -1,20 +1,52 @@
 ---
-title: "Writing"
+title: "Write"
 description: "Formatting text, adding images, and emoji."
-weight: 2
+weight: 3
 ---
 
-Everything on your site is written in **Markdown** — a simple way to format text with plain characters, no buttons or toolbars. Below is the whole toolkit and exactly how each piece looks here. It's a live example, too: edit this page and watch it change.
+The pages of the site live in the `content/` folder. This is where you would create a project, essay, or other piece of writing.
 
-## Headings organize a page
+Everything on your site is written in Markdown and organized into page bundles.
+
+
+
+## How to create a new page
+
+A page is a folder with an `index.md` file inside it. That folder is a *page bundle* — it keeps the page's text and its images together in one place:
+
+```
+content/example/
+├── index.md
+└── images/
+    ├── photo.jpg
+    └── diagram.png
+```
+
+To add one, just ask — *"add a page called Projects"* — and Claude creates the bundle, writes the front matter at the top of `index.md`, and (if you like) adds it to the menu.
+
+## Images
+
+To add an image, drop a photo into the page's `images/` folder and reference it with a normal Markdown image. A wide photo fills the column edge to edge. The site automatically makes it responsive, fast, and privacy-safe — it even strips the GPS location that phones embed in photos:
+
+![A panoramic view across a forested lake dotted with small islands](images/vista.jpg)
+
+When you want a caption — or to cap how wide an image gets — use the `image` shortcode instead. It centers the image by default; add `width` to keep it from filling the whole column:
+
+{{< image src="images/sculpture.jpg" alt="A mirror-polished sculpture reflecting a blue sky" caption="A chrome sculpture in San Francisco." width="480" >}}
+
+## Markdown crash course
+
+Markdown is just text with a few light marks that turn into formatting.
+
+### Headings organize a page
 
 Use `##` for a section heading and `###` for a subheading. (The `#` level is reserved for the page title above.)
 
-### Text you write every day
+### Everyday text
 
 You can make words **bold**, *italic*, or `monospaced`, and link to [another page](https://example.com). Separate paragraphs with a blank line — that's what creates the space between these blocks of text.
 
-## Lists
+### Lists
 
 Bulleted lists use `-`:
 
@@ -28,7 +60,7 @@ Numbered lists use `1.`:
 2. Then, refine it
 3. Finally, publish
 
-## Quotes and code
+### Quotes and code
 
 > Markdown lets you focus on writing. The site handles how it looks.
 
@@ -40,7 +72,7 @@ function greet(name) {
 }
 ```
 
-## Tables
+### Tables
 
 | Element   | Markdown            |
 | --------- | ------------------- |
@@ -54,17 +86,7 @@ Paste emoji straight into your text and they appear as-is: 🎉 📷 ✅ 🌿
 
 You can also type them by name between colons — `:tada:` becomes 🎉 and `:camera:` becomes 📷.
 
-## Images
-
-Drop a photo into this page's `images/` folder and reference it with a normal Markdown image. The site automatically makes it responsive, fast, and privacy-safe (it even strips the GPS location that phones embed in photos):
-
-![A mirror-polished sculpture reflecting a blue sky](images/sculpture.jpg)
-
-When you want a caption — or to cap how wide an image gets — use the `image` shortcode. It centers the image by default; add `width` to keep it from filling the whole column:
-
-{{< image src="images/sculpture.jpg" alt="A mirror-polished sculpture reflecting a blue sky" caption="A chrome sculpture catching the afternoon sky." width="480" >}}
-
-## Embedding videos and other things
+## Extending Markdown
 
 Raw HTML is turned off on purpose — it keeps your pages clean and safe. When you want to embed something custom (a video, a map, an interactive widget), ask Claude to make a **shortcode** for it: a small, reusable tag like the `image` one above. You write something like `{{</* video … */>}}` in your page, Claude builds the piece once, and you can reuse it anywhere.
 

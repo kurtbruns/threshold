@@ -3,9 +3,9 @@
 /* Header: a clean, sticky bar. Full-width background + hairline border, with the
    content constrained to the reading column. */
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  /* position: sticky; */
+  /* top: 0; */
+  /* z-index: 10; */
   background: var(--background);
   border-block-end: 1px solid var(--border-color);
 }
@@ -29,6 +29,17 @@
   font-weight: 700;
   font-size: 1.125rem;
   text-decoration: none;
+}
+
+/* On narrow screens, stack the menu beneath the brand instead of cramming both
+   onto one row. No hamburger and no JavaScript — every link stays visible. */
+@media (max-width: 36rem) {
+  .site-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding-block: 0.75rem;
+  }
 }
 
 .site-brand__logo {

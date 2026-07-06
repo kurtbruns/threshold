@@ -15,7 +15,7 @@ The pattern is the same everywhere:
 | Output directory | `public` |
 | Hugo | the **extended** build, pinned with a `HUGO_VERSION` |
 
-Set `HUGO_VERSION` to the version this kit uses — see `[module.hugoVersion]` in `config/_default/hugo.toml` (currently `0.161.1`), or newer. The kit needs the **extended** build; each host below installs it automatically once you pin a recent version. The snippets use `0.161.1` — keep that in sync with the config.
+The kit pins **one** Hugo version: the `min` under `[module.hugoVersion]` in `config/_default/hugo.toml`. That's the single source of truth — run `scripts/hugo-version.sh` to print it (or just ask Claude). Set each host's `HUGO_VERSION` to that value. The kit needs the **extended** build, which every host below installs automatically once `HUGO_VERSION` is set. When the kit bumps its pin, you change that one line and re-deploy; nothing else hardcodes a version.
 
 Pick a host below; after the one-time connect, publishing is just a push.
 
@@ -54,7 +54,8 @@ Official guide: <https://gohugo.io/host-and-deploy/host-on-cloudflare/>
      publish = "public"
 
    [build.environment]
-     HUGO_VERSION = "0.161.1"
+     # The kit's pinned version — run scripts/hugo-version.sh to print it.
+     HUGO_VERSION = "…"
    ```
 
 Netlify installs the extended Hugo automatically from `HUGO_VERSION`.
@@ -82,11 +83,14 @@ GitHub Pages builds from a workflow file you commit.
    jobs:
      build:
        runs-on: ubuntu-latest
-       env:
-         HUGO_VERSION: 0.161.1
        steps:
          - uses: actions/checkout@v4
+         - name: Resolve Hugo version (the kit's pin)
+           id: hugo
+           run: echo "version=$(bash scripts/hugo-version.sh)" >> "$GITHUB_OUTPUT"
          - name: Install Hugo (extended)
+           env:
+             HUGO_VERSION: ${{ steps.hugo.outputs.version }}
            run: |
              curl -sSL -o hugo.tar.gz "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
              tar -xzf hugo.tar.gz hugo && sudo mv hugo /usr/local/bin/

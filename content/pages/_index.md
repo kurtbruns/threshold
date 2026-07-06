@@ -5,4 +5,4 @@ menus: main
 weight: 2
 ---
 
-These are your site's standalone pages — everything that isn't a blog post. The examples below are a short guide to working with Threshold; replace them with your own (a Projects page, a Contact page, whatever your site needs).
+These pages below are short guides to working with the starter kit. Replace them with your own or delete the `content/pages` folder entirely.

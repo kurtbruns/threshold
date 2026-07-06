@@ -12,8 +12,8 @@ You're helping the **owner of this website**, who is likely not a programmer. It
 
 ## Where things live
 
-- **Pages and posts:** `content/`. `content/_index.md` is the home page, `content/about.md` the About page, and `content/blog/` the posts. Each `.md` file is one page.
-- **Photos:** an `images/` folder next to the page's `.md` file (a "page bundle").
+- **Pages and posts:** `content/`. `content/_index.md` is the home page, `content/about/index.md` the About page, and `content/blog/` the posts. Each `.md` file is one page.
+- **Photos:** an image used on a single page goes in an `images/` folder next to that page's `.md` file (a "page bundle"). An image shared across several pages goes in `assets/images/`. The home page (`content/_index.md`) lives at the content root, so its images go in `assets/images/` too.
 - **Look and feel:** `assets/css/variables.css` for colors, fonts, and sizes, and `assets/css/components/` for per-piece styles. Dark mode is automatic.
 - **Site settings:** `config/_default/hugo.toml` holds the site name, description, and top menu.
 - **Logo and icon:** `assets/icons/logo.svg` for the header, and `assets/favicons/` for the browser tab.
@@ -24,7 +24,7 @@ You're helping the **owner of this website**, who is likely not a programmer. It
 - **Edit text:** open the page's `.md` file in `content/` and edit the Markdown.
 - **Add a page:** create `content/<name>.md` with a title. Add it to the menu under `[menus]` in `config/_default/hugo.toml` if it should appear in the nav.
 - **Add a blog post:** create `content/blog/<slug>.md`, or a folder with an `images/` subfolder.
-- **Add a photo:** drop it in the page's `images/` folder and reference it with a normal Markdown image: `![a short description](images/photo.jpg)`. Threshold makes it responsive and strips location data automatically. For a caption or a width cap, use the `image` shortcode: `{{< image src="images/photo.jpg" alt="…" caption="…" width="480" >}}`.
+- **Add a photo:** for an image used on one page, drop it in that page's `images/` folder; for one shared across pages (or on the home page), put it in `assets/images/`. Reference it with a normal Markdown image either way — `![a short description](images/photo.jpg)` — since Threshold checks the page's own folder first, then falls back to `assets/`, so the same `images/…` path works in both cases. It makes the image responsive and strips location data automatically. For a caption or a width cap, use the `image` shortcode: `{{< image src="images/photo.jpg" alt="…" caption="…" width="480" >}}`.
 - **Formatting** (bold, links, lists, headings, tables): standard Markdown. The example blog post is a quick tour of how it all renders.
 
 ## Look and feel

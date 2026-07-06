@@ -2,7 +2,7 @@
 name: launch
 description: Put the site on the internet for the first time. Connects the project to GitHub and sets up automatic publishing with a host (Cloudflare Pages or GitHub Pages), so that from then on changes go live with /publish. Use when the owner is ready to go live, or wants to launch, deploy, or get the site online for the first time. This is a one-time setup, separate from /publish, which sends later updates. disable-model-invocation so it only runs when the owner asks.
 disable-model-invocation: true
-allowed-tools: Read, Write, Bash(git remote:*), Bash(git push:*), Bash(git add:*), Bash(git commit:*), Bash(gh:*), Bash(hugo:*)
+allowed-tools: Read, Write, Bash(git remote:*), Bash(git push:*), Bash(git add:*), Bash(git commit:*), Bash(gh:*), Bash(hugo:*), Bash(bash scripts/hugo-version.sh)
 ---
 
 # Launch your site
@@ -23,7 +23,8 @@ is a guide as much as it is automation. Walk one step at a time and wait.
 echo "GitHub remote: $(git remote get-url origin 2>/dev/null || echo 'none yet')"
 echo "GitHub CLI:    $(gh --version 2>/dev/null | head -1 || echo 'not installed')"
 echo "Signed in:     $(gh auth status >/dev/null 2>&1 && echo 'yes' || echo 'no')"
-echo "Hugo:          $(hugo version 2>/dev/null | head -1 || echo 'not installed')"
+echo "Hugo (local):  $(hugo version 2>/dev/null | head -1 || echo 'not installed')"
+echo "Kit's Hugo pin: $(bash scripts/hugo-version.sh 2>/dev/null || echo '?') (extended — set HUGO_VERSION to this on the host)"
 ```
 
 ## 1. Get the project onto GitHub
@@ -83,9 +84,9 @@ over time, so describe each step and adapt:
    - **Build command:** `hugo --gc --minify`
    - **Build output directory:** `public`
 4. Add an environment variable so Cloudflare builds with the right Hugo:
-   - **`HUGO_VERSION`** set to the version this kit uses (the `Hugo` line in the
-     check above; the build needs the **extended** edition, which is what that
-     version installs).
+   - **`HUGO_VERSION`** set to the kit's Hugo pin (the **Kit's Hugo pin** line in
+     the check above, i.e. the output of `scripts/hugo-version.sh`). That value
+     installs the **extended** edition the build needs.
 5. Save and deploy. Cloudflare builds the site and gives an address ending in
    `.pages.dev`.
 6. Set the site's address to match so links resolve correctly. In
@@ -98,8 +99,9 @@ From now on, every push rebuilds the site automatically.
 
 This path you can mostly do for them. Add the build recipe, then turn Pages on.
 
-1. Create `.github/workflows/hugo.yml` with the workflow below. Set `HUGO_VERSION`
-   to the version from the check above (the build needs the **extended** edition).
+1. Create `.github/workflows/hugo.yml` with the workflow below. It reads the kit's
+   Hugo pin from `scripts/hugo-version.sh`, so there's no version to hardcode — the
+   build always matches `config/_default/hugo.toml`.
 
    ```yaml
    name: Deploy site to GitHub Pages
@@ -121,17 +123,20 @@ This path you can mostly do for them. Add the build recipe, then turn Pages on.
    jobs:
      build:
        runs-on: ubuntu-latest
-       env:
-         HUGO_VERSION: 0.161.1
        steps:
-         - name: Install Hugo (extended)
-           run: |
-             wget -O hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
-             sudo dpkg -i hugo.deb
          - name: Checkout
            uses: actions/checkout@v4
            with:
              fetch-depth: 0
+         - name: Resolve Hugo version (the kit's pin)
+           id: hugo
+           run: echo "version=$(bash scripts/hugo-version.sh)" >> "$GITHUB_OUTPUT"
+         - name: Install Hugo (extended)
+           env:
+             HUGO_VERSION: ${{ steps.hugo.outputs.version }}
+           run: |
+             wget -O hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
+             sudo dpkg -i hugo.deb
          - name: Configure Pages
            id: pages
            uses: actions/configure-pages@v5
@@ -184,5 +189,7 @@ expectation for next time:
 - **This runs once.** After launch, `/publish` is the everyday way to send updates.
 - **Custom domain** (e.g. `yourname.com`) is a later step, set up in the host's
   dashboard. Offer it only if they ask.
-- **Hugo version.** Both hosts must build with the **extended** edition and should
-  match the version this kit uses, so production matches the local preview.
+- **Hugo version.** The kit pins one Hugo version — the `min` under
+  `[module.hugoVersion]` in `config/_default/hugo.toml`, printed by
+  `scripts/hugo-version.sh`. Both hosts build with that (extended) version. GitHub
+  Pages reads it automatically; for Cloudflare you set `HUGO_VERSION` to it once.

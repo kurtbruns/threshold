@@ -5,16 +5,48 @@ menus: main
 weight: 1
 ---
 
-# Welcome to your new site
+## Outline
 
-This site is built with **Threshold** — a Hugo starter kit you shape by talking to **Claude Code**. What you're seeing now is example content. The short guide below walks you through making it your own.
+- Welcome
+    - Your site is up and running. Time to make it yours.
+    - Demo-only banner (not page content). Injected at build via `HUGO_PARAMS_ISDEMO`
+        - You're viewing a demo version of the site you could be building with Threshold.
+        - Download the project and open with Claude code to make it yours.
+- Next steps
+    - Get started
+    - Personalize
+    - Write
+    - Launch
+- Make it yours
+- Publishing
 
-## Take the tour
+# Welcome
 
-- **[Getting started](/pages/getting-started/)** — how to work with your site and preview changes.
-- **[Blog](/blog/)** — an example blog showing how posts and lists look.
-- **[About](/about/)** — a sample page to replace with your own.
+This is your home page. Replace it with your own when you're ready.
+
+{{< demo-notice >}}
+You're viewing a **demo** of what you can build with the [Threshold](https://github.com/kurtbruns/threshold). This is the starting point when you download the project and follow the setup instructions.
+{{< /demo-notice >}}
+
+---
+
+Threshold is a starter kit for building a personal website. It is designed to work "out-of-the-box" with Claude Code and is more or less opinionated. The kit contains the sort of advice, design choices, and recommendations I would make to a friend who wants to build a website.
+
+It is built using [Hugo](https://gohugo.io/), a static site generator, which separates content (text + images) from the layout and design of the site. This makes it's relatively easy to edit the content yourself and the end result is a website that is fast, secure, and [easy to host](/pages/launch/).
+
+## Guides
+
+- **[Get started](/pages/get-started/)** — how to work with your site and preview changes.
+- **[Personalize](/pages/personalize/)** — layout, colors, fonts, your logo, and site identity.
+- **[Write](/pages/write/)** — formatting text, adding images, and emoji.
+- **[Launch](/pages/launch/)** - the steps to make your site online.
 
 ## Make it yours
 
-Just tell Claude Code what you want — for example: *"rename the site to Maria's Kitchen,"* *"write an About page about me,"* *"make the links green,"* or *"add a page for my projects."* It edits the files and shows you the result. When you're ready to start fresh, ask it to clear the example content.
+Decisions, decisions. The work about the work. This is the tricky part. You've decided to make a website or, at least, that you'd like to be someone who has a nice website.
+
+{{< image src="images/blank-page-in-typewriter.png" alt="" caption="A blank page in a typewriter from Adaptation (2002)" width="480" >}}
+
+You can either hack the starter kit and mold it into the shape you want or there is also a nuclear option. If you want to go scortched earth, invoke the `/nuclear` skill and wipe the slate clean. Start from a blank canvas. Don't worry, this just resets the `content/` folder to a good starting point to create something that is unique and personal to you. All of that good context for Claude Code still exists in the project folder.
+
+

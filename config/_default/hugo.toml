@@ -14,6 +14,7 @@ enableEmoji = true   # render :shortcode: emoji (e.g. :tada: → 🎉) alongside
   # The site owner — shown as the byline on blog posts. A single post can
   # override it with its own `author` in front matter.
   author = "Your Name"
+  isDemo = true
 
 # Hugo version pin — the single source of truth for which Hugo to use.
 # Read by scripts/hugo-version.sh (and CI). Requires the *extended* build: the

@@ -1,0 +1,89 @@
+# Deploys the Threshold demo site to GitHub Pages.
+#
+# This is the MAINTAINER's demo pipeline, not a site owner's. The jobs are
+# gated to the source repo (see `if:` below), so a "Use this template" clone
+# inherits this file inert — it never runs, fails, or deploys on their fork.
+# The /launch guide sets up the owner's own deployment; it can delete this file.
+#
+# baseURL is NOT read from config/_default/hugo.toml (that stays the owner-facing
+# placeholder). It's supplied at build time by actions/configure-pages, which
+# derives the correct URL for the Pages site (and adapts if a custom domain is
+# added later). Requires repo Settings → Pages → Source = "GitHub Actions".
+name: Deploy demo to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let one deploy finish before the next starts; don't cancel an in-flight one.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    # Gate: only the maintainer's repo builds the demo. Skipped on any clone.
+    if: github.repository == 'kurtbruns/threshold'
+    runs-on: ubuntu-latest
+    env:
+      HUGO_ENVIRONMENT: production
+      TZ: America/Los_Angeles
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # full history so .GitInfo / .Lastmod are accurate
+
+      - name: Resolve pinned Hugo version
+        id: hugo
+        run: echo "version=$(bash scripts/hugo-version.sh)" >> "$GITHUB_OUTPUT"
+
+      - name: Install Hugo (extended)
+        env:
+          HUGO_VERSION: ${{ steps.hugo.outputs.version }}
+        run: |
+          wget -O "${{ runner.temp }}/hugo.deb" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "${{ runner.temp }}/hugo.deb"
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build with Hugo
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_PARAMS_ISDEMO: "true"  # renders the demo notice bar (layouts/partials/demo-banner.html)
+        run: |
+          hugo \
+            --gc \
+            --minify \
+            --baseURL "${{ steps.pages.outputs.base_url }}/"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    # Same gate as build, so the intent is unmistakable job-to-job.
+    if: github.repository == 'kurtbruns/threshold'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,30 @@
+{{- /*
+  Demo notice — homepage-only, maintainer chrome (NOT part of an owner's site).
+
+  Paired shortcode: the copy lives in the page as the body, so it's edited in
+  context. Wrap the body in demo-notice tags in content/_index.md; the body is
+  Markdown and is rendered only when site.Params.isDemo is truthy. That happens
+  exclusively on the Threshold demo build, where the demo workflow
+  (.github/workflows/demo.yml) sets HUGO_PARAMS_ISDEMO=true. On a site owner's
+  build the guard is false, so nothing renders — the body sits inert in the
+  source until they rewrite the home page or /nuclear clears it.
+
+  Self-contained: markup + styles live here together, so deleting this file and
+  its call in _index.md removes the demo notice entirely, leaving nothing behind.
+*/ -}}
+{{- if site.Params.isDemo -}}
+<aside class="demo-notice">
+  {{ .Inner | markdownify }}
+</aside>
+<style>
+  .demo-notice {
+    margin: 1.5rem 0;
+    padding: 0.85rem 1.1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--background-soft);
+  }
+  .demo-notice > :first-child { margin-top: 0; }
+  .demo-notice > :last-child { margin-bottom: 0; }
+</style>
+{{- end -}}
