@@ -9,9 +9,7 @@ weight: 1
 
 - Welcome
     - Your site is up and running. Time to make it yours.
-    - Demo-only banner (not page content). Injected at build via `HUGO_PARAMS_ISDEMO`
-        - You're viewing a demo version of the site you could be building with Threshold.
-        - Download the project and open with Claude code to make it yours.
+    - Demo-only banner
 - Next steps
     - Get started
     - Personalize
@@ -25,7 +23,7 @@ weight: 1
 This is your home page. Replace it with your own when you're ready.
 
 {{< demo-notice >}}
-You're viewing a **demo** of what you can build with the [Threshold](https://github.com/kurtbruns/threshold). This is the starting point when you download the project and follow the setup instructions.
+You're viewing a **demo** of what you can build with Threshold, a starter kit for making a personal website with Claude Code. This is the starting point after you download and setup the project. **[Download here →](https://github.com/kurtbruns/threshold)**
 {{< /demo-notice >}}
 
 ---

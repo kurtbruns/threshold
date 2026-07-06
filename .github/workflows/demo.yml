@@ -1,6 +1,6 @@
 # Deploys the Threshold demo site to GitHub Pages.
 #
-# This is the MAINTAINER's demo pipeline, not a site owner's. The jobs are
+# This is the MAINTAINER's demo pipeline, not a site owner's. The job is
 # gated to the source repo (see `if:` below), so a "Use this template" clone
 # inherits this file inert — it never runs, fails, or deploys on their fork.
 # The /launch guide sets up the owner's own deployment; it can delete this file.
@@ -31,16 +31,23 @@ defaults:
     shell: bash
 
 jobs:
-  build:
-    # Gate: only the maintainer's repo builds the demo. Skipped on any clone.
+  # One job builds and deploys. GitHub's canonical Pages template uses two jobs so a
+  # separate `deploy` can gate on the `github-pages` environment (approval rules,
+  # scoped permissions). This demo needs none of that, so one job is simpler and
+  # saves a runner spin-up. Split back out if you ever want a manual approval gate.
+  deploy:
+    # Gate: only the maintainer's repo runs the demo. Skipped on any clone.
     if: github.repository == 'kurtbruns/threshold'
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     env:
       HUGO_ENVIRONMENT: production
       TZ: America/Los_Angeles
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0  # full history so .GitInfo / .Lastmod are accurate
 
@@ -58,12 +65,12 @@ jobs:
 
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
-          HUGO_PARAMS_ISDEMO: "true"  # renders the demo notice bar (layouts/partials/demo-banner.html)
+          HUGO_PARAMS_ISDEMO: "true"  # renders the demo notice (layouts/shortcodes/demo-notice.html)
         run: |
           hugo \
             --gc \
@@ -71,19 +78,10 @@ jobs:
             --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./public
 
-  deploy:
-    # Same gate as build, so the intent is unmistakable job-to-job.
-    if: github.repository == 'kurtbruns/threshold'
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
