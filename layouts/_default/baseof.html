@@ -7,7 +7,9 @@
   {{- /* Page metadata. Home shows the site name; other pages show their own
          title (e.g. "Blog"). Social cards (Open Graph / Twitter) are omitted by
          default — ask Claude Code to add them if you want rich link previews. */ -}}
-  {{- $desc := or .Description (.Summary | plainify | chomp | truncate 200) site.Params.description -}}
+  {{- /* Meta description: the page's own `description`, else the site tagline
+         (params.description in hugo.yaml). */ -}}
+  {{- $desc := or .Description site.Params.description -}}
   <title>{{ cond .IsHome site.Title .Title }}</title>
   <meta name="description" content="{{ $desc }}">
   <link rel="canonical" href="{{ .Permalink }}">
