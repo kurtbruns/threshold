@@ -1,6 +1,4 @@
-<!-- 
-
-Outline
+<!-- Outline
 
 - What Threshold is
    - 2-3 sentences pitch. A website you build by talking to Claude Code. After the setup, technical details are handled for you.
@@ -12,6 +10,7 @@ Outline
    3. Install requirements (Run the `/setup` skill)
 - What to expect
    - Maybe address who this is for? designers, artists, etc
+   - Costs
    - Setup is the most technical part, it's one time, and Claude walks you through it.
 - Next → Read the "Get Started" guide
 - License
@@ -34,7 +33,7 @@ See a demo of the starting kit [here](https://kurtbruns.github.io/threshold/).
 
 1. Download or clone the project to your computer
 2. Open the folder in Calude Code
-3. Install requirements
+3. Install requirements (run the `/setup` skill)
 
 ## What to Expect
 
@@ -43,9 +42,6 @@ Setup is the most technical part
 Costs
 
 Next → [read the Get Started guide](https://kurtbruns.github.io/threshold/pages/get-started/)
-
-## Next → read the Get Started guide
-
 
 
 ## License
