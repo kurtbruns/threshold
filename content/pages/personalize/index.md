@@ -4,7 +4,7 @@ description: "Layout, colors, fonts, your logo, and site identity."
 weight: 2
 ---
 
-<!--
+<!-- Outline
 
 - Layout
 - Theme
@@ -34,18 +34,18 @@ There is a main stylesheet called `assets/css/variables.css` which contains a ha
 
 ### Fonts
 
-The site ships with fast system fonts, so there are no third-party requests. To use a Google Font, ask for **`/change-font`** — it browses Google Fonts with you, then downloads and self-hosts your pick (still no calls to Google).
+The site ships with fast system fonts, so there are no third-party requests. To use a Google Font, ask for **`/change-font`**. It browses Google Fonts with you, then downloads and self-hosts your pick (still no calls to Google).
 
 ## Name and tagline
 
-Your site's name and description live in `config/_default/hugo.toml`. Ask Claude to *"rename the site to …"* or *"update the tagline,"* and it edits them there.
+Your site's name and description live in `hugo.yaml`. Ask Claude to *"rename the site to …"* or *"update the tagline,"* and it edits them there.
 
 ## Logo and icon
 
 TODO: https://fonts.google.com/icons
 
-- The header logo is `assets/icons/logo.svg` — swap that file, or ask Claude to draw a new mark.
-- The browser-tab icon (favicon) is `assets/favicons/icon.png` — swap that file for your own.
+- The header logo is `assets/icons/logo.svg`. Swap that file, or ask Claude to draw a new mark.
+- The browser-tab icon (favicon) is `assets/favicons/icon.png`. Swap that file for your own.
 
 ## The menu
 

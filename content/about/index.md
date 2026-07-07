@@ -1,6 +1,6 @@
 ---
 title: "About"
-description: "An example About page — replace it with your own."
+description: "An example About page. Replace it with your own."
 menus: main
 weight: 4
 ---

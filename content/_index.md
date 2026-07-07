@@ -1,12 +1,10 @@
 ---
 title: "Home"
-description: "A new website built with Threshold."
 menus: main
 weight: 1
 ---
 
-<!-- 
-Outline
+<!-- Outline
 
 - Welcome
     - This is your home page. Make it yours.
