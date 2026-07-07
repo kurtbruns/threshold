@@ -1,0 +1,25 @@
+// Cloudflare Workers deploy settings for a Threshold site (Static Assets).
+// Copy this to wrangler.jsonc at the repo root, then fill in <your-project-name>
+// and <yourdomain.com>. The GitHub Actions workflow runs `wrangler deploy`,
+// which reads this file.
+{
+  "name": "<your-project-name>",
+  "compatibility_date": "2026-07-01",
+
+  // workers_dev: false disables the <name>.<account>.workers.dev address, so the
+  // custom domain is the only crawlable copy of the site.
+  "workers_dev": false,
+
+  // Serve the Hugo build in ./public as static files.
+  "assets": {
+    "directory": "./public",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+
+  // Custom domain. custom_domain: true lets wrangler manage the proxied DNS
+  // record and edge certificate. The domain must be on this Cloudflare account.
+  "routes": [
+    { "pattern": "<yourdomain.com>", "custom_domain": true }
+  ]
+}

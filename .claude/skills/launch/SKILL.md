@@ -1,195 +1,109 @@
 ---
 name: launch
-description: Put the site on the internet for the first time. Connects the project to GitHub and sets up automatic publishing with a host (Cloudflare Pages or GitHub Pages), so that from then on changes go live with /publish. Use when the owner is ready to go live, or wants to launch, deploy, or get the site online for the first time. This is a one-time setup, separate from /publish, which sends later updates. disable-model-invocation so it only runs when the owner asks.
+description: Put the site on the internet for the first time. Connects the project to GitHub, then sets up automatic publishing through a GitHub Actions workflow that builds and deploys on every push, to Cloudflare Workers (recommended: a custom domain and full control) or GitHub Pages (the fast on-ramp when you don't have a domain yet). Use when the owner is ready to go live, or wants to launch, deploy, or get the site online for the first time. One-time setup, separate from /publish, which sends later updates. disable-model-invocation so it only runs when the owner asks.
 disable-model-invocation: true
-allowed-tools: Read, Write, Bash(git remote:*), Bash(git push:*), Bash(git add:*), Bash(git commit:*), Bash(gh:*), Bash(hugo:*), Bash(bash scripts/hugo-version.sh)
+allowed-tools: Read, Write, Edit, Bash(git remote:*), Bash(git push:*), Bash(git add:*), Bash(git commit:*), Bash(gh:*), Bash(hugo:*), Bash(bash scripts/hugo-version.sh), Bash(mkdir:*), Bash(cp:*)
 ---
+
+<!-- Outline
+
+- Read the environment check (remote, gh, auth, hugo, kit's Hugo pin)
+- Get the project onto GitHub (account, sign in, create repo, push)
+- Choose a host: Cloudflare Workers (default, custom domain) or GitHub Pages (fast on-ramp), then follow that host's guide:
+    - Cloudflare Workers: hosts/cloudflare-workers.md
+    - GitHub Pages: hosts/github-pages.md
+- Confirm it's live (watch the Actions run)
+- Record the launch marker (params.launch: host + date in hugo.yaml) so /publish knows a pipeline exists and where to report
+- Hand off: everyday publishing is /publish
+- Notes: one-time setup, custom domain, Hugo version pin
+- Supporting files: hosts/ (per-provider setup), templates/ (deploy workflows + wrangler.jsonc)
+
+-->
 
 # Launch your site
 
-Put the owner's site on the internet for the first time. This is a one-time setup
-with two parts: get the project onto **GitHub**, then connect a **host** that
-rebuilds and serves the site whenever it changes. After this, going live with new
-edits is just `/publish`.
+Put the owner's site on the internet for the first time. This is a one-time setup with two parts: get the project onto **GitHub**, then set up a **host** that rebuilds and serves the site whenever it changes. Both host options deploy through a **GitHub Actions** workflow, so every deploy is a run you can watch. After this, going live with new edits is just `/publish`.
 
-This is an outward-facing action: it creates a public repository and a public
-website. Confirm clearly before anything is created or made public, and keep the
-owner in plain language. Most of the work happens in a web browser, so this skill
-is a guide as much as it is automation. Walk one step at a time and wait.
+This is an outward-facing action: it creates a public repository and a public website. Confirm clearly before anything is created or made public, and keep the owner in plain language. Some of the work happens in a web browser, so this skill is a guide as much as it is automation. Walk one step at a time and wait.
+
+**Who does what.** A few steps below only the owner can do, since they involve their accounts, payment, and secrets: creating a GitHub or Cloudflare account, creating an API token, buying or registering a domain, and pasting secret values. Walk them through those one at a time. Everything else is yours to do and to check: copying the workflow, editing `wrangler.jsonc` and `hugo.yaml`, running `gh` commands, and watching the deploy. Set that expectation up front:
+
+> A few of these steps only you can do, since they involve your accounts, payment, and passwords. I'll walk you through each, then handle the rest and watch the deploy for you.
 
 ## Where the site stands
 
 ```!
-echo "GitHub remote: $(git remote get-url origin 2>/dev/null || echo 'none yet')"
-echo "GitHub CLI:    $(gh --version 2>/dev/null | head -1 || echo 'not installed')"
-echo "Signed in:     $(gh auth status >/dev/null 2>&1 && echo 'yes' || echo 'no')"
-echo "Hugo (local):  $(hugo version 2>/dev/null | head -1 || echo 'not installed')"
-echo "Kit's Hugo pin: $(bash scripts/hugo-version.sh 2>/dev/null || echo '?') (extended — set HUGO_VERSION to this on the host)"
+echo "GitHub remote:  $(git remote get-url origin 2>/dev/null || echo 'none yet')"
+echo "GitHub CLI:     $(gh --version 2>/dev/null | head -1 || echo 'not installed')"
+echo "Signed in:      $(gh auth status >/dev/null 2>&1 && echo 'yes' || echo 'no')"
+echo "Hugo (local):   $(hugo version 2>/dev/null | head -1 || echo 'not installed')"
+echo "Kit's Hugo pin: $(bash scripts/hugo-version.sh 2>/dev/null || echo '?') (extended; the workflow installs this automatically)"
 ```
 
 ## 1. Get the project onto GitHub
 
-Read the check above. If **GitHub remote** already shows an address, the project is
-already on GitHub (this is the case for anyone who used "Use this template"). Push
-anything local that isn't up there yet, then go to step 2.
+Read the check above. If **GitHub remote** already shows an address, the project is already on GitHub (this is the case for anyone who used "Use this template"). Push anything local that isn't up there yet, then go to step 2.
 
-If the remote is **none yet**, the owner downloaded the kit and needs a home for it
-on GitHub. This is where a **GitHub account is required**, so explain that plainly:
+If the remote is **none yet**, the owner downloaded the kit and needs a home for it on GitHub. This is where a **GitHub account is required**, so explain that plainly:
 
-> To put your site online, it needs to live on GitHub first. GitHub is a free
-> service that stores your site and tells your host when to update it. You'll need
-> a free account. Want me to walk you through it?
+> To put your site online, it needs to live on GitHub first. GitHub is a free service that stores your site and runs the step that publishes it. You'll need a free account. Want me to walk you through it?
 
 Then:
 
-1. **Account.** If they don't have one, send them to <https://github.com/signup> to
-   create a free account, and wait until they're done.
-2. **Sign in from this computer.** If **Signed in** is `no`, run `gh auth login` and
-   walk them through the browser prompt. (If `gh` isn't installed, install it first,
-   the same way `/setup` handles tools, or point them at GitHub Desktop.)
-3. **Create the repository and push.** Confirm the name and whether it should be
-   **public** (anyone can see the source files) or **private**, then create it:
+1. **Account.** If they don't have one, send them to <https://github.com/signup> to create a free account, and wait until they're done.
+2. **Sign in from this computer.** If **Signed in** is `no`, run `gh auth login` and walk them through the browser prompt. (If `gh` isn't installed, install it first, the same way `/setup` handles tools, or point them at GitHub Desktop.)
+3. **Create the repository and push.** Confirm the name and whether it should be **public** (anyone can see the source files) or **private**, then create it:
    ```bash
    gh repo create <name> --source=. --remote=origin --push
    ```
-   Public is the simplest default. Note that a public repository means the site's
-   source text is visible to anyone; private repositories work too, but some hosts
-   or plans treat them differently (confirm before relying on this).
+   Public is the simplest default. Note that a public repository means the site's source text is visible to anyone; private repositories work too, but some hosts or plans treat them differently (confirm before relying on this).
 
 ## 2. Choose a host
 
-The host is the service that builds the site and serves it to visitors. Recommend
-one of these two, and offer the list below if they want to look around first:
+Both are free and both deploy through GitHub Actions, so the deploy is a run you can watch. Pick by how far along the owner is:
 
-- **Cloudflare Pages (recommended).** Nothing is added to your project. You connect
-  it once in Cloudflare's dashboard, and it gives you a web address right away.
-- **GitHub Pages.** Keeps everything inside GitHub with no third-party service. It
-  adds one small settings file to your project and serves from a web address under
-  your GitHub name.
+- **Cloudflare Workers (recommended).** The default for a site they mean to keep: their own **custom domain** (Cloudflare is also a registrar), control over crawlers, and deploy settings kept in the repo as `wrangler.jsonc`. A bit more setup (an API token), and it's the platform Cloudflare builds on going forward.
+- **GitHub Pages (the fast on-ramp).** The quickest way to be live: the project is already on GitHub, so this needs nothing but a workflow file and gives a free `yourname.github.io` address. Great when they don't have a domain yet or just want it online today.
 
-Other options to look into later: Netlify, Vercel, Render. They all work the same
-way (connect the repo, build with Hugo). Pick one host now; the owner can change
-later.
+When in doubt, or in a hurry, start with GitHub Pages; switching to Cloudflare later is easy (swap the workflow, add `wrangler.jsonc`, set `baseURL`, point the domain).
 
-## 3a. Cloudflare Pages (recommended)
+Other hosts work too: you can connect the repo directly in a host's dashboard, or use any host from [Hugo's host-and-deploy list](https://gohugo.io/host-and-deploy/). The difference is visibility. The two options above give me a deploy run I can watch and debug with nothing extra to install, whereas a host that builds on its own side leaves no run in the repo, so I could only follow it if you set up that host's own command-line tool (like `wrangler` or `netlify`) yourself.
 
-Guide them through the dashboard. The exact wording on Cloudflare's site changes
-over time, so describe each step and adapt:
+Once they pick, follow that host's guide, then come back here for step 3:
 
-1. Go to <https://dash.cloudflare.com/> and sign in or create a free account.
-2. Open **Workers & Pages → Create → Pages → Connect to Git**, authorize GitHub, and
-   pick the repository from step 1.
-3. Set the build settings:
-   - **Framework preset:** Hugo
-   - **Build command:** `hugo --gc --minify`
-   - **Build output directory:** `public`
-4. Add an environment variable so Cloudflare builds with the right Hugo:
-   - **`HUGO_VERSION`** set to the kit's Hugo pin (the **Kit's Hugo pin** line in
-     the check above, i.e. the output of `scripts/hugo-version.sh`). That value
-     installs the **extended** edition the build needs.
-5. Save and deploy. Cloudflare builds the site and gives an address ending in
-   `.pages.dev`.
-6. Set the site's address to match so links resolve correctly. In
-   `config/_default/hugo.toml`, set `baseURL` to the `.pages.dev` address (or a
-   custom domain later), then commit and push.
+- **Cloudflare Workers:** [hosts/cloudflare-workers.md](hosts/cloudflare-workers.md)
+- **GitHub Pages:** [hosts/github-pages.md](hosts/github-pages.md)
 
-From now on, every push rebuilds the site automatically.
+## 3. Confirm it's live
 
-## 3b. GitHub Pages
+Both hosts deploy from GitHub Actions, so watch the run. Follow it with `gh run watch`, or open the repository's **Actions** tab. When it's green, open the address and check the site loads and looks right. If it fails, read the log (`gh run view --log-failed`, or the Actions tab), fix the problem (often the Hugo version, a secret, the project name, or the domain setup), and push again.
 
-This path you can mostly do for them. Add the build recipe, then turn Pages on.
+## 4. Record the launch marker
 
-1. Create `.github/workflows/hugo.yml` with the workflow below. It reads the kit's
-   Hugo pin from `scripts/hugo-version.sh`, so there's no version to hardcode — the
-   build always matches `config/_default/hugo.toml`.
+Once the site is confirmed live, record it in `hugo.yaml` so `/publish` knows a deploy pipeline exists and can point the owner at the right place afterward. Add this under `params`:
 
-   ```yaml
-   name: Deploy site to GitHub Pages
+```yaml
+params:
+  launch:
+    host: cloudflare      # or github-pages
+    date: 2026-07-07      # today
+```
 
-   on:
-     push:
-       branches: [main]
-     workflow_dispatch:
-
-   permissions:
-     contents: read
-     pages: write
-     id-token: write
-
-   concurrency:
-     group: pages
-     cancel-in-progress: false
-
-   jobs:
-     build:
-       runs-on: ubuntu-latest
-       steps:
-         - name: Checkout
-           uses: actions/checkout@v4
-           with:
-             fetch-depth: 0
-         - name: Resolve Hugo version (the kit's pin)
-           id: hugo
-           run: echo "version=$(bash scripts/hugo-version.sh)" >> "$GITHUB_OUTPUT"
-         - name: Install Hugo (extended)
-           env:
-             HUGO_VERSION: ${{ steps.hugo.outputs.version }}
-           run: |
-             wget -O hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
-             sudo dpkg -i hugo.deb
-         - name: Configure Pages
-           id: pages
-           uses: actions/configure-pages@v5
-         - name: Build
-           run: hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
-         - name: Upload artifact
-           uses: actions/upload-pages-artifact@v3
-           with:
-             path: ./public
-
-     deploy:
-       needs: build
-       runs-on: ubuntu-latest
-       environment:
-         name: github-pages
-         url: ${{ steps.deployment.outputs.page_url }}
-       steps:
-         - name: Deploy to GitHub Pages
-           id: deployment
-           uses: actions/deploy-pages@v4
-   ```
-
-   The workflow sets the site's address for you (`--baseURL`), so there's nothing to
-   change in the config for GitHub Pages.
-
-2. Commit and push the workflow file.
-3. On GitHub, open the repository's **Settings → Pages**, and under **Build and
-   deployment → Source**, choose **GitHub Actions**.
-4. The workflow runs on that push. When it finishes, Settings → Pages shows the live
-   address.
-
-## 4. Confirm it's live
-
-Wait for the first build to finish (a minute or two), then open the address the host
-gave you and check the site loads and looks right. If the build fails, read the
-host's build log, fix the problem (often the Hugo version or a missing setting), and
-push again.
+This is a *hint*, not gospel: `/publish` reads it to shape its message, never to hard-block. Commit it with the launch changes. (It's absent in the starter kit itself, so a fresh clone starts un-launched.)
 
 ## 5. Hand off
 
-Tell the owner plainly that the site is live, and give them the address. Then set the
-expectation for next time:
+Tell the owner plainly that the site is live, and give them the address. Then set the expectation for next time:
 
-> Your site is live at <address>. From now on, whenever you want your latest changes
-> on the web, just ask me to publish (or run `/publish`). It usually goes live in
-> under a minute.
+> Your site is live at <address>. From now on, whenever you want your latest changes on the web, just ask me to publish (or run `/publish`). It usually goes live in under a minute.
 
 ## Notes
 
 - **This runs once.** After launch, `/publish` is the everyday way to send updates.
-- **Custom domain** (e.g. `yourname.com`) is a later step, set up in the host's
-  dashboard. Offer it only if they ask.
-- **Hugo version.** The kit pins one Hugo version — the `min` under
-  `[module.hugoVersion]` in `config/_default/hugo.toml`, printed by
-  `scripts/hugo-version.sh`. Both hosts build with that (extended) version. GitHub
-  Pages reads it automatically; for Cloudflare you set `HUGO_VERSION` to it once.
+- **Custom domain.** With Cloudflare Workers it's built in: add the domain to your Cloudflare account, then set `routes[].pattern` in `wrangler.jsonc` and `baseURL` in `hugo.yaml` to match. GitHub Pages supports custom domains too, but you buy the domain elsewhere and add it under Settings → Pages.
+- **Hugo version.** The kit pins one Hugo version, `module.hugoVersion.min` in `hugo.yaml`, printed by `scripts/hugo-version.sh`. Both workflows install that exact extended version automatically.
+
+## Supporting files
+
+- **`hosts/`**: per-provider setup guides opened in step 2 ([cloudflare-workers.md](hosts/cloudflare-workers.md), [github-pages.md](hosts/github-pages.md)).
+- **`templates/`**: copyable files the host guides put in place: the deploy workflows ([cloudflare-workers.deploy.yml](templates/cloudflare-workers.deploy.yml), [github-pages.deploy.yml](templates/github-pages.deploy.yml)) and Cloudflare's [wrangler.jsonc](templates/wrangler.jsonc).
