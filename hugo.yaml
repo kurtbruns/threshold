@@ -1,0 +1,39 @@
+# Threshold site configuration.
+# Day-to-day site settings live here. The look (colors, fonts, spacing) lives
+# in the styles under assets/. See the docs for theming.
+
+baseURL: "https://example.com/"
+locale: "en-us"
+title: "Threshold"
+enableRobotsTXT: true
+enableEmoji: true   # render :shortcode: emoji (e.g. :tada: → 🎉) alongside pasted emoji
+
+params:
+  # Fallback <meta description> for any page that sets no description of its own
+  # and has no body text to summarize. Set your site tagline here once.
+  description: "A new website built with Threshold."
+  # The site owner, shown as the byline on blog posts. A single post can
+  # override it with its own `author` in front matter.
+  author: "Your Name"
+
+# Hugo version pin: the single source of truth for which Hugo to use.
+# Read by scripts/hugo-version.sh (and CI). This is a *floor*: Hugo refuses to
+# build with anything older, but a local install may be newer — CI installs this
+# exact version so the deploy build is reproducible. Requires the *extended*
+# build, because the responsive-image pipeline encodes WebP
+# (layouts/partials/image.html) and only the extended edition can do that. The
+# usual installs are already extended (Homebrew's `hugo`, the headline release
+# binary, Snap, Chocolatey).
+module:
+  hugoVersion:
+    min: "0.161.1"
+    extended: true
+
+# Image processing defaults (used when Hugo resizes photos).
+imaging:
+  quality: 82
+  resampleFilter: "Lanczos"
+
+# The top navigation menu is built from each page's front matter: set
+# `menus: main` (with a `weight` for order) on a page to list it in the header.
+# Example: see content/_index.md, content/pages/_index.md, content/about/index.md.

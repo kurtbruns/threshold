@@ -5,7 +5,7 @@
 # inherits this file inert — it never runs, fails, or deploys on their fork.
 # The /launch guide sets up the owner's own deployment; it can delete this file.
 #
-# baseURL is NOT read from config/_default/hugo.toml (that stays the owner-facing
+# baseURL is NOT read from hugo.yaml (that stays the owner-facing
 # placeholder). It's supplied at build time by actions/configure-pages, which
 # derives the correct URL for the Pages site (and adapts if a custom domain is
 # added later). Requires repo Settings → Pages → Source = "GitHub Actions".

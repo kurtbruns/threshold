@@ -16,7 +16,7 @@ resources/_gen/
 CLAUDE.local.md
 
 # Version-manager pin files. The canonical Hugo pin lives in
-# config/_default/hugo.toml [module.hugoVersion] min (see scripts/hugo-version.sh).
+# hugo.yaml module.hugoVersion.min (see scripts/hugo-version.sh).
 # Drop one of these locally if your tool needs it, but it isn't source of truth.
 .tool-versions
 mise.toml
