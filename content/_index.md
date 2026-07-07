@@ -5,10 +5,11 @@ menus: main
 weight: 1
 ---
 
-## Outline
+<!-- 
+Outline
 
 - Welcome
-    - Your site is up and running. Time to make it yours.
+    - This is your home page. Make it yours.
     - Demo-only banner
 - Next steps
     - Get started
@@ -16,28 +17,23 @@ weight: 1
     - Write
     - Launch
 - Make it yours
-- Publishing
+    - Hack it into what you want or go /nuclear for a blank canvas
+-->
 
 # Welcome
 
-This is your home page. Replace it with your own when you're ready.
+This is your home page.
 
 {{< demo-notice >}}
-You're viewing a **demo** of what you can build with Threshold, a starter kit for making a personal website with Claude Code. This is the starting point after you download and setup the project. **[Download here →](https://github.com/kurtbruns/threshold)**
+You're viewing a **demo** of what you can build with Threshold, a starter kit for making a personal website with Claude Code. This is the starting point after you download and set up the project. **[Download here →](https://github.com/kurtbruns/threshold)**
 {{< /demo-notice >}}
-
----
-
-Threshold is a starter kit for building a personal website. It is designed to work "out-of-the-box" with Claude Code and is more or less opinionated. The kit contains the sort of advice, design choices, and recommendations I would make to a friend who wants to build a website.
-
-It is built using [Hugo](https://gohugo.io/), a static site generator, which separates content (text + images) from the layout and design of the site. This makes it's relatively easy to edit the content yourself and the end result is a website that is fast, secure, and [easy to host](/pages/launch/).
 
 ## Guides
 
-- **[Get started](/pages/get-started/)** — how to work with your site and preview changes.
-- **[Personalize](/pages/personalize/)** — layout, colors, fonts, your logo, and site identity.
-- **[Write](/pages/write/)** — formatting text, adding images, and emoji.
-- **[Launch](/pages/launch/)** - the steps to make your site online.
+- **[Get started](/pages/get-started/)** — get your site running and make your first edits.
+- **[Personalize](/pages/personalize/)** — change the look and feel of the site.
+- **[Write](/pages/write/)** — working with text, images, and emoji.
+- **[Launch](/pages/launch/)** - take your site online.
 
 ## Make it yours
 

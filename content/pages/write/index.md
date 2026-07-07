@@ -4,9 +4,49 @@ description: "Formatting text, adding images, and emoji."
 weight: 3
 ---
 
-The pages of the site live in the `content/` folder. This is where you would create a project, essay, or other piece of writing.
+<!-- 
 
-Everything on your site is written in Markdown and organized into page bundles.
+- How to create a new page
+  - Writing
+  - Images
+- Markdown
+  - Headings
+  - Stylized text
+  - Lists
+  - Quotes and code
+  - Tables
+  - Emoji
+  - Extending Markdown
+
+ -->
+
+The pages of the site live in the `content/` folder. This is where you would create a project, essay, or other piece of writing. Open the content folder of this site and this is what you'll see.
+
+```
+content/
+├── _index.md
+├── about/
+├── blog/
+└── pages/
+    ├── _index.md
+    ├── get-started/
+    ├── launch/
+    ├── personalize/
+    └── write/
+        ├── index.md
+        └── images/
+            ├── sculpture.jpg
+            └── vista.jpg
+```
+
+Everything on your site is written in Markdown and organized into folders. The `index.md` files are markdown files that make up pages on the iste.
+
+After the dust has settled and you are happy with the look and feel of the site, this is where you might be spending most of your time.
+
+
+
+
+
 
 
 

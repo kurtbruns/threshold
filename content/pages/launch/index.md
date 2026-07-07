@@ -4,31 +4,44 @@ description: "The steps you need to take to launch your site out into the big wi
 weight: 4
 ---
 
+<!-- 
+
+Outline
+
+- Connect to github (needs a GitHub account)
+    - We are going to use GitHub to orchestrate publishing local changes to your site you make on your computer to the live site on the web. 
+- Choose a host
+    - Recommend Clouflare Pages or Github pages
+    - List other options and see also: https://gohugo.io/host-and-deploy/ 
+- Custom domain (optional) + DNS
+- The publishing pipeline
+    - Push-to-publish: how it's wired (GitHub Actions builds & deploys)
+        - Github actions
+        - Connect github to your host (Cloudflare / Netlifly) and input the build command
+        - rsync
+- First deploy (go live)
+- After launch
+    - Everyday publishing is just `/publish`
+- Cost summary
+    - Domain is about $15 per year
+    - Github pages and Cloudflare are free
+    - Other hosts may cost some amount per month
+
+-->
+
 You are ready to launch your static site on the World Wide Web 🌐. The good news is a static site is about as easy as it gets. Because a static site is just a collection of files in a folder, publishing your site is as simple as syncing this folder with some remote location. Many hosting providers will host your site for little to no cost and you can have the peace of mind that it will stay online for many years to come. The bad news is, there are some hoops you will need to jump through.
 
 This guide walks through the steps to set up and publish your website. Once you have completed the guide, you can ask Claude Code to publish the website, and your changes will automatically get published to the live site.
 
 There is also a `/launch` skill that you can run to have Claude Code help you walk through the guide.
 
-## Outline
 
-- Connect to github
-    - We are going to use GitHub to orchestrate publishing local changes to your site you make on your computer to the live site on the web. 
-- Choose a provider to host the site
-    - Recommend Clouflare Pages or Github pages
-    - List other options and see also: https://gohugo.io/host-and-deploy/ 
-- Purchase a custom domain (optional)
-- Create a publishing pipeline
-    - Github actions
-    - Connect github to your host (Cloudflare / Netlifly) and input the build command
-    - rsync
-- Deploy
-    - First deployment (go live)
-    - "Push to publish"
 
 ---
 
-## Connect to Github
+## Connect to Github (needs a GitHub account)
+
+- To start, you need a GitHub account.
 
 We are using Git to orchestrate publishing changes to the site. Once this is set up we'll have a "push to publish" deploy pipeline where when you push changes from your local machine to a repository online, the site will get built and deployed along the way.
 

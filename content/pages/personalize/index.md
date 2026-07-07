@@ -4,34 +4,35 @@ description: "Layout, colors, fonts, your logo, and site identity."
 weight: 2
 ---
 
+<!--
+
+- Layout
+- Theme
+- Colors, fonts, and spacing
+- Fonts
+- Name and tagline
+- Icons and logo
+
+-->
+
 Change the look and feel of the site to make it yours.
-
-
 
 The pages of the site live in the `content/` folder. This is where you would create a project, essay, or other piece of writing.
 
 
-
 ## Layout
-
-TODO:
-
-TODO: Mention that the site is light & dark responsive
 
 TODO: https://1linelayouts.com/
 
-## Colors, fonts, and spacing
+## Theme
 
-The whole look comes from a handful of variables in `assets/css/variables.css` — change one and it updates everywhere:
+TODO: The site is light & dark responsive
 
-- `--primary-color` — links, buttons, and accents
-- `--background` and `--font-color` — page and text colors
-- `--font-body` and `--font-heading` — the typefaces
-- `--container-width` — how wide the reading column is
+Colors, fonts, spacing, and more
 
-Dark mode is automatic — the site follows each visitor's system setting.
+There is a main stylesheet called `assets/css/variables.css` which contains a handful of variables that control.
 
-## Fonts
+### Fonts
 
 The site ships with fast system fonts, so there are no third-party requests. To use a Google Font, ask for **`/change-font`** — it browses Google Fonts with you, then downloads and self-hosts your pick (still no calls to Google).
 
