@@ -17,8 +17,8 @@ weight: 1
 - Three ways to work (a spectrum; you move freely between them)
     - Delegate: talk to Claude, the default way in. Example prompts + the
       owner-facing skill list (the happy-path skills: /setup, /personalize,
-      /change-font, /launch, /publish, /nuclear; /upgrade-hugo is occasional
-      maintenance, keep it out of the primary list).
+      /launch, /publish, /nuclear; /upgrade-hugo is occasional maintenance,
+      keep it out of the primary list).
     - Author directly: write it yourself, in your own voice. Open a page's file
       in a text editor (Sublime, VS Code, anything) and edit the Markdown in
       content/. Encouraged for voice-heavy pages (About, blog); see the Write
