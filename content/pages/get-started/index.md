@@ -6,25 +6,28 @@ weight: 1
 
 <!-- Outline
 
-- What this is (intro paragraph no heading)
+- Intro (no heading): what this guide does. Get your site running, learn how you work with it.
 - Set up your site
-    - Install Hugo and Git
-        - After you download the project and open it in Claude Code, he project needs Hugo and Git to run which involves some technical setup.
-    - Run the /setup skill. 
-        - Installs the necessary tools and starts the preview server
-    - How to start the preview server manually
-- What's in the kit
-    - Everything is in a project folder on your computer
-    - Local site vs. live site (define both here, once)
-- Two ways to work
-    - Talk to Claude
-        - example prompts
-        - skills
-    - Edit the markdown yourself (you're not locked into a subscription)
-- Where next
-    - Personalize
-    - Writing
-    - Launching & publishing
+    - Needs Hugo and Git; run /setup (installs tools, sets up saving, starts the preview)
+    - Starting the preview manually (fallback)
+- How your site works (the model, defined once, here)
+    - It's a folder on your computer
+    - Two places: on your computer (the preview) and live (on the web)
+    - Two moments: Save (automatic, your undo history) and Publish (make it live)
+- Three ways to work (a spectrum; you move freely between them)
+    - Delegate: talk to Claude, the default way in. Example prompts + the
+      owner-facing skill list (the happy-path skills: /setup, /personalize,
+      /change-font, /launch, /publish, /nuclear; /upgrade-hugo is occasional
+      maintenance, keep it out of the primary list).
+    - Author directly: write it yourself, in your own voice. Open a page's file
+      in a text editor (Sublime, VS Code, anything) and edit the Markdown in
+      content/. Encouraged for voice-heavy pages (About, blog); see the Write
+      guide. A nudge, not a rule; Claude still helps whenever you ask.
+    - Operate the stack: you own it. Plain Markdown, CSS, and layouts over Git,
+      so you can graduate to editing and publishing yourself. Not tied to using
+      AI forever. An option, not a step.
+- Make your first change (a tiny guided edit, seen in the preview)
+- Where to go next: Personalize, Write, Launch
 
 -->
 
@@ -38,7 +41,7 @@ Run the `/setup` skill
 
 - Explain what the setup skill does including setting up version control. This allows you to save checkpoints and experiment with different options.
 
-## What's in the kit
+## How your site works
 
 - Everything is in a project folder on your computer
 - Local site vs. live site (define both here, once)
@@ -63,13 +66,6 @@ Run the `/setup` skill
 - `/upgrade-hugo` - TODO blurb
 
 ### Edit the markdown yourself (you're not locked into a subscription)
-
-
-#### Example Prompts
-
-
-
-#### Skills
 
 ## Make your first change
 
