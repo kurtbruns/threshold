@@ -6,49 +6,39 @@ weight: 3
 
 <!-- Outline
 
-- How to create a new page
-  - Writing
-  - Images
-- Markdown
-  - Headings
-  - Stylized text
-  - Lists
-  - Quotes and code
-  - Tables
-  - Emoji
-  - Extending Markdown
+- Intro (no heading): content lives in the content/ folder, organized into folders;
+  show the content tree; everything is Markdown; this is where you spend most of your
+  time once the look is settled.
+- How to create a new page: a page is a folder with an index.md inside it, a *page
+  bundle*, keeping the page's text and images together. Ask Claude; it creates the
+  bundle, writes the front matter, and can add it to the menu.
+- Images: drop a photo into the page's images/ and use a normal Markdown image (edge
+  to edge, made responsive, fast, and privacy-safe, with GPS stripped); the image
+  shortcode adds a caption or caps the width.
+- Markdown crash course:
+    - Headings
+    - Everyday text (bold, italic, code, links)
+    - Lists
+    - Quotes and code
+    - Tables
+- Emoji (paste it in, or type :shortcodes:)
+- Extending Markdown (raw HTML off on purpose; ask Claude for a shortcode)
 
  -->
 
-The pages of the site live in the `content/` folder. This is where you would create a project, essay, or other piece of writing. Open the content folder of this site and this is what you'll see.
+The pages of the site live in the `content/` folder. This is where you would create a project, essay, or other piece of writing. Open the content folder of this site and its top level looks like this:
 
 ```
 content/
-├── _index.md
+├── _index.md      # home page
 ├── about/
-├── blog/
-└── pages/
-    ├── _index.md
-    ├── get-started/
-    ├── launch/
-    ├── personalize/
-    └── write/
-        ├── index.md
-        └── images/
-            ├── sculpture.jpg
-            └── vista.jpg
+├── blog/          # your posts
+└── pages/         # the onboarding guides
 ```
 
-Everything on your site is written in Markdown and organized into folders. The `index.md` files are markdown files that make up pages on the iste.
+Everything on your site is written in Markdown and organized into folders. The `index.md` files are markdown files that make up pages on the site.
 
 After the dust has settled and you are happy with the look and feel of the site, this is where you might be spending most of your time.
-
-
-
-
-
-
-
 
 ## How to create a new page
 
