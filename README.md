@@ -1,21 +1,35 @@
 <!-- Outline
 
-- What Threshold is
-   - 2-3 sentences pitch. A website you build by talking to Claude Code. After the setup, technical details are handled for you.
-   - See the demo live https://kurtbruns.github.io/threshold/ (this is the starting point)
-- Target Audience
-- Quick start
-   1. "Use this template" → Download the folder
-   2. Open the folder in Claude Code.
-   3. Install requirements (Run the `/setup` skill)
-- What to expect
-   - Maybe address who this is for? designers, artists, etc
-   - Costs
-   - Setup is the most technical part, it's one time, and Claude walks you through it.
-- Next → Read the "Get Started" guide
-- License
+- What Threshold is (the pitch, 2-3 sentences)
+    - A personal website you build by talking to Claude Code; Claude carries the technical parts
+    - It's genuinely yours: your words, look, and brand, and you own it (plain
+      Markdown + Hugo, not locked into AI)
+    - Fast, secure, cheap to host; the advice I'd give a friend building a site
+    - See it live (the demo is the starting point you begin from): demo link
 
--->
+- Who it's for: a capable, curious person building their first website, who
+  shapes it by talking to Claude. They may be technical in another field; they
+  don't need web-building know-how, because Claude carries that.
+
+- Quick start (two ways in, both land in Claude Code + /setup)
+    - Use this template on GitHub (your copy starts on GitHub), or download the zip
+      (start locally)
+    - Open the folder in Claude Code
+    - Run /setup (installs tools, starts the preview)
+
+- What to expect
+    - There are two technical parts, each a one-time setup Claude guides you
+      through: getting your site running, and later putting it online. Going live
+      needs a few things only you can do (a free account or two, maybe a domain)
+    - In between and after, you work by talking, or edit the Markdown yourself
+    - Cost: free to run; a custom domain is optional (~$15/yr). Details in the
+      Launch guide
+
+- Next → the Get Started guide
+
+- License (MIT)
+
+ -->
 
 # Threshold
 
@@ -42,7 +56,6 @@ Setup is the most technical part
 Costs
 
 Next → [read the Get Started guide](https://kurtbruns.github.io/threshold/pages/get-started/)
-
 
 ## License
 
