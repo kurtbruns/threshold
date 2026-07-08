@@ -18,7 +18,7 @@ These are the perspectives to keep in mind when authoring the kit. Most are the 
 | --- | --- | --- | --- |
 | **The shopper** (may never adopt) | "What is this? Is it for me?" | README, template page, live demo | the front door (README) |
 | **The arrival** | "How do I get this running?" | get-started page, the repo they just opened | `/setup` (hurdle 1) |
-| **The maker** | "How do I make it mine and add my stuff?" | personalize and write pages, `variables.css`, `content/` | `/personalize`, `/change-font`, conversation |
+| **The maker** | "How do I make it mine and add my stuff?" | personalize and write pages, `variables.css`, `assets/`, `content/` | `/personalize`, conversation |
 | **The launcher** | "How do I put it online, and what does it cost?" | launch page, host options | `/launch` (hurdle 2) |
 | **The regular** | "How do I change something and push it live?" | nothing new, just talks to Claude | `CLAUDE.md`, automatic Save, `/publish` |
 | **The tinkerer** | "Can I just do this myself?" | `assets/`, `layouts/`, git | the kit not fighting them: plain formats, no lock-in |
@@ -57,7 +57,7 @@ A map of what is in the kit and the few decisions that shape each part, not a fi
 
 **Content** is the demo site: a home page, an About page, a small blog, and the four onboarding guides under `content/pages/`. The demo does double duty. It has to read as a real personal site worth making your own, and it teaches, because the guides are both the documentation and the example. It is also disposable: `/nuclear` clears it to a blank slate when the owner is ready to make the site truly theirs.
 
-**Theme** is the heart of the kit, and it works at two altitudes. The tokens in `assets/css/variables.css`, a small set of colors, fonts, and sizes, are the owner-facing identity dial: change a value there and it updates everywhere, and dark mode follows automatically. Below that, the vertical rhythm, the type scale, and the breakpoints are a fixed system built into the components, not knobs. Adjusting them is a CSS edit, which is the tinkerer's territory rather than an everyday change.
+**Theme** is a sensible, clean, unopinionated default that holds the owner's identity rather than imposing one of its own. It is built to be modified, and the things an owner would most want to adjust are made easy to reach: how wide the content is, the background color, the fonts. Adjusting those is where the owner jumps in and the site starts to feel like theirs, and Claude can take it further whenever they ask.
 
 **Structure** is deliberately plain. A single `hugo.yaml` holds the configuration, with no multi-environment scaffolding. The whole asset pipeline runs through Hugo itself: stylesheets are concatenated in a set order, JavaScript is bundled by Hugo's built-in esbuild, and every image passes through one partial that makes it responsive. Links and images also run through render hooks that validate them at build time. Two scripts sit alongside: `hugo-version.sh`, the single source for the pinned Hugo version, and `dev-hugo.sh`, which runs the preview.
 
@@ -71,7 +71,7 @@ These are the rules that keep the kit coherent as it grows. Each states a constr
 
 **State is read, not stored.** Skills coordinate without a database. Setup has no marker at all; its state is inferred from the environment, which is why `/setup` can be run again safely. Launch writes a single marker, `params.launch` in `hugo.yaml`, and both `/publish` and `/nuclear` read it to know the site is live. A fresh clone carries no marker, so it correctly reads as not yet launched.
 
-**No dependencies, and everything self-hosted.** There is no npm and no build step beyond Hugo itself. Fonts and assets are vendored or generated locally, and the site makes no outside requests, which a maintainer can confirm by grepping the layouts and assets for external hosts and finding none. When the kit needs a new capability, it arrives the kit's way: a CSS component, an ES module, or a Hugo shortcode, wired through the existing pipeline, never an npm package or a call to another server.
+**No dependencies, and everything self-hosted.** There is no npm and no build step beyond Hugo itself. Fonts and assets are vendored or generated locally, and the site makes no outside requests, which a maintainer can confirm by grepping the layouts and assets for external hosts and finding none. When the kit needs a new capability, it arrives the kit's way: a CSS component, an ES module, or a Hugo shortcode, wired through the existing pipeline, never an npm package or a call to another server. The same rule covers any asset the owner brings in, like a font or an icon: it is downloaded and self-hosted, not linked from a third-party server at runtime.
 
 **The build fails loudly rather than ship something broken.** Broken internal links and missing images stop the build, so neither can reach the live site. Raw HTML is left off, which is simply Goldmark's default that the kit chooses not to override. The Hugo version is pinned as a floor for the owner and as the exact version for CI, and the extended build is required because the image pipeline encodes WebP. Before any push, the pre-push hook rebuilds the site and refuses the push if it does not compile.
 
