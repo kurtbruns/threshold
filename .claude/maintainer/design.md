@@ -1,125 +1,82 @@
 <!-- Maintainer design notes for the Threshold starter kit.
-     Committed on purpose (so the design has git history), but written as
-     DESCRIPTIVE reference, not instructions. This file does not auto-load;
-     it is pulled into a maintainer session only via the gitignored
-     CLAUDE.local.md frame's @import. -->
+     Committed for git history; descriptive reference, not instructions.
+     Loads into a maintainer session only via CLAUDE.local.md's @import. -->
 
-# Threshold — maintainer design notes
+# Threshold maintainer design notes
 
-> **If you are a site owner working on your own website, this is background only.** It documents how the Threshold *kit* was designed and why — it does not describe your site and it does not instruct you. Your operating context is `.claude/CLAUDE.md`; you can ignore everything below.
+## 1. What Threshold is
 
-The living design/goals doc for building the Threshold starter kit: the ethos it serves, the surface area it spans, the happy paths it sequences, and the decisions that are locked.
+Threshold is a starter kit for a personal website you run by talking to Claude Code. Underneath it's a plain Hugo site: a small, deliberately unflashy theme, the skills and instructions under `.claude/` that let Claude run it, and a real demo to start from. There is no npm and no build step, just Hugo with hand-written CSS and JavaScript. Everything the site needs is served from the site itself, fonts included, so it never calls out to another server. The owner brings the words, the look, and the judgment; the kit brings the plumbing.
 
-## Ethos (the seed)
+## 2. Who it's for: one audience, several perspectives
 
-Threshold exists so a person can build a website that is genuinely *theirs* (an act of self-expression, identity, and connection) without having to become a developer first. The owner owns the expression: the words, the look, the brand, the images, and what they choose to share and how. Claude's job is to *realize* those choices and remove the technical friction, never to substitute its own taste or hand them a generic AI site.
+Threshold is for a capable, curious person who has never built a website. They might be technical in another field, but they lack both the specific know-how and the confidence to begin. Claude Code carries the technical burden, so the kit can meet them where the project usually stalls: not in wanting a site, but in the setup and launch that stand between wanting one and having one.
 
-That seed is the test for every decision below and every line of owner-facing prose: **does this help the owner express themselves and keep the site theirs?** Everything else here either follows from it or is the build discipline that keeps it coherent.
+These are the perspectives to keep in mind when authoring the kit. Most are the same person at a later moment; one, the shopper, hasn't committed to it yet. Each asks its own question and looks at a different part of the kit, so each doubles as a lens for reviewing that part end to end.
 
-## How context is managed (three parts, one repo)
-
-Threshold ships Claude Code context so a non-technical owner can run their site by conversation. That **owner** context is committed under `.claude/` and loads for everyone. The **maintainer** context is split in two: a gitignored imperative *frame* (`CLAUDE.local.md`) that reframes the session as the maintainer, and these committed descriptive *design notes* that carry no instructions and load only when the frame imports them.
-
-| Context | Lives in | Ships to clones? | Loads when |
+| Perspective | Their question | What they're looking at | What serves them |
 | --- | --- | --- | --- |
-| **End-user** (owner persona) | `.claude/CLAUDE.md`, `.claude/skills/`, `.claude/settings.json` | ✅ committed | every session, unless excluded locally |
-| **Maintainer frame** | `CLAUDE.local.md` + `claudeMdExcludes` in `.claude/settings.local.json` | ❌ gitignored | only in a dev checkout |
-| **Maintainer design notes** (this file) | `.claude/maintainer/design.md` | ✅ committed | never on its own — only via the frame's `@import` |
+| **The shopper** (may never adopt) | "What is this? Is it for me?" | README, template page, live demo | the front door (README) |
+| **The arrival** | "How do I get this running?" | get-started page, the repo they just opened | `/setup` (hurdle 1) |
+| **The maker** | "How do I make it mine and add my stuff?" | personalize and write pages, `variables.css`, `content/` | `/personalize`, `/change-font`, conversation |
+| **The launcher** | "How do I put it online, and what does it cost?" | launch page, host options | `/launch` (hurdle 2) |
+| **The regular** | "How do I change something and push it live?" | nothing new, just talks to Claude | `CLAUDE.md`, automatic Save, `/publish` |
+| **The tinkerer** | "Can I just do this myself?" | `assets/`, `layouts/`, git | the kit not fighting them: plain formats, no lock-in |
 
-- **Swap by exclusion.** `.claude/CLAUDE.md` ships live, so it would normally load in a dev checkout too. `claudeMdExcludes` in the gitignored `.claude/settings.local.json` skips it, and the gitignored `CLAUDE.local.md` (a different filename, so it still loads and gets the last word at its level) frames the session as the maintainer instead of an owner.
-- **Committed but inert for owners.** This file is checked in so the design has git history, but it is a nested path Claude never auto-loads and it is written as descriptive reference, not instructions. It reaches an owner's clone yet never loads there — only the `@import` at the bottom of the gitignored frame pulls it in, and that frame is absent from clones. So there is no deletion step to remember and no risk of an owner's Claude adopting the maintainer persona.
-- **Dogfood by cloning.** A fresh `git clone` has neither gitignored file, so it loads `.claude/CLAUDE.md` exactly as a site owner would; this file sits present-but-inert.
+The arrival and the launcher face the two hardest moments, which are the kit's whole reason to exist (§4). The last, the tinkerer, is where "graduation" lives: the kit never pushes anyone there, but it takes care not to bar the door (see the non-goal note at the end).
 
-## Goals
+## 3. How they work with it
 
-The build goals, in order:
+There are three ways to work, and the owner moves freely between them.
 
-1. **Get the skeleton and structure right.** Outlines (`<!-- Outline -->` blocks) are the source of truth for each page, skill, and context file. The focus is the outline rather than the current content of each file — shaping these files so they make sense and are coherent for the target user.
-2. **Understand the surface area** of the kit (below) so nothing is shaped in isolation.
-3. **Identify the happy paths** — the ways an owner is intended to use the kit — and sequence the surface area against them.
-4. **Make the outlines address those paths** and the questions an owner is likely to have at each stage.
+**Delegate.** The default: describe what you want and Claude does it. This is how most changes happen, and it is the right mode for the technical work: adding a photo to the home page, changing the site's layout, or switching the font.
 
-## Surface area
+**Author directly.** Open the Markdown and write it yourself. This is encouraged wherever the words are the point, like the About page and blog posts, and it is a standing reminder that the site is plain files the owner can edit with or without Claude.
 
-`(none yet)` marks something intended to be added.
+**Operate the stack.** Edit the CSS and layouts, and run git yourself. This is the tinkerer's door from §2. The kit is built so this is possible, but it never asks anyone to do it; it is an option, not a step.
 
-### 1. Claude Code Context — `.claude/`
+However they work, the shape of the journey is the same. There are two ways in, GitHub's "Use this template" or a downloaded zip, and both converge on one everyday loop: edit the site by conversation, Claude saves a checkpoint quietly, and the owner publishes when a batch of changes is ready to go live.
 
-- **`CLAUDE.md`** — always-on owner context; the everyday brain. Holds identity, working style, where things live, everyday tasks, look-and-feel, checkpoints, and preview/publish. Ordered by precedence/frequency (what Claude needs first), *not* the happy-path chronology. Does **not** enumerate skills — their descriptions already auto-load into context — and carries **no "first time here" section**; the make-it-yours flow belongs to `personalize`.
-- **`skills/`** — guided commands for genuine procedures: `setup`, `personalize`, `change-font`, `publish`, `launch`, `nuclear`, `upgrade-hugo` (occasional maintenance: bump the Hugo pin safely; off the core happy path, sibling to `nuclear`). `personalize` is the guided make-it-yours flow and composes `change-font`.
-- **`launch.json`** — preview-server configs (normal + no-fast-render for structural changes).
-- **`settings.json`** — committed permissions / allowed-tools for the owner session.
-- **`hooks/pre-push-build.sh`** — build-before-push guard so a broken site can't go live.
-- *Maintainer overlay:* a gitignored imperative frame (`CLAUDE.local.md` + `settings.local.json`'s `claudeMdExcludes`) plus these committed descriptive notes (`.claude/maintainer/design.md`). See [How context is managed](#how-context-is-managed-three-parts-one-repo) above for the full split.
+The kit speaks a deliberately small vocabulary. There are two places, the **preview** on your computer and the **live** site on the web, and two verbs, **Save** and **Publish**. Save is an automatic, reversible checkpoint the owner never has to think about. Publish is the deliberate, confirmed step that sends saved work to the live site. Git, commits, pushes, and deploys stay under the hood. This is not concealment or training wheels; it is a simple, well-engineered practice that stands on its own terms, and anyone who wants to work with git directly still can.
 
-### 2. Hugo Starting Point
+## 4. The two hurdles
 
-**Content**
-- **Home** — `content/_index.md`.
-- **About** — `content/about/index.md`.
-- **Example blog** — `content/blog/` (`first-post`, `second-post`): the Markdown crash-course.
-- **Guides / onboarding manual** — `content/pages/` (`get-started`, `personalize`, `write`, `launch`). `get-started` doubles as the owner-facing intro to *how you work with the kit*: the "two ways to work" framing (talk to Claude / edit the Markdown yourself — you're not locked into a subscription), the owner-facing skill list, and the one canonical local-vs-live-site definition.
+Setup and launch are the two walls a first-timer hits, and getting the owner over both is what the kit is for. Everything in between, the writing and the look, is the part they came to do; these two are the parts that would otherwise stop them. So each is owned by a page that explains the choices and a skill that does the work.
 
-**Theme / look** (the heart of the kit)
-- **Design tokens** — `assets/css/variables.css` (colors, fonts, sizes).
-- **Components** — `assets/css/components/`.
-- **Behavior** — `assets/js/` (ES modules, image system).
-- **Brand** — `assets/icons/logo.svg`, `assets/favicons/`, `assets/images/`.
+**Setup** gets the site running on the owner's computer. The get-started page explains it and `/setup` does it: check for Hugo and git, install what is missing, put the project under version control so there is an undo history, and start the preview so the owner lands on a site they can see. How they arrived changes only a little. A "Use this template" clone already has git and a remote, so setup mostly installs tools and starts the preview; a downloaded zip has neither, so `/setup` runs `git init` first. Setup leaves no marker. Its state is read from the environment, which is why `/setup` is safe to run again at any time.
 
-**Structure**
-- **Layouts & shortcodes** — `layouts/` (partials, the `image` shortcode, `pipes/style.html`).
-- **Config** — `hugo.yaml` at the repo root (name, menu, params, Hugo-version pin, raw-HTML-off, render hooks). Single-file config in YAML — matches the YAML front matter owners already write; no `config/_default/` multi-environment scaffolding.
-- **Scripts** — `scripts/hugo-version.sh` (single source for the Hugo pin; used by `/launch` + CI).
+**Launch** gets the site online. The launch page covers the choices, the cost, and the hosts, and `/launch` does the work: put the project on GitHub, set up a build-and-deploy pipeline that runs on every push, and connect the chosen host. Launch happens once, and unlike setup it leaves a marker. `params.launch` in `hugo.yaml` records the host and date, and from then on the everyday `/publish` reads that marker and takes over going live.
 
-### 3. Repository
+At both walls the division of labor is the same. Claude does the plumbing; the owner makes the decisions and holds anything personal, the host account, the payment, the domain, the secrets. The kit removes the technical friction; it does not take the wheel.
 
-- **`README.md`** — front door for someone discovering the kit.
-- **`.gitignore`** — gitignores the maintainer frame (`CLAUDE.local.md`, `settings.local.json`); the design notes under `.claude/maintainer/` are committed.
-- **GitHub template metadata** — repo description + topics; powers the "Use this template" path.
-- **License** — MIT `LICENSE`
+## 5. The kit at a glance
 
-*Not committed, so not "surface" but part of a happy path:* the deploy workflow `.github/workflows/deploy.yml` (and, for Cloudflare Workers, a root `wrangler.jsonc`) is created by `/launch` from a per-host template under `.claude/skills/launch/templates/`, not shipped.
+A map of what is in the kit and the few decisions that shape each part, not a file-by-file inventory.
 
-## Happy paths
+**Context** lives in `.claude/`. It is what lets the owner run the site by conversation: the operating context (`CLAUDE.md`) that Claude loads every session, a set of skills for the procedures worth guiding, a permissions file that scopes what Claude may touch, and a pre-push hook that refuses to publish a build that does not compile. The skills share a common shape, described in §6.
 
-Two entry paths converge on the same everyday loop. Each stage maps to a page, a skill, and the owner's likely question.
+**Content** is the demo site: a home page, an About page, a small blog, and the four onboarding guides under `content/pages/`. The demo does double duty. It has to read as a real personal site worth making your own, and it teaches, because the guides are both the documentation and the example. It is also disposable: `/nuclear` clears it to a blank slate when the owner is ready to make the site truly theirs.
 
-| Stage | Owner's question | Page | Skill |
-| --- | --- | --- | --- |
-| Discover | "What is this, is it for me?" | `README.md` | — |
-| Get started | "How do I run this on my computer?" | `get-started` | `/setup` |
-| Personalize | "How do I make it mine?" | `personalize` | `/personalize` (composes `/change-font`) |
-| Write | "How do I add my content?" | `write` | — |
-| Launch | "How do I put it online?" | `launch` | `/launch` |
-| Publish | "How do I push updates live?" | (launch) | `/publish` |
-| Reset (optional) | "How do I start fresh?" | — | `/nuclear` |
+**Theme** is the heart of the kit, and it works at two altitudes. The tokens in `assets/css/variables.css`, a small set of colors, fonts, and sizes, are the owner-facing identity dial: change a value there and it updates everywhere, and dark mode follows automatically. Below that, the vertical rhythm, the type scale, and the breakpoints are a fixed system built into the components, not knobs. Adjusting them is a CSS edit, which is the tinkerer's territory rather than an everyday change.
 
-**Entry A — Use this template (GitHub):** clone is owner-ready (has git history + remote) → `/setup` for local tooling + preview → personalize → write → `/launch` (already on GitHub, so mostly host setup) → `/publish`.
+**Structure** is deliberately plain. A single `hugo.yaml` holds the configuration, with no multi-environment scaffolding. The whole asset pipeline runs through Hugo itself: stylesheets are concatenated in a set order, JavaScript is bundled by Hugo's built-in esbuild, and every image passes through one partial that makes it responsive. Links and images also run through render hooks that validate them at build time. Two scripts sit alongside: `hugo-version.sh`, the single source for the pinned Hugo version, and `dev-hugo.sh`, which runs the preview.
 
-**Entry B — Download the zip:** open in Claude Code → `/setup` (install tools, `git init`, preview) → personalize → write → `/launch` (create GitHub repo + connect host) → `/publish`.
+## 6. Design invariants
 
-**Everyday loop:** edit by conversation → automatic checkpoint commit → `/publish` when ready to go live.
+These are the rules that keep the kit coherent as it grows. Each states a constraint and, in brief, why it holds.
 
-## Locked decisions
+**Pages teach; skills do.** Each concept has a single home. A page explains what something is and how to decide about it, in plain narrative with no commands. A skill does the work, with the steps and mechanics. When a page reaches the point of action it hands off to a skill, and the skill does not re-explain. Defining each concept once is what keeps a page and its skill from drifting apart.
 
-Each of these either follows from the ethos above or is the build discipline that keeps it coherent.
+**Skills follow one contract.** Every skill has the same shape, and the shape is the safety model. A skill sets `disable-model-invocation`, so it runs only when the owner asks for it, and it lists a tightly scoped set of `allowed-tools`, so it can touch only what it needs. If it acts on the environment, it starts by reading that environment instead of assuming. It asks for confirmation exactly once, at the single outward or destructive step, and not for ordinary edits. And it hands back in plain language. The same shape every time makes a skill predictable to build, to read, and to trust.
 
-**The seed, operationally**
+**State is read, not stored.** Skills coordinate without a database. Setup has no marker at all; its state is inferred from the environment, which is why `/setup` can be run again safely. Launch writes a single marker, `params.launch` in `hugo.yaml`, and both `/publish` and `/nuclear` read it to know the site is live. A fresh clone carries no marker, so it correctly reads as not yet launched.
 
-- **Expression is the owner's; the kit removes the friction. (Design compass, not a runtime rule.)** Every taste and identity decision belongs to the owner: the words, the look (colors, fonts, spacing), the brand (name, tagline, logo), the images and what is in them, and what they share. This shapes how *we build the kit*, rather than a labor contract we transcribe into the shipped `CLAUDE.md`: neutral-but-tasteful defaults (a starting point, never a stamp), skills that offer-and-preview instead of deciding (`/change-font` is the reference), a demo that reads as a real personal site worth making yours, and owner-facing prose that invites their voice without lecturing. Owning the expression means holding the direction and the final say, not doing the manual work; the kit takes the labor (mechanics, plumbing, and the writing itself whenever they want it). In the shipped `CLAUDE.md` this whole principle reduces to a single line of behavior: for choices about the site's look and identity, offer options and let the owner pick. The rest is our design job, not an instruction aimed at their Claude.
+**No dependencies, and everything self-hosted.** There is no npm and no build step beyond Hugo itself. Fonts and assets are vendored or generated locally, and the site makes no outside requests, which a maintainer can confirm by grepping the layouts and assets for external hosts and finding none. When the kit needs a new capability, it arrives the kit's way: a CSS component, an ES module, or a Hugo shortcode, wired through the existing pipeline, never an npm package or a call to another server.
 
-**Owner experience (flows from the seed)**
+**The build fails loudly rather than ship something broken.** Broken internal links and missing images stop the build, so neither can reach the live site. Raw HTML is left off, which is simply Goldmark's default that the kit chooses not to override. The Hugo version is pinned as a floor for the owner and as the exact version for CI, and the extended build is required because the image pipeline encodes WebP. Before any push, the pre-push hook rebuilds the site and refuses the push if it does not compile.
 
-- **Owner vocabulary: two places, two verbs.** The canonical language every owner-facing surface reuses. Two places: your site *on your computer* (the **preview**) and your site *live* (on the web). Two verbs: **Save** (a local, reversible checkpoint, private to your computer) and **Publish** (send saved changes to the live site). Git / commit / push / deploy / repository / localhost stay Claude-internal and never appear in owner prose. Three ways to work follow from the seed: *delegate* (talk to Claude), *author directly* (write your own words, encouraged), and *operate the stack* (graduate to editing CSS/layouts and publishing via Git yourself: not tied to AI forever). Operating the full stack is reassurance, not a co-equal documented workflow.
-- **Saves are an automatic, invisible undo buffer; publish is the milestone.** Claude commits quietly at natural stopping points (a requested change is complete and previews correctly, never mid-task or a broken state), with plain-language messages. The owner never sees, names, or thinks about commits; "undo" and "go back to this morning" are semantic requests Claude resolves against the buffer. This splits the two jobs a commit was overloaded with: the *safety net* is the automatic buffer (noise is fine, no human reads it), and the *meaningful milestone* is **publish**, which is already the deliberate, gated moment. Rejected: user-prompted saves (a non-technical owner will not save reliably, so "undo" fails when it is needed most, re-imposing the version-management burden git-as-undo exists to remove) and per-turn "is this a commit?" guessing (fuzzy, not a clean model). Accepted cost: a graduating owner inherits a noisy history (squashable, rare, base-diff unaffected). The asymmetry is the point: save is frequent and effortless-by-design, so automatic; publish is rare and outward-facing, so always confirmed.
-- **Prefer plain, but capability is not forbidden. Self-host it.** The no-dependencies stance is anti-bloat and pro-privacy, not anti-capability. Default to the plain Hugo/CSS/JS way; when a real need arises (math via a vendored KaTeX, a lightbox, and the like), add it the kit's way: self-hosted (no external CDN or third-party request, the same ethos as the self-hosted fonts), no npm or build step, wired through Hugo's existing pipeline (a component in `assets/css/`, a module from `assets/js/`, or a shortcode), tradeoff explained first. Reject framework/npm bloat and external calls, not justified additions.
-- **`/personalize` is the make-it-yours flow; it composes `/change-font`.** The personalize *page* teaches what is changeable; the `/personalize` *skill* is the guided first-run pass through identity choices (name, tagline, colors, font, logo/favicon) that embodies the seed: offer options, preview, follow their taste. It *delegates* the font step to `/change-font` rather than absorbing it (kept standalone for reuse). Scope is the guided identity-setup moment, typically right after `/setup`; everyday tweaks stay conversational, no skill. Layer-2 on the DAG: decided now, stubbed, fleshed after the spec pair.
+**Git history stays a plain, unbroken trail.** Both ways in start from a clean base: the template is a single base commit, and a fresh `git init` from a zip makes its own. No skill ever rewrites history, so the owner's undo trail stays intact and the base state stays diff-able against the starter kit.
 
-**Build discipline**
+## On graduation, a stated non-goal
 
-- **Pages teach; skills do.** A page answers "what is this, and how do I decide?" (narrative, readable without Claude, no commands or mechanics); a skill answers "do it with me now" (steps, commands, templates, Claude-internal mechanics, expectation-setting). Each concept is defined once at its home and referenced elsewhere, never redefined: the working model in `get-started`; fonts and logo in `personalize`; hosts, domain, and cost in the `launch` page. Handoff always runs page → skill ("when you're ready, run /X"); skills do not re-teach, they proceed or give a one-line orientation and point back. Not every stage needs both (`write` is page-only; `change-font` is a skill whose concept lives in `personalize`). This single-source-of-truth rule is what prevents the launch skill↔page drift.
-- **Guides are human scaffold; Claude operates from `.claude/`.** The onboarding pages (`content/pages/`) exist for the *owner* to read; Claude never loads them unless explicitly directed and draws all its operating knowledge from `.claude/CLAUDE.md` + skill descriptions. Two consequences. (1) The Claude context must stay dialed to cover operating knowledge on its own: anything an owner needs to *do* must be reachable by conversation (a skill or `CLAUDE.md`), never only by reading a page. The pages add readable-without-Claude narrative and the Markdown tutorial, which are convenience, not operating dependencies. (2) `/nuclear` may therefore clear the guide pages as part of a fresh start (a real published site shouldn't carry the kit's onboarding pages), because removing them costs the owner a reference but costs Claude nothing. Guard: nuclear is built for the clear-the-demo moment, so it must first detect signs of an in-use site (a launch marker in `hugo.yaml`, or substantial owner content) and, if found, warn hard and require explicit confirmation before wiping, since someone who has already launched rarely means to nuke their real site.
-- **Owner-facing context lives in `get-started`, not a standalone page.** The kit explains *how you work with it* — talk-to-Claude vs. edit-the-Markdown-yourself, the skill list, local vs. live — inside `get-started`, kept practical rather than a "how Claude Code works" lecture. Promote to its own page only if it outgrows a section. Correspondingly, `CLAUDE.md` (the brain) does **not** enumerate skills (their descriptions auto-load) and drops the "first time here" section; the make-it-yours flow belongs to `personalize`.
-- **CLAUDE.md is ordered for Claude, not for the owner's journey.** The brain is reference loaded every turn, so it's ordered by precedence/frequency (identity → working style → where things live → everyday tasks → look-and-feel → checkpoints → preview/publish), not the discover→publish chronology the owner experiences. The chronology is the pages' job. Its content is pruned to what is non-default and project-specific (Anthropic's test: would removing this cause Claude to make mistakes?); self-evident or default-agent behavior ("just do it", "small reversible steps") is cut, since a bloated brain gets ignored.
-- **Two one-time gates, tracked differently.** The owner clears two hurdles once each: **setup** (local tooling, version control, a running preview) and **launch** (online, with a deploy pipeline). Their state is how skills know where the owner is. Setup has no marker; it is inferred from the environment (Hugo + Git installed, the project is a git repo, the preview runs), so `/setup` is idempotent and safe to re-run. Launch is recorded explicitly as `params.launch` (host + date) in `hugo.yaml`, written by `/launch` once the site is confirmed live; `/publish` reads it to shape its message and `/nuclear` reads it as the in-use signal that gates a wipe. A fresh clone carries no marker, so it reads as un-launched.
-- **Git history stays a plain trail, never rewritten.** Both entry paths start clean (template = single squashed base commit; zip + `/setup` = fresh `git init` whose first commit is the base state). No skill rewrites history (no orphan-root squashes, `filter-repo`, or force-pushes). This preserves the owner's undo history, keeps the base state diff-able against the starter kit, and avoids destructive git surgery for negligible `.git`-size savings. `/launch` does not "start history fresh"; `/nuclear` clears the working tree but leaves history (and its recovery checkpoint) untouched.
+The kit is not designed to graduate anyone. It is a starter kit, not a course, and it never pushes the owner toward learning the stack. But because it is built to be simple, durable, and free of lock-in, the possibility is real: someone can learn from it and come to see a durable idea they can keep using in many shapes. That is an emergent result of the invariants above, not a program the kit runs. The guardrail for us is to keep it that way and not add scaffolding whose purpose is to teach the stack.
