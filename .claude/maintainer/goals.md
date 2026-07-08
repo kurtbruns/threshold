@@ -43,7 +43,7 @@ The order to settle each file's `<!-- Outline` block, flattened from the depende
 | 2 | `README.md` | discover, the front door | **settled** (outline) |
 | 3 | `.claude/CLAUDE.md` | owner operating context | **settled** |
 | 4 | `content/pages/get-started` | the working model | **settled** |
-| 5 | `.claude/skills/setup` | hurdle 1 | in-progress |
+| 5 | `.claude/skills/setup` | hurdle 1 | **settled** |
 | 6 | `content/pages/personalize` | fonts, logo, look | in-progress |
 | 7 | `.claude/skills/personalize` | make it yours, composes change-font | in-progress |
 | 8 | `content/pages/write` | the Markdown tutorial | in-progress |
