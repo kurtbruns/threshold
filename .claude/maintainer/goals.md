@@ -45,7 +45,7 @@ The order to settle each file's `<!-- Outline` block, flattened from the depende
 | 4 | `content/pages/get-started` | the working model | **settled** |
 | 5 | `.claude/skills/setup` | hurdle 1 | **settled** |
 | 6 | `content/pages/personalize` | layout, fonts, icons, logo, look | **settled** |
-| 7 | `.claude/skills/personalize` | make it yours; absorbs change-font | in-progress |
+| 7 | `.claude/skills/personalize` | make it yours; absorbs change-font | **settled** |
 | 8 | `content/pages/write` | the Markdown tutorial | in-progress |
 | 9 | `content/_index.md` and demo | the demo as teacher | in-progress |
 | 10 | `content/pages/launch` | hosts, domain, cost | in-progress |
@@ -70,5 +70,4 @@ To settle a node, read its `<!-- Outline` block against `design.md` and the deci
 Only the calls an agent could not re-derive from the files. Fold the durable ones into `design.md` as they firm up.
 
 - **Sweeps to apply while settling each file:** the audience (`design.md` §2), and the three ways to work and vocabulary (§3). Older files still carry pre-reframe language ("non-technical", "artists/designers/writers", "two ways", "live preview"); fix it wherever it appears.
-- **`change-font` folds into `/personalize`; its `fetch-google-font.sh` script moves into the personalize skill.** `/personalize` becomes the make-it-yours home for layout, colors, fonts, icons, and logo. Fonts and icons are the asset case (browse Google Fonts or Material Symbols, pull the choice in, self-host it; the script does the font fetch); layout and colors change what is already built in. We reversed the earlier keep-separate call once the unified browse-and-self-host pattern was clear. (Now in design.md.)
 - **`publish` and `upgrade-hugo` are the reference implementations** of the §6 skill contract; model the others on them.
