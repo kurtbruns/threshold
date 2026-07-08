@@ -20,7 +20,7 @@ The companion to [`design.md`](design.md). Where `design.md` describes the *inte
 
 **Claude context (`.claude/`)**
 - `CLAUDE.md` (owner operating context): outline **settled**; prose not written yet.
-- Skills **shipped**: `change-font`, `publish`, `launch`, `upgrade-hugo`.
+- Skills **shipped**: `publish`, `launch`, `upgrade-hugo`.
 - Skills **outline only**: `setup`, `personalize`, `nuclear`.
 - `settings.json`, `launch.json`, `hooks/pre-push-build.sh`: shipped.
 - `maintainer/design.md`: **settled** and fully fleshed (the spec this pass works from).
@@ -54,7 +54,7 @@ The order to settle each file's `<!-- Outline` block, flattened from the depende
 | 13 | `.claude/skills/nuclear` | reset | in-progress |
 | 14 | `.claude/skills/upgrade-hugo` | occasional maintenance | in-progress |
 
-Settle coupled nodes together: `CLAUDE.md` with `get-started`, and each page with the skill it hands off to. `change-font` folds into `/personalize` (its `fetch-google-font.sh` script moves in), so handle it at node 7.
+Settle coupled nodes together: `CLAUDE.md` with `get-started`, and each page with the skill it hands off to.
 
 ## Settling workflow
 
