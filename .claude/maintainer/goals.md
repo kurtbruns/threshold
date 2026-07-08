@@ -33,9 +33,25 @@ The companion to [`design.md`](design.md). Where `design.md` describes the *inte
 **Theme / structure**
 - Theme, layouts, image system, `hugo.yaml`, scripts — shipped and working.
 
-## Priorities
+## Outline settling order (flattened DAG)
 
-*To sequence together — placeholder, not yet ordered.*
+The order to settle each file's `<!-- Outline` block, flattened from the dependency DAG: the spec first, then the owner's operating model, then each page before the skill that acts on it, roughly following the owner's journey. Status here means the outline is settled against `design.md`. That is a separate axis from whether the prose is finished (the build-state section above), so a shipped skill can still read as in-progress until its outline is reconciled with the new spec.
 
-1. Finish the `design.md` overhaul (flesh §3–6, fold in the accuracy fixes noted at the foot of that file).
-2. _next: TBD._
+| # | File | Anchors | Status |
+| --- | --- | --- | --- |
+| 1 | `maintainer/design.md` | the spec | **settled** |
+| 2 | `README.md` | discover, the front door | **settled** (outline) |
+| 3 | `.claude/CLAUDE.md` | owner operating context | **settled** |
+| 4 | `content/pages/get-started` | the working model | **settled** |
+| 5 | `.claude/skills/setup` | hurdle 1 | in-progress |
+| 6 | `content/pages/personalize` | fonts, logo, look | in-progress |
+| 7 | `.claude/skills/personalize` | make it yours, composes change-font | in-progress |
+| 8 | `content/pages/write` | the Markdown tutorial | in-progress |
+| 9 | `content/_index.md` and demo | the demo as teacher | in-progress |
+| 10 | `content/pages/launch` | hosts, domain, cost | in-progress |
+| 11 | `.claude/skills/launch` | hurdle 2 | in-progress |
+| 12 | `.claude/skills/publish` | everyday go-live | in-progress |
+| 13 | `.claude/skills/nuclear` | reset | in-progress |
+| 14 | `.claude/skills/upgrade-hugo` | occasional maintenance | in-progress |
+
+Settle coupled nodes together: `CLAUDE.md` with `get-started` (they share the working model), and each page with the skill it hands off to. `change-font` has no outline block (shipped prose) but is composed by `/personalize`, so audit it alongside node 7.
