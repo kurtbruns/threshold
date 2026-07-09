@@ -1,4 +1,4 @@
-/* Scaffolding — default styling for the basic HTML elements
+/* Scaffolding: default styling for the basic HTML elements
    (text, headings, links, lists, code, quotes, tables). */
 
 body {
@@ -8,10 +8,10 @@ body {
   background: var(--background);
 }
 
-/* Vertical rhythm — "spacing after": every flow block owns the gap that
-   follows it (margin-bottom only, no top margin), so the space between two
+/* Vertical rhythm, the "spacing after" model: every flow block owns the gap
+   that follows it (margin-bottom only, no top margin), so the space between two
    blocks is set by a single value and never depends on margin-collapsing.
-   1.5rem is the site's spacing unit — headings share the same gap below, so
+   1.5rem is the site's spacing unit; headings share the same gap below, so
    everything lines up on one rhythm. */
 p, ul, ol, dl, blockquote, pre, table {
   margin-block: 0 1.5rem;
@@ -19,7 +19,7 @@ p, ul, ol, dl, blockquote, pre, table {
 
 /* Headings share the 1.5rem gap below (so they sit on the same rhythm as the
    body) and reserve extra space *above* so each one reads as the start of a new
-   section. The larger gap above — not a tighter gap below — is what sets the
+   section. The larger gap above, not a tighter gap below, is what sets the
    section apart. */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
@@ -43,7 +43,7 @@ ul, ol {
   padding-inline-start: 1.5rem;
 }
 
-/* A list nested inside a list item drops its bottom gap — the spacing after the
+/* A list nested inside a list item drops its bottom gap; the spacing after the
    nested list is owned by the parent <li>, so it shouldn't add 1.5rem of its
    own. Covers every combination of nesting (ul or ol inside either). */
 li > ul, li > ol {
@@ -113,7 +113,7 @@ th, td {
 
 figure {
   margin-block: 0 1.5rem;
-  /* Center the figure — visible when `width` caps it below the text column. */
+  /* Center the figure; visible when `width` caps it below the text column. */
   margin-inline: auto;
 }
 

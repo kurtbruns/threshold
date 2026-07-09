@@ -1,7 +1,7 @@
-// Threshold — JavaScript entry point.
+// Threshold JavaScript entry point.
 //
 // Import feature modules here; Hugo's built-in esbuild bundles them into a
-// single fingerprinted file. Keep it dependency-free — no npm, no package.json.
+// single fingerprinted file. Keep it dependency-free: no npm, no package.json.
 //
 // Example (later): import { initCarousel } from "./features/carousel.js";
 

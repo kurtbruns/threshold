@@ -1,4 +1,4 @@
-/* Navigation — the header menu. */
+/* Navigation: the header menu. */
 
 .site-nav ul {
   display: flex;
@@ -26,7 +26,7 @@
   color: var(--font-color);
 }
 
-/* Mark the current page with an underline, not bold — bold reflows the row. */
+/* Mark the current page with an underline, not bold; bold reflows the row. */
 .site-nav a[aria-current="page"] {
   color: var(--font-color);
   text-decoration: underline;
