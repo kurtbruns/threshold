@@ -29,7 +29,7 @@ like a finished, designed site. The guides double as docs and as the example (§
 
 # Welcome
 
-This is your site's home page. Currently, it holds the demo content that ships with Threshold to help you work with the kit. If you want to start fresh, run the `/nuclear` command to clear the demo to a blank slate.
+This is your site's home page. Currently, it holds the demo content that ships with Threshold to help you work with the kit. If you want to start fresh, run the `/nuclear` command to clear the content and layout back to a blank slate.
 
 <!-- Demo-only chrome; see layouts/shortcodes/demo-notice.html for how it works. -->
 {{< demo-notice >}}

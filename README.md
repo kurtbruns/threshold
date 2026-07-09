@@ -11,8 +11,8 @@ Threshold is for a capable, curious person building their first website. They ma
 ## Quick start
 
 1. **Get your copy.**
-   - **Download ZIP**: click the green **Code** button, then **Download ZIP**, and unzip it.
-   - **Use this template**: at the top of this page, click the green **Use this template** button, then **Create a new repository**, and clone your new repository to your computer.
+   - **Download ZIP**: click the green "Code" button, then "Download ZIP", and unzip it.
+   - **Use this template**: at the top of this page, click the green "Use this template" button, then "Create a new repository", and clone your new repository to your computer.
 2. **Open the folder** in Claude Code.
 3. **Run `/setup`.** It installs the tools your site needs and starts the preview, so you land on a site you can see.
 
