@@ -49,6 +49,6 @@ The site also ships with a couple of example pages, an [about](/about/) page and
 
 ## Make it yours
 
-Decisions, decisions. The work about the work. This part is tricky. From here it's on you, good luck.
+Decisions, decisions. The work about the work. This part is tricky. Good luck.
 
 {{< image src="images/blank-page-in-typewriter.png" alt="" caption="A blank page in a typewriter from Adaptation (2002)" width="480" >}}
