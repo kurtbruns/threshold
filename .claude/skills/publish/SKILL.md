@@ -1,6 +1,6 @@
 ---
 name: publish
-description: Send your latest changes to the live site. Builds and checks the site, commits your work, then pushes to trigger the deploy that /launch set up. Use for everyday updates once the site is already online, whenever the owner wants to publish, go live, or push changes to the web. Not first-time setup; that's /launch. disable-model-invocation so it only runs when the owner asks.
+description: Sends the owner's latest changes to the live site. Use for everyday updates once the site is online, whenever the owner wants to publish, go live, or push changes to the web. Not first-time setup; that's /launch.
 disable-model-invocation: true
 allowed-tools: Read, Bash(hugo:*), Bash(git status:*), Bash(git diff:*), Bash(git log:*), Bash(git add:*), Bash(git commit:*), Bash(git push:*), Bash(git remote:*), Bash(git rev-parse:*), Bash(gh:*)
 ---

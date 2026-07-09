@@ -1,6 +1,6 @@
 ---
 name: personalize
-description: The guided make-it-yours flow. Walks the owner through the choices that make the site theirs (name, tagline, colors, layout, fonts, icons, logo, favicon) by offering options, previewing, and following their taste. Fonts and icons are pulled from a gallery and self-hosted. Use for first-run personalization after /setup, or when the owner wants to make the site their own.
+description: Guides the owner through making the site theirs, from the name and tagline to colors, layout, fonts, icons, logo, and favicon, offering options and previewing as they go. Use for first-run personalization after /setup, or whenever the owner wants to make the site their own.
 disable-model-invocation: true
 allowed-tools: Read, Edit, Write, Bash(git add:*), Bash(git commit:*), Bash(bash .claude/skills/personalize/scripts/fetch-google-font.sh:*)
 ---

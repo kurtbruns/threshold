@@ -1,6 +1,6 @@
 ---
 name: setup
-description: First-run setup for a freshly downloaded copy of the kit. Checks for the tools the site needs, guides installing anything missing, initializes version control, and starts the preview so the owner can see their site. Run right after downloading the kit, when the owner says "set up" or "get started", or when the preview won't run.
+description: Gets a freshly downloaded copy of the kit running. Checks for the tools the site needs, installs what's missing, initializes version control, and starts the preview. Use right after downloading the kit, when the owner says "set up" or "get started", or when the preview won't run.
 disable-model-invocation: true
 allowed-tools: Read, Edit, Write, Bash(command -v:*), Bash(uname:*), Bash(git --version), Bash(git rev-parse:*), Bash(git init:*), Bash(git add:*), Bash(git commit:*), Bash(hugo:*), Bash(bash scripts/dev-hugo.sh:*)
 ---

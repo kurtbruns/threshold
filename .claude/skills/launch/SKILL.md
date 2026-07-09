@@ -1,6 +1,6 @@
 ---
 name: launch
-description: Put the site on the internet for the first time. Connects the project to GitHub, then sets up automatic publishing through a GitHub Actions workflow that builds and deploys on every push, to Cloudflare Workers (recommended: a custom domain and full control) or GitHub Pages (the fast on-ramp when you don't have a domain yet). Use when the owner is ready to go live, or wants to launch, deploy, or get the site online for the first time. One-time setup, separate from /publish, which sends later updates. disable-model-invocation so it only runs when the owner asks.
+description: Puts the site on the internet for the first time. Connects it to GitHub and sets up an automatic build-and-deploy pipeline on Cloudflare Workers (recommended, for a custom domain) or GitHub Pages (the fast on-ramp when you don't have a domain yet). Use when the owner is ready to go live, or wants to launch, deploy, or get the site online for the first time. One-time setup, separate from /publish, which sends later updates.
 disable-model-invocation: true
 allowed-tools: Read, Write, Edit, Bash(git remote:*), Bash(git push:*), Bash(git add:*), Bash(git commit:*), Bash(gh:*), Bash(hugo:*), Bash(bash scripts/hugo-version.sh), Bash(mkdir:*), Bash(cp:*)
 ---

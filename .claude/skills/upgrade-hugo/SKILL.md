@@ -1,6 +1,6 @@
 ---
 name: upgrade-hugo
-description: Safely move the site to a newer version of Hugo — the tool that builds it. Reads the version the kit is pinned to, finds the latest stable Hugo, reviews what changed, and checks whether anything the site actually uses is affected. Then, only with the owner's OK, bumps the one pin in hugo.yaml, installs the matching Hugo, and rebuilds to confirm nothing broke. The new version goes live automatically the next time the owner publishes. Use when the owner wants to update or upgrade Hugo, asks whether there's a newer version, or a deploy failed because the pinned Hugo is out of date. Occasional maintenance, separate from everyday /publish. disable-model-invocation so it only runs when the owner asks.
+description: Safely moves the site to a newer version of Hugo, the tool that builds it. It checks the current pin against the latest stable, reviews what changed, and only with the owner's OK bumps the pin, installs the matching Hugo, and rebuilds to confirm nothing broke. Use when the owner wants to update or upgrade Hugo, asks whether there's a newer version, or a deploy failed because the pinned Hugo is out of date. Occasional maintenance, separate from everyday /publish.
 disable-model-invocation: true
 allowed-tools: Read, Edit, Grep, Glob, Bash(bash scripts/hugo-version.sh), Bash(gh api:*), Bash(curl:*), Bash(jq:*), Bash(hugo:*), Bash(brew upgrade:*), Bash(rg:*), Bash(grep:*)
 ---
