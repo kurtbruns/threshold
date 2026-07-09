@@ -16,22 +16,17 @@ params:
   # override it with its own `author` in front matter.
   author: "Your Name"
 
-# Hugo version pin: the single source of truth for which Hugo to use.
-# Read by scripts/hugo-version.sh (and CI). This is a *floor*: Hugo refuses to
-# build with anything older, but a local install may be newer — CI installs this
-# exact version so the deploy build is reproducible. Requires the *extended*
-# build, because the responsive-image pipeline encodes WebP
-# (layouts/partials/image.html) and only the extended edition can do that. The
-# usual installs are already extended (Homebrew's `hugo`, the headline release
-# binary, Snap, Chocolatey).
+# Hugo version pin: the single source of truth, read by scripts/hugo-version.sh
+# and CI. A floor (Hugo won't build older; CI installs this exact version).
+# Must be the extended edition, which the image pipeline needs for WebP.
 module:
   hugoVersion:
     min: "0.161.1"
     extended: true
 
-# Image processing defaults (used when Hugo resizes photos).
+# Image resampling filter for downscaling (photos and favicons). JPEG/WebP
+# quality lives with the responsive pipeline, in layouts/partials/image.html.
 imaging:
-  quality: 82
   resampleFilter: "Lanczos"
 
 # The top navigation menu is built from each page's front matter: set
