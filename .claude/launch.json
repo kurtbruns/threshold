@@ -9,7 +9,7 @@
       "autoPort": true
     },
     {
-      "name": "Preview site — structural changes (no fast render)",
+      "name": "Preview site — layout & template changes (no fast render)",
       "runtimeExecutable": "bash",
       "runtimeArgs": ["scripts/dev-hugo.sh", "--disableFastRender"],
       "port": 1313,

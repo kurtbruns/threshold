@@ -1,7 +1,3 @@
-<!-- Maintainer design notes for the Threshold starter kit.
-     Committed for git history; descriptive reference, not instructions.
-     Loads into a maintainer session only via CLAUDE.local.md's @import. -->
-
 # Threshold maintainer design notes
 
 ## 1. What Threshold is

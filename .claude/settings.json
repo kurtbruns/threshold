@@ -14,15 +14,15 @@
       "Edit(./content/**)",
       "Edit(./assets/**)",
       "Edit(./layouts/**)",
-      "Edit(./config/**)",
       "Edit(./static/**)",
       "Edit(./data/**)",
+      "Edit(./hugo.yaml)",
       "Write(./content/**)",
       "Write(./assets/**)",
       "Write(./layouts/**)",
-      "Write(./config/**)",
       "Write(./static/**)",
-      "Write(./data/**)"
+      "Write(./data/**)",
+      "Write(./hugo.yaml)"
     ],
     "deny": [
       "Read(./.env)",
