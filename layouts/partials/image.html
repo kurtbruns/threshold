@@ -2,9 +2,9 @@
        Params:
          image   (resource, required)
          alt     (string)
-         sizes   (string, optional — defaults to the content column)
-         loading (string, optional — "lazy" by default; use "eager" above the fold)
-         class   (string, optional — added to the <img>)
+         sizes   (string, optional; defaults to the content column)
+         loading (string, optional; "lazy" by default, use "eager" above the fold)
+         class   (string, optional; added to the <img>)
        Generates WebP + original-format variants at several widths, never
        upscaling, with intrinsic width/height to avoid layout shift. */ -}}
 {{- $img := .image -}}

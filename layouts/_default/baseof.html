@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {{- /* Page metadata. Home shows the site name; other pages show their own
-         title (e.g. "Blog"). Social cards (Open Graph / Twitter) are omitted by
-         default — ask Claude Code to add them if you want rich link previews. */ -}}
+         title (e.g. "Blog"). Social cards (Open Graph, Twitter) are omitted;
+         ask Claude Code to add them if you want rich link previews. */ -}}
   {{- /* Meta description: the page's own `description`, else the site tagline
          (params.description in hugo.yaml). */ -}}
   {{- $desc := or .Description site.Params.description -}}
@@ -17,15 +17,15 @@
   <link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .Permalink }}">
   {{- end }}
 
-  {{- /* Favicon — replace assets/favicons/icon.png to change the browser-tab icon;
-         the sizes below are generated automatically. */ -}}
+  {{- /* Favicon: replace assets/favicons/icon.png to change the browser-tab icon.
+         The sizes below are generated automatically. */ -}}
   {{- with resources.Get "favicons/icon.png" }}
   <link rel="icon" href="{{ (.Resize "32x32 png").RelPermalink }}" sizes="32x32" type="image/png">
   <link rel="icon" href="{{ (.Resize "48x48 png").RelPermalink }}" sizes="48x48" type="image/png">
   <link rel="apple-touch-icon" href="{{ (.Resize "180x180 png").RelPermalink }}">
   {{- end }}
 
-  {{- /* Site CSS — bundled, minified, and fingerprinted in pipes/style.html. */ -}}
+  {{- /* Site CSS: bundled, minified, and fingerprinted in pipes/style.html. */ -}}
   {{ partialCached "pipes/style.html" . }}
 
   {{- /* Add page-specific <head> tags by defining a "head" block in a template. */ -}}

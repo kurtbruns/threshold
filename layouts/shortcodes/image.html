@@ -5,7 +5,7 @@
        output (see that partial's comment for what it generates).
 
        src is a relative path, resolved against this page's bundle first, then
-       assets/ — first match wins. So the same src works whether the image sits
+       assets/; first match wins, so the same src works whether the image sits
        beside the page or is shared site-wide. Keeping images in an images/
        subfolder is convention, not a requirement: src="images/photo.jpg" finds
        content/<page>/images/photo.jpg or assets/images/photo.jpg, but any path
@@ -14,7 +14,8 @@
        width caps the displayed size: a bare number is pixels (480 → 480px), or
        any CSS length like "30rem".
 
-       No caption? Use plain Markdown — ![alt](photo.jpg) — same src resolution. */ -}}
+       No caption? Use plain Markdown, ![alt](photo.jpg), with the same src
+       resolution. */ -}}
 {{- $src := .Get "src" -}}
 {{- $alt := .Get "alt" | default "" -}}
 {{- $caption := .Get "caption" -}}

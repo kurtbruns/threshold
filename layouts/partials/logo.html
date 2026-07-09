@@ -1,5 +1,5 @@
-{{- /* Header logo mark. Edit assets/icons/logo.svg to change it — the SVG uses
-       fill="currentColor", so it adapts to light/dark automatically. */ -}}
+{{- /* Header logo mark. Edit assets/icons/logo.svg to change it. The SVG uses
+       fill="currentColor", so it adapts to light and dark automatically. */ -}}
 {{- with resources.Get "icons/logo.svg" -}}
   {{- (. | resources.Minify).Content | safeHTML -}}
 {{- end -}}
