@@ -52,7 +52,7 @@ The order to settle each file's `<!-- Outline` block, flattened from the depende
 | 11 | `.claude/skills/launch` | hurdle 2 | **settled** |
 | 12 | `.claude/skills/publish` | everyday go-live | **settled** |
 | 13 | `.claude/skills/nuclear` | reset | **settled** |
-| 14 | `.claude/skills/upgrade-hugo` | occasional maintenance | in-progress |
+| 14 | `.claude/skills/upgrade-hugo` | occasional maintenance | **settled** |
 
 Settle coupled nodes together: `CLAUDE.md` with `get-started`, and each page with the skill it hands off to.
 

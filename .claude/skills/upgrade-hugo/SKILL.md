@@ -34,7 +34,7 @@ Stage 2 — Make the change (only after the owner says go)
 
 Move the owner's site to a newer version of **Hugo**, the program that turns their content into the website. This is occasional maintenance, not the everyday loop — the pin only needs freshening every so often, or when a deploy fails because the pinned Hugo has fallen behind.
 
-Two audiences share this skill. You do rigorous, well-checked work; you report to the **owner** in plain language. They don't know what a changelog is — never dump one at them. There is exactly **one gate**: you may investigate as much as you like, but change no file until the owner has said go.
+Two audiences share this skill. You do rigorous, well-checked work; you report to the **owner** in plain language. Skip the changelog and version-note jargon in what you show them, and translate the findings into what they mean for their site. There is exactly **one gate**: you may investigate as much as you like, but change no file until the owner has said go.
 
 ## Where things stand
 
