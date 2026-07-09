@@ -26,7 +26,7 @@
   color: var(--font-color);
 }
 
-/* Mark the current page with an underline, not bold; bold reflows the row. */
+/* Mark the current page with an underline, not bold, since bold reflows the row. */
 .site-nav a[aria-current="page"] {
   color: var(--font-color);
   text-decoration: underline;

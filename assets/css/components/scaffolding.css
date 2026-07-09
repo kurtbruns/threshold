@@ -11,7 +11,7 @@ body {
 /* Vertical rhythm, the "spacing after" model: every flow block owns the gap
    that follows it (margin-bottom only, no top margin), so the space between two
    blocks is set by a single value and never depends on margin-collapsing.
-   1.5rem is the site's spacing unit; headings share the same gap below, so
+   1.5rem is the site's spacing unit. Headings share the same gap below, so
    everything lines up on one rhythm. */
 p, ul, ol, dl, blockquote, pre, table {
   margin-block: 0 1.5rem;
@@ -43,7 +43,7 @@ ul, ol {
   padding-inline-start: 1.5rem;
 }
 
-/* A list nested inside a list item drops its bottom gap; the spacing after the
+/* A list nested inside a list item drops its bottom gap. The spacing after the
    nested list is owned by the parent <li>, so it shouldn't add 1.5rem of its
    own. Covers every combination of nesting (ul or ol inside either). */
 li > ul, li > ol {
@@ -113,7 +113,7 @@ th, td {
 
 figure {
   margin-block: 0 1.5rem;
-  /* Center the figure; visible when `width` caps it below the text column. */
+  /* Center the figure, visible when `width` caps it below the text column. */
   margin-inline: auto;
 }
 

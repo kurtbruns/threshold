@@ -1,9 +1,9 @@
 {{- /* Markdown link render hook: validates internal links at build time.
        Any link that isn't external (has a URL scheme), isn't protocol-relative
        (//…), and isn't a bare in-page anchor (#…) must resolve to a page or a
-       page resource, or the build fails with a clear error. So a broken internal
-       link can never ship. External links (https, mailto, tel, …),
-       protocol-relative links, and #anchors pass through as authored. */ -}}
+       page resource. If it doesn't, the build fails with a clear error, so a
+       broken internal link can never ship. External links (https, mailto, tel,
+       …), protocol-relative links, and #anchors pass through as authored. */ -}}
 {{- $u := .Destination -}}
 {{- $parsed := urls.Parse $u -}}
 {{- if or $parsed.Scheme (strings.HasPrefix $u "//") (strings.HasPrefix $u "#") -}}

@@ -6,7 +6,7 @@
   Markdown and is rendered only when site.Params.isDemo is truthy. That happens
   exclusively on the Threshold demo build, where the demo workflow
   (.github/workflows/demo.yml) sets HUGO_PARAMS_ISDEMO=true. On a site owner's
-  build the guard is false, so nothing renders; the body sits inert in the
+  build the guard is false, so nothing renders. The body sits inert in the
   source until they rewrite the home page or /nuclear clears it.
 
   Self-contained: markup + styles live here together, so deleting this file and

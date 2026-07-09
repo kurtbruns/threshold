@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {{- /* Page metadata. Home shows the site name; other pages show their own
-         title (e.g. "Blog"). Social cards (Open Graph, Twitter) are omitted;
-         ask Claude Code to add them if you want rich link previews. */ -}}
+         title (e.g. "Blog"). Social cards (Open Graph, Twitter) are omitted.
+         Ask Claude Code to add them if you want rich link previews. */ -}}
   {{- /* Meta description: the page's own `description`, else the site tagline
          (params.description in hugo.yaml). */ -}}
   {{- $desc := or .Description site.Params.description -}}

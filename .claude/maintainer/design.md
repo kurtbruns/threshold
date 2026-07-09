@@ -67,7 +67,7 @@ These are the rules that keep the kit coherent as it grows. Each states a constr
 
 **State is read, not stored.** Skills coordinate without a database. Setup has no marker at all; its state is inferred from the environment, which is why `/setup` can be run again safely. Launch writes a single marker, `params.launch` in `hugo.yaml`, and both `/publish` and `/nuclear` read it to know the site is live. A fresh clone carries no marker, so it correctly reads as not yet launched.
 
-**No dependencies, and everything self-hosted.** There is no npm and no build step beyond Hugo itself. Fonts and assets are vendored or generated locally, and the site makes no outside requests, which a maintainer can confirm by grepping the layouts and assets for external hosts and finding none. When the kit needs a new capability, it arrives the kit's way: a CSS component, an ES module, or a Hugo shortcode, wired through the existing pipeline, never an npm package or a call to another server. The same rule covers any asset the owner brings in, like a font or an icon: it is downloaded and self-hosted, not linked from a third-party server at runtime.
+**No dependencies, and everything self-hosted.** There is no npm and no build step beyond Hugo itself. Fonts and assets are vendored or generated locally, and the site makes no outside requests, which a maintainer can confirm by grepping the layouts and assets for external hosts and finding none. When the kit needs a new capability, it arrives the kit's way: a CSS component, an ES module, or a Hugo shortcode, wired through the existing pipeline, never an npm package or a call to another server. The same rule covers any asset the owner brings in, like a font or an icon: it is downloaded and self-hosted, not linked from a third-party server at runtime. How this plays out for specific "add a feature" requests, and where the honest boundaries fall, is worked out in the prompt-to-behavior catalog (`extending.md`).
 
 **The build fails loudly rather than ship something broken.** Broken internal links and missing images stop the build, so neither can reach the live site. Raw HTML is left off, which is simply Goldmark's default that the kit chooses not to override. The Hugo version is pinned as a floor for the owner and as the exact version for CI, and the extended build is required because the image pipeline encodes WebP. Two layers keep a broken build off the live site: the publish flow builds before it pushes, so the owner sees the failure early, and the deploy pipeline builds again before going live, so a build that does not compile is never served.
 
@@ -84,7 +84,7 @@ The house style, drawn from the kit's best comments:
 - **Right altitude.** Concrete enough to steer the next edit, not a tutorial on Hugo or CSS.
 - **One purpose per block.** Each block does a single job; if it is doing two, split it.
 - **Pitch to the reader.** Owner-facing where an owner might land (a "change this to…" pointer, `variables.css`, `hugo.yaml`); terse and precise where only Claude reads, like the asset pipeline.
-- **No em dashes.** Commas, periods, and semicolons carry every pause a comment needs.
+- **No em dashes.** Recast the sentence rather than swapping in a semicolon. A comma or period usually reads more naturally, and a plain hyphen is fine as a separator in a structured annotation like a param list.
 
 Keep them short; a comment that has to be read twice is too long. And where a concept already has a home elsewhere (the first invariant), point at that home rather than restating it.
 

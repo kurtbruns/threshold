@@ -9,7 +9,7 @@ enableEmoji: true   # render :shortcode: emoji (e.g. :tada: → 🎉) alongside 
 
 params:
   # Fallback <meta description> for a page with no description of its own and no
-  # body text to summarize. Your site tagline; set it once.
+  # body text to summarize. Set it to your site tagline.
   description: "A new website built with Threshold."
   # The site owner, shown as the byline on blog posts. A single post can
   # override it with its own `author` in front matter.

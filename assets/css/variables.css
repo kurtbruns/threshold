@@ -9,7 +9,7 @@
   --font-color: #404040;          /* body text */
   --font-color-subtle: #676767;   /* secondary text, captions, footer */
   --border-color: #e5e5e7;        /* hairlines and dividers */
-  --primary-color: #2563eb;       /* links, buttons, highlights; your brand color */
+  --primary-color: #2563eb;       /* links, buttons, highlights (your brand color) */
   --primary-contrast: #ffffff;    /* readable text on top of a primary-colored fill */
 
   /* Fonts */
