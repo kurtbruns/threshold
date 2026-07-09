@@ -70,29 +70,8 @@ Only the calls an agent could not re-derive from the files. Fold the durable one
 
 - **Sweeps to apply while settling each file:** the audience (`design.md` §2), and the three ways to work and vocabulary (§3). Older files still carry pre-reframe language ("non-technical", "artists/designers/writers", "two ways", "live preview"); fix it wherever it appears.
 - **`publish` and `upgrade-hugo` are the reference implementations** of the §6 skill contract; model the others on them.
-- **Skill descriptions need a consistency trim** (see the section below); tighten each toward Anthropic's guidance while fleshing that skill.
+- **Skill descriptions follow Anthropic's shape:** lead with what the skill does and when to use it, no mechanics narration, no `disable-model-invocation` tail. All six are trimmed to this; match it for new skills.
 
-## Skill descriptions to tighten
+## Structural pass: done
 
-Anthropic's guidance for a skill `description` (Claude Code skills docs): say **what the skill does and when to use it**, key use case first, since Claude reads it to decide when to load the skill. The combined description text is truncated at ~1,536 characters in the listing, and everything a skill carries is a recurring token cost, so keep it concise and state what to do rather than narrate how or why. Trim targets: cut the mechanics narration, drop the redundant "disable-model-invocation so it only runs when the owner asks" tail (that is a frontmatter field, not a use case), and lead with the trigger. Read each skill's current `description` in place when tightening it.
-
-## Structural fixes before/during fleshing
-
-Surfaced by a deep-dive pass before fleshing (docs research + a `.claude/` audit + a content/theme audit). The self-hosted and no-dependencies invariants both passed clean.
-
-**Done now** (cross-surface or correctness, would otherwise bake into prose):
-- Retired the Claude `PreToolUse` pre-push gate. It was redundant with the publish build, only fired on Claude's own pushes, and over-claimed §6. The real build-safety model is now stated plainly: the publish flow builds before it pushes, and the deploy pipeline builds again before serving (`design.md` §5, §6; `CLAUDE.md`).
-- Pointed stale `/change-font` references at `/personalize` (`personalize` page, `fonts.css`, `fetch-google-font.sh`).
-- Filled `setup`'s `allowed-tools` to cover its own detection and preview steps.
-- Strengthened `CLAUDE.md`'s look-and-feel rule to cover ad-hoc (un-invoked) theme edits. (Decision: keep `personalize` as one invoked skill; the un-invoked-theme-edit gap belongs to always-on `CLAUDE.md` context, not a directory-scoped rule or a restructured skill.)
-
-**Fix while fleshing the relevant node:**
-- `get-started`: skill list should be `/setup, /personalize, /launch, /publish, /nuclear` (keep `/upgrade-hugo` out of the primary list); "two ways to work" should be three (add Operate the stack); unify internal links on absolute `/pages/...`.
-- Skill descriptions: the trim above, per skill.
-- `nuclear`: prose should state one escalating confirmation, not two gates.
-- `README`: fix typos ("Calude Code", "makes it's") and widen "Target Audience" back to `design.md` §2's framing.
-
-**Latent config/CI cleanups** (not prose; do when convenient):
-- `imaging.quality: 82` in `hugo.yaml` is dead (image.html hardcodes `q82`); keep one source.
-- CI action-version drift: the owner template `github-pages.deploy.yml` lags `demo.yml`; reconcile (the template is what owners deploy).
-- Minor: favicon path (`assets/favicons/` vs `icon.png`); whitespace-tolerant read of `params.launch` in `publish`; container-width vs image `sizes`.
+A deep-dive pass (docs research + a `.claude/` audit + a content/theme audit) ran before fleshing; the self-hosted and no-dependencies invariants passed clean. Everything it surfaced is now fixed, so fleshing starts from a solid structure. Two minor items were assessed and left as-is on purpose: the `params.launch` read in `publish` is a stable two-space coupling (both producer and consumer are ours), and the container-width vs image `sizes` gap is a harmless micro-optimization.
