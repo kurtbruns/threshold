@@ -73,6 +73,21 @@ These are the rules that keep the kit coherent as it grows. Each states a constr
 
 **Git history stays a plain, unbroken trail.** Both ways in start from a clean base: the template is a single base commit, and a fresh `git init` from a zip makes its own. No skill ever rewrites history, so the owner's undo trail stays intact and the base state stays diff-able against the starter kit.
 
+## On comments, a house style
+
+Comments are context, and they earn their place the same way the owner context in `.claude/CLAUDE.md` does, with one difference in timing. `CLAUDE.md` loads every session; a comment loads only when Claude or the owner opens that file to change it. That is just-in-time context, delivered at the moment a change is being made and there is no room to re-explain, which is exactly what makes a good comment load-bearing. The test is the one Claude Code's own guidance applies to a line of `CLAUDE.md`: would removing it invite a wrong change? If not, cut it.
+
+The house style, drawn from the kit's best comments:
+
+- **Load-bearing or gone.** Keep a comment only where its absence would invite a mistake. The code already says what it does; delete anything that merely repeats it.
+- **Say why, not how.** Carry what the code cannot show: the intent, the constraint, the reason a choice is non-obvious. Don't narrate how the language works.
+- **Right altitude.** Concrete enough to steer the next edit, not a tutorial on Hugo or CSS.
+- **One purpose per block.** Each block does a single job; if it is doing two, split it.
+- **Pitch to the reader.** Owner-facing where an owner might land (a "change this to…" pointer, `variables.css`, `hugo.yaml`); terse and precise where only Claude reads, like the asset pipeline.
+- **No em dashes.** Commas, periods, and semicolons carry every pause a comment needs.
+
+Keep them short; a comment that has to be read twice is too long. And where a concept already has a home elsewhere (the first invariant), point at that home rather than restating it.
+
 ## On graduation, a stated non-goal
 
 The kit is not designed to graduate anyone. It is a starter kit, not a course, and it never pushes the owner toward learning the stack. But because it is built to be simple, durable, and free of lock-in, the possibility is real: someone can learn from it and come to see a durable idea they can keep using in many shapes. That is an emergent result of the invariants above, not a program the kit runs. The guardrail for us is to keep it that way and not add scaffolding whose purpose is to teach the stack.
