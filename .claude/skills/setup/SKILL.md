@@ -2,7 +2,7 @@
 name: setup
 description: First-run setup for a freshly downloaded copy of the kit. Checks for the tools the site needs, guides installing anything missing, initializes version control, and starts the preview so the owner can see their site. Run right after downloading the kit, when the owner says "set up" or "get started", or when the preview won't run.
 disable-model-invocation: true
-allowed-tools: Read, Edit, Write, Bash(git init:*), Bash(git add:*), Bash(git commit:*), Bash(hugo:*)
+allowed-tools: Read, Edit, Write, Bash(command -v:*), Bash(uname:*), Bash(git --version), Bash(git rev-parse:*), Bash(git init:*), Bash(git add:*), Bash(git commit:*), Bash(hugo:*), Bash(bash scripts/dev-hugo.sh:*)
 ---
 
 <!-- Outline
@@ -14,8 +14,8 @@ setting up a dev environment for the first time.
 
 1. Take stock (a quick, visible check)
    - Detect OS, and whether Hugo (extended), Git, and Homebrew are present.
-     These are read-only checks Claude can run directly (command -v, git
-     --version, uname), so they need no extra permission.
+     These read-only checks (command -v, uname, git --version) are in the
+     skill's allowed-tools, so they run without prompting.
    - Detect whether the project is a git repo yet (a ZIP download won't be; a
      "Use this template" clone already is)
 
