@@ -62,7 +62,7 @@ There is a main stylesheet called `assets/css/variables.css` which contains a ha
 
 ### Fonts
 
-The site ships with fast system fonts, so there are no third-party requests. To use a Google Font, ask for **`/change-font`**. It browses Google Fonts with you, then downloads and self-hosts your pick (still no calls to Google).
+The site ships with fast system fonts, so there are no third-party requests. To use a Google Font, run **`/personalize`**. It browses Google Fonts with you, then downloads and self-hosts your pick (still no calls to Google).
 
 ## Name and tagline
 
