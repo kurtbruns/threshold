@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
-# Print the canonical Hugo version pin from
-# hugo.yaml module.hugoVersion.min.
-#
-# This is the single source of truth for the Hugo version. Note the value plays
-# two roles: to Hugo it is a *floor* — Hugo refuses to build with anything older,
-# so a local install (e.g. Homebrew's latest) may be newer. To CI it is the
-# *exact* version installed for the deploy build, so the site always deploys with
-# a known-good Hugo. Humans read it to know the minimum to install.
-# Edit the pin in hugo.yaml, not here.
+# Print the Hugo version pin (module.hugoVersion.min from hugo.yaml), the single
+# source of truth read by CI and by anyone checking the minimum to install.
+# The pin's floor-vs-exact meaning is documented in hugo.yaml; edit it there, not here.
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "$0")/.." && pwd)"
