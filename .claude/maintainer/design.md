@@ -49,7 +49,7 @@ At both walls the division of labor is the same. Claude does the plumbing; the o
 
 A map of what is in the kit and the few decisions that shape each part, not a file-by-file inventory.
 
-**Context** lives in `.claude/`. It is what lets the owner run the site by conversation: the operating context (`CLAUDE.md`) that Claude loads every session, a set of skills for the procedures worth guiding, a permissions file that scopes what Claude may touch, and a pre-push hook that refuses to publish a build that does not compile. The skills share a common shape, described in §6.
+**Context** lives in `.claude/`. It is what lets the owner run the site by conversation: the operating context (`CLAUDE.md`) that Claude loads every session, a set of skills for the procedures worth guiding, and a permissions file that scopes what Claude may touch. The skills share a common shape, described in §6.
 
 **Content** is the demo site: a home page, an About page, a small blog, and the four onboarding guides under `content/pages/`. The demo does double duty. It has to read as a real personal site worth making your own, and it teaches, because the guides are both the documentation and the example. It is also disposable: `/nuclear` clears it to a blank slate when the owner is ready to make the site truly theirs.
 
@@ -69,7 +69,7 @@ These are the rules that keep the kit coherent as it grows. Each states a constr
 
 **No dependencies, and everything self-hosted.** There is no npm and no build step beyond Hugo itself. Fonts and assets are vendored or generated locally, and the site makes no outside requests, which a maintainer can confirm by grepping the layouts and assets for external hosts and finding none. When the kit needs a new capability, it arrives the kit's way: a CSS component, an ES module, or a Hugo shortcode, wired through the existing pipeline, never an npm package or a call to another server. The same rule covers any asset the owner brings in, like a font or an icon: it is downloaded and self-hosted, not linked from a third-party server at runtime.
 
-**The build fails loudly rather than ship something broken.** Broken internal links and missing images stop the build, so neither can reach the live site. Raw HTML is left off, which is simply Goldmark's default that the kit chooses not to override. The Hugo version is pinned as a floor for the owner and as the exact version for CI, and the extended build is required because the image pipeline encodes WebP. Before any push, the pre-push hook rebuilds the site and refuses the push if it does not compile.
+**The build fails loudly rather than ship something broken.** Broken internal links and missing images stop the build, so neither can reach the live site. Raw HTML is left off, which is simply Goldmark's default that the kit chooses not to override. The Hugo version is pinned as a floor for the owner and as the exact version for CI, and the extended build is required because the image pipeline encodes WebP. Two layers keep a broken build off the live site: the publish flow builds before it pushes, so the owner sees the failure early, and the deploy pipeline builds again before going live, so a build that does not compile is never served.
 
 **Git history stays a plain, unbroken trail.** Both ways in start from a clean base: the template is a single base commit, and a fresh `git init` from a zip makes its own. No skill ever rewrites history, so the owner's undo trail stays intact and the base state stays diff-able against the starter kit.
 

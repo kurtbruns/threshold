@@ -48,7 +48,7 @@ Build the site the way the host will, and make sure it's clean before anything g
 hugo --gc --minify
 ```
 
-If the build fails, stop and fix it before publishing. A broken build here would mean a broken live site. (A pre-push guard also builds before allowing a push, but checking now gives clearer errors and avoids a wasted push.)
+If the build fails, stop and fix it before publishing. Building now gives clear errors and avoids a wasted push; the deploy pipeline builds again before going live, so a build that doesn't compile is never served.
 
 ## 3. Review and commit
 
