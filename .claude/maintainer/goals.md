@@ -49,7 +49,7 @@ The order to settle each file's `<!-- Outline` block, flattened from the depende
 | 8 | `content/pages/write` | the Markdown tutorial | **settled** |
 | 9 | `content/_index.md` and demo | the demo as teacher | in-progress |
 | 10 | `content/pages/launch` | hosts, domain, cost | **settled** (outline) |
-| 11 | `.claude/skills/launch` | hurdle 2 | in-progress |
+| 11 | `.claude/skills/launch` | hurdle 2 | **settled** |
 | 12 | `.claude/skills/publish` | everyday go-live | in-progress |
 | 13 | `.claude/skills/nuclear` | reset | in-progress |
 | 14 | `.claude/skills/upgrade-hugo` | occasional maintenance | in-progress |
