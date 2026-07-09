@@ -89,9 +89,9 @@ Whether the deploy is watchable comes from the repo, not the marker: a push-trig
 
   On failure, read the log (`gh run view --log-failed`), explain plainly, and offer to fix and publish again.
 - **No workflow, but a host is recorded** (`Launched to`). The site is connected through the host's own dashboard (for example, Cloudflare building on its side), so there's no Actions run to follow. Set the expectation and point them to it:
-  > Pushed. Your host is building the site now; it usually goes live in under a minute at <address>. You can watch the build in your host's dashboard.
+  > Published. Your host is building the site now; it usually goes live in under a minute at <address>. You can watch the build in your host's dashboard.
 - **No workflow and no host recorded.** The push updated GitHub, but nothing is serving the site yet. Be honest; don't claim it's live:
-  > Saved and pushed to GitHub. To actually put the site on the web, run `/launch` to connect a host. After that, this command sends your updates live.
+  > Your changes are saved, but the site isn't on the web yet. Run `/launch` to connect a host, and after that this command sends your updates live.
 
 ## Notes
 
