@@ -6,45 +6,40 @@ weight: 4
 
 <!-- Outline
 
-- Intro: a static site is just files; going live = put the project on GitHub,
-  then connect a host that rebuilds it on every change. /launch walks you
-  through it; after that, updates are just /publish.
+- Intro (no heading): going live is a one-time setup. Your site is a folder of
+  files, so putting it online means keeping a copy on GitHub and connecting a
+  host that rebuilds and serves it whenever it changes. Claude handles the
+  machinery; a few steps are yours. After this, new changes go live with Publish.
 
-- How going live works (the concept, explained once)
-    - Push-to-publish: you push to GitHub, a GitHub Action builds the site and
-      deploys it. One mechanism, the same for either host.
-    - Who does what: a few steps are yours (accounts, a domain, secrets);
-      Claude handles the rest and can watch the deploy for you.
+- The one decision: do you want a custom domain?
+    - This is the question that picks your host; everything else follows from it.
 
-- 1. Put your project on GitHub (needs a free account)
-    - Why GitHub: it stores the site and runs the step that publishes it.
+- Choosing a host
+    - Cloudflare Workers (recommended): your own custom domain, more control
+      (crawlers, settings kept with the project). A little more setup.
+    - GitHub Pages (the fast on-ramp): a free yourname.github.io address, online
+      today, needs only a free GitHub account. No domain yet? Start here; move to
+      Cloudflare later.
+    - Both are free to host. Other hosts work too, with a tradeoff (only these two
+      let Claude watch the go-live for you without extra tools).
 
-- 2. Choose a host — the deciding question: do you want a custom domain?
-    - Cloudflare Workers (recommended): your own domain, control over crawlers,
-      deploy settings kept in the repo. Cloudflare is also a registrar.
-    - GitHub Pages (the fast on-ramp): free yourname.github.io address, live
-      today, no third-party account. Migrate to Cloudflare later.
-    - Other hosts work too: connect a repo in a host's dashboard, or see Hugo's
-      host-and-deploy list. Tradeoff: only the GitHub Actions route lets Claude
-      watch the deploy without extra tooling.
+- Custom domain (optional)
+    - What it is and why you'd want one (a name that's yours).
+    - Don't own one yet: register through Cloudflare (buy and connect in one place).
+    - Already own one: point it at your host (its DNS settings), or move it to
+      Cloudflare.
+    - About $15/year; not required to go live.
 
-- 3. Custom domain (optional)
-    - Don't have one yet: register through Cloudflare (registrar + DNS + hosting
-      in one place).
-    - Already own one: point its nameservers at Cloudflare, or keep it where it
-      is and configure DNS.
-    - Not ready for a domain at all? That's the sign to start on GitHub Pages.
+- What it costs
+    - Hosting is free on both hosts. A domain is optional, about $15/year. That's it.
 
-- 4. Go live (first deploy)
-    - Run /launch; it sets up GitHub + the host and does the first deploy. Watch
-      it build, then open the address.
+- Who does what
+    - Yours: creating the accounts, payment, a domain, pasting any secret values.
+    - Claude's: everything else, and watching the first go-live for you.
 
-- After launch
-    - Everyday publishing is just /publish.
-
-- Cost summary
-    - Hosting is free (GitHub Pages and Cloudflare). A domain is about $15/year.
-      Other hosts may charge monthly.
+- When you're ready
+    - Run /launch to do it together, one step at a time.
+    - After launch, going live with later changes is just Publish (/publish).
 
  -->
 
