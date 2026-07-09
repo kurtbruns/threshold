@@ -33,11 +33,11 @@
 
 # Threshold
 
-Threshold is a starter kit for building a personal website with [Claude Code](https://claude.com/claude-code). The kit contains the sort of advice, design choices, and recommendations I would make to a friend who wants to build a website. It uses [Hugo](https://gohugo.io/), a static site generator, which separates content from the layout and design of the site. This makes it’s relatively easy to edit the content yourself and the end result is a website that is fast, secure, and easy to host.
+Threshold is a starter kit for building a personal website with [Claude Code](https://claude.com/claude-code). The kit contains the sort of advice, design choices, and recommendations I would make to a friend who wants to build a website. It uses [Hugo](https://gohugo.io/), a static site generator, which separates content from the layout and design of the site. This makes it relatively easy to edit the content yourself and the end result is a website that is fast, secure, and easy to host.
 
 ## Target Audience
 
-This kit is designed for creative people like artists, designers, and writers who want a nice site without having to get lost in the sauce, so to speak.
+This kit is for a capable, curious person building their first website. You might be technical in another field, but you don't need any web-building know-how, because Claude Code carries that part.
 
 ## See it live
 
@@ -46,7 +46,7 @@ See a demo of the starting kit [here](https://kurtbruns.github.io/threshold/).
 ## Quick start
 
 1. Download or clone the project to your computer
-2. Open the folder in Calude Code
+2. Open the folder in Claude Code
 3. Install requirements (run the `/setup` skill)
 
 ## What to Expect
