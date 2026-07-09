@@ -47,7 +47,7 @@ The order to settle each file's `<!-- Outline` block, flattened from the depende
 | 6 | `content/pages/personalize` | layout, fonts, icons, logo, look | **settled** |
 | 7 | `.claude/skills/personalize` | make it yours; absorbs change-font | **settled** |
 | 8 | `content/pages/write` | the Markdown tutorial | **settled** |
-| 9 | `content/_index.md` and demo | the demo as teacher | in-progress |
+| 9 | `content/_index.md` and demo | the demo as teacher | **settled** |
 | 10 | `content/pages/launch` | hosts, domain, cost | **settled** (outline) |
 | 11 | `.claude/skills/launch` | hurdle 2 | **settled** |
 | 12 | `.claude/skills/publish` | everyday go-live | **settled** |
