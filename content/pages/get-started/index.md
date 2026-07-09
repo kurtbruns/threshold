@@ -46,7 +46,7 @@ Run the `/setup` skill
 - Everything is in a project folder on your computer
 - Local site vs. live site (define both here, once)
 
-## Two ways to work
+## Three ways to work
 
 ### Talk to Claude
 
@@ -54,18 +54,25 @@ Run the `/setup` skill
 
 - "I have some photos here: `~/Downloads/photos/` that I would like to add to the most recent blog post. Please copy the photos into the post's folder and insert them on the page so I can decide which ones should go where."
 - "Let's add a gallery to the home page that show cases some of the pieces in my portfolio."
+- "Let's add the ability to render math equations to the site."
 - "Can we change the font to a serif font? Please give me some options to choose from. "
-- "Publish the changes we made in this session" (requires completing the [launch guide](pages/launch))
+- "Publish the changes we made in this session" (requires completing the [launch guide](/pages/launch/))
 
 **Skills:**
 
-- `/setup` - TODO blurb
-- `/nuclear` - TODO blurb
-- `/launch` - TODO blurb
-- `/publish` - TODO blurb
-- `/upgrade-hugo` - TODO blurb
+- `/setup`: installs what your site needs and starts the preview, so you land on a site you can see.
+- `/personalize`: makes the site yours, from the name and colors to layout and fonts, with options to pick from.
+- `/launch`: puts your site online for the first time.
+- `/publish`: sends your latest changes to the live site.
+- `/nuclear`: clears the demo back to a blank canvas so you can start fresh.
 
 ### Edit the markdown yourself (you're not locked into a subscription)
+
+TODO: open a page's file in any text editor and edit the Markdown in `content/`; encouraged for voice-heavy pages (About, blog).
+
+### Operate the stack (you own it)
+
+TODO: it's plain Markdown, CSS, and layouts over Git, so you can edit and publish yourself if you ever want to. An option, not a step; you're not tied to using AI forever.
 
 ## Make your first change
 
