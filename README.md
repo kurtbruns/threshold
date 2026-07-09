@@ -1,61 +1,30 @@
-<!-- Outline
-
-- What Threshold is (the pitch, 2-3 sentences)
-    - A personal website you build by talking to Claude Code; Claude carries the technical parts
-    - It's genuinely yours: your words, look, and brand, and you own it (plain
-      Markdown + Hugo, not locked into AI)
-    - Fast, secure, cheap to host; the advice I'd give a friend building a site
-    - See it live (the demo is the starting point you begin from): demo link
-
-- Who it's for: a capable, curious person building their first website, who
-  shapes it by talking to Claude. They may be technical in another field; they
-  don't need web-building know-how, because Claude carries that.
-
-- Quick start (two ways in, both land in Claude Code + /setup)
-    - Use this template on GitHub (your copy starts on GitHub), or download the zip
-      (start locally)
-    - Open the folder in Claude Code
-    - Run /setup (installs tools, starts the preview)
-
-- What to expect
-    - There are two technical parts, each a one-time setup Claude guides you
-      through: getting your site running, and later putting it online. Going live
-      needs a few things only you can do (a free account or two, maybe a domain)
-    - In between and after, you work by talking, or edit the Markdown yourself
-    - Cost: free to run; a custom domain is optional (~$15/yr). Details in the
-      Launch guide
-
-- Next → the Get Started guide
-
-- License (MIT)
-
- -->
-
 # Threshold
 
-Threshold is a starter kit for building a personal website with [Claude Code](https://claude.com/claude-code). The kit contains the sort of advice, design choices, and recommendations I would make to a friend who wants to build a website. It uses [Hugo](https://gohugo.io/), a static site generator, which separates content from the layout and design of the site. This makes it relatively easy to edit the content yourself and the end result is a website that is fast, secure, and easy to host.
+Threshold is a starter kit for building a personal website by talking to [Claude Code](https://claude.com/claude-code): you say what you want, and Claude builds it. What you get is a static site that's fast, secure, and cheap to host. It's genuinely yours, kept as plain Markdown on top of [Hugo](https://gohugo.io/).
 
-## Target Audience
+**[See it live.](https://kurtbruns.github.io/threshold/)** The demo is the starting point you begin from.
 
-This kit is for a capable, curious person building their first website. You might be technical in another field, but you don't need any web-building know-how, because Claude Code carries that part.
+## Who it's for
 
-## See it live
-
-See a demo of the starting kit [here](https://kurtbruns.github.io/threshold/).
+Threshold is for a capable, curious person building their first website. They may be technical in another field, but they don't need any web-building know-how, because Claude Code carries that part.
 
 ## Quick start
 
-1. Download or clone the project to your computer
-2. Open the folder in Claude Code
-3. Install requirements (run the `/setup` skill)
+1. **Get your copy.**
+   - **Download ZIP**: click the green **Code** button, then **Download ZIP**, and unzip it.
+   - **Use this template**: at the top of this page, click the green **Use this template** button, then **Create a new repository**, and clone your new repository to your computer.
+2. **Open the folder** in Claude Code.
+3. **Run `/setup`.** It installs the tools your site needs and starts the preview, so you land on a site you can see.
 
-## What to Expect
+## What to expect
 
-Setup is the most technical part
+Building a site has two genuinely technical moments: getting it running on your computer, and later putting it online. For a first-timer, these are exactly where the project tends to stall. The kit is built to get you over both. Each is a one-time setup: a guide explains the choices that are yours to make, and Claude handles the technical work. You provide anything personal, like a free account or two and, if you want one, a domain name.
 
-Costs
+Everything in between and after is the part you came to do. You work by talking to Claude, or open the Markdown and write it yourself.
 
-Next → [read the Get Started guide](https://kurtbruns.github.io/threshold/pages/get-started/)
+Static sites like this are typically free to host. A custom domain is optional and costs about $15 a year. The [Launch guide](https://kurtbruns.github.io/threshold/pages/launch/) covers the hosting choices and the cost in full.
+
+Next → **[read the Get Started guide](https://kurtbruns.github.io/threshold/pages/get-started/)**.
 
 ## License
 

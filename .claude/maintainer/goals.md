@@ -38,7 +38,7 @@ The DAG order, spec first, then the owner's operating model, then each page befo
 | # | File | Anchors | Prose |
 | --- | --- | --- | --- |
 | 1 | `maintainer/design.md` | the spec | fleshed |
-| 2 | `README.md` | discover, the front door | TODO |
+| 2 | `README.md` | discover, the front door | fleshed |
 | 3 | `.claude/CLAUDE.md` | owner operating context | TODO |
 | 4 | `content/pages/get-started` | the working model | TODO |
 | 5 | `.claude/skills/setup` | hurdle 1 | TODO |
@@ -60,6 +60,7 @@ To flesh a node, write its prose from the settled outline and `design.md`, apply
 
 - One node (or a coupled pair) at a time, in DAG order.
 - Make the change, then wait for the owner to review the visual diff in their IDE and confirm before committing. No need to paste diffs; the owner reads them in the IDE.
+- Once the prose is settled, strip the file's `<!-- Outline -->` block before committing. The outline is scaffolding for writing; a finished file carries none, so it can't drift from the prose.
 - Commit scoped with `git commit -- <pathspec>` (that file plus any `goals.md` status update), message "Flesh X". The owner keeps unrelated work staged; a pathspec commit leaves it untouched.
 - Keep the prose faithful to the settled outline; nudge the outline only if the prose reveals it drifted.
 - Destructive or high-stakes nodes (e.g. `nuclear`) still warrant a pause rather than silent changes.
