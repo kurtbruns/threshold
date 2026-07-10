@@ -25,19 +25,26 @@ From there, `frame.md` sets the maintainer persona and imports `design.md`; `goa
 A large share of what an owner will ask for is some form of "make my site do X." These are collected to explore the space of possible requests, in the owner's own words, not to prescribe an outcome. What Claude actually produces on any given prompt is not fully determined, and settling the intended behavior for each is future work, whether by dogfooding them against the kit or by nailing them down in the design. The ethos that shapes how any of these are handled lives in `.claude/CLAUDE.md`; the underlying invariant is `design.md` §6.
 
 **Look and layout**
-- "Can we show a gallery of my work on the home page?"
-- "I'd like my projects to appear as cards."
+- "I'd like to have a gallery of my work on the home page."
 - "Can we add little callout boxes for notes and warnings?"
+- "Can we switch to a serif font? Give me a few options to choose from."
+- "Let's use a fixed sidebar on the left for navigation."
 
 **Reading and content**
-- "I write about math sometimes. Can the site show equations properly?"
-- "I'd like a search box so people can find my posts."
+- "Can you add these photos from my Downloads folder to my most recent blog post?"
+- "Can we add the ability to write and display math equations on the site?"
+- "Let's add the ability to search the pages on the site."
 - "Can readers copy my code snippets with one click?"
 - "I want to drop this YouTube video into the post."
 
 **Interactive touches**
 - "Can these photos become a swipeable carousel?"
 - "When someone clicks a photo, can it open up larger?"
+
+**Going live and publishing**
+- "Publish the changes we made this session." (what happens when the site hasn't been launched yet)
+- "Publish the changes we made this session." (once the site has been launched)
+- "I think I'm ready to put my site online." (the first time, before it has been launched)
 
 **Needs an outside service**
 - "Can people send me a message from a contact form?"

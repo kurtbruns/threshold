@@ -57,8 +57,8 @@ Some common jobs also have a shortcut you can run directly:
 
 You're never limited to talking to Claude, though. Everything is plain files you can write and run yourself whenever you like, and the [Write guide](/pages/write/) shows how to work in your own voice.
 
-## Where to go next
+## What's next
 
-- **[Personalize](/pages/personalize/)**: make the look yours, from colors and layout to fonts.
+- **[Personalize](/pages/personalize/)**: make the look yours — colors, layout, and fonts.
 - **[Write](/pages/write/)**: add and edit your words, images, and emoji.
-- **[Launch](/pages/launch/)**: put the site online.
+- **[Launch](/pages/launch/)**: put your site online.
