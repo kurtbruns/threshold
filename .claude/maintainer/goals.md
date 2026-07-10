@@ -25,7 +25,7 @@ The companion to [`design.md`](design.md). Where `design.md` describes the *inte
 - `maintainer/design.md`: fully fleshed (the spec this pass works from).
 
 **Content / onboarding**
-- All pages carry **settled outlines**. `get-started`: prose done. `write`: prose mostly complete. Home (`_index.md`): prose done. `personalize`: prose done. `launch`: prose `TODO`.
+- All pages carry **settled outlines**. `get-started`: prose done. `write`: prose done. Home (`_index.md`): prose done. `personalize`: prose done. `launch`: prose done.
 - `about` / `blog` demo: intentionally light placeholders, settled as-is (the demo is Threshold's own honest site; §5).
 
 **Theme / structure**
@@ -44,9 +44,9 @@ The DAG order, spec first, then the owner's operating model, then each page befo
 | 5 | `.claude/skills/setup` | hurdle 1 | fleshed |
 | 6 | `content/pages/personalize` | layout, fonts, icons, logo, look | fleshed |
 | 7 | `.claude/skills/personalize` | make it yours; absorbs change-font | fleshed |
-| 8 | `content/pages/write` | the Markdown tutorial | mostly done |
+| 8 | `content/pages/write` | the Markdown tutorial | fleshed |
 | 9 | `content/_index.md` and demo | the demo as teacher | fleshed |
-| 10 | `content/pages/launch` | hosts, domain, cost | TODO |
+| 10 | `content/pages/launch` | hosts, domain, cost | fleshed |
 | 11 | `.claude/skills/launch` | hurdle 2 | fleshed |
 | 12 | `.claude/skills/publish` | everyday go-live | fleshed |
 | 13 | `.claude/skills/nuclear` | reset | TODO |

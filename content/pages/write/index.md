@@ -4,29 +4,7 @@ description: "Formatting text, adding images, and emoji."
 weight: 3
 ---
 
-<!-- Outline
-
-- Intro (no heading): content lives in the content/ folder, organized into folders;
-  show the content tree; everything is Markdown; this is where you spend most of your
-  time once the look is settled.
-- How to create a new page: a page is a folder with an index.md inside it, a *page
-  bundle*, keeping the page's text and images together. Ask Claude; it creates the
-  bundle, writes the front matter, and can add it to the menu.
-- Images: drop a photo into the page's images/ and use a normal Markdown image (edge
-  to edge, made responsive, fast, and privacy-safe, with GPS stripped); the image
-  shortcode adds a caption or caps the width.
-- Markdown crash course:
-    - Headings
-    - Everyday text (bold, italic, code, links)
-    - Lists
-    - Quotes and code
-    - Tables
-- Emoji (paste it in, or type :shortcodes:)
-- Extending Markdown (raw HTML off on purpose; ask Claude for a shortcode)
-
- -->
-
-The pages of the site live in the `content/` folder. This is where you would create a project, essay, or other piece of writing. Open the content folder of this site and its top level looks like this:
+Everything a visitor reads lives in the `content/` folder: your home page, your posts, an essay or project you want to share. Open it and the top level looks like this:
 
 ```
 content/
@@ -36,37 +14,13 @@ content/
 └── pages/         # the onboarding guides
 ```
 
-Everything on your site is written in Markdown and organized into folders. The `index.md` files are markdown files that make up pages on the site.
+It's all Markdown, organized into folders, and each `index.md` is a page on the site. Once the look and feel are settled, this is where you'll spend most of your time: writing.
 
-After the dust has settled and you are happy with the look and feel of the site, this is where you might be spending most of your time.
-
-## How to create a new page
-
-A page is a folder with an `index.md` file inside it. That folder is a *page bundle*. It keeps the page's text and its images together in one place:
-
-```
-content/example/
-├── index.md
-└── images/
-    ├── photo.jpg
-    └── diagram.png
-```
-
-To add one, just ask (for example, *"add a page called Projects"*), and Claude creates the bundle, writes the front matter at the top of `index.md`, and (if you like) adds it to the menu.
-
-## Images
-
-To add an image, drop a photo into the page's `images/` folder and reference it with a normal Markdown image. A wide photo fills the column edge to edge. The site automatically makes it responsive, fast, and privacy-safe. It even strips the GPS location that phones embed in photos:
-
-![A panoramic view across a forested lake dotted with small islands](images/vista.jpg)
-
-When you want a caption (or to cap how wide an image gets), use the `image` shortcode instead. It centers the image by default; add `width` to keep it from filling the whole column:
-
-{{< image src="images/sculpture.jpg" alt="A mirror-polished sculpture reflecting a blue sky" caption="A chrome sculpture in San Francisco." width="480" >}}
+Since it's plain Markdown, you can open any page's `index.md` in a text editor (Sublime, VS Code, whatever you like) and edit it yourself, in your own voice. That's a natural fit for the About page or a blog post, where the words are the point.
 
 ## Markdown crash course
 
-Markdown is just text with a few light marks that turn into formatting.
+Markdown is a simple way to add formatting as you write. You type in plain text and sprinkle in a few light marks, a `#` here, some `**asterisks**` there, and the site turns them into headings, bold, links, and the rest. There's little to memorize, and the handful below covers almost everything you'll use.
 
 ### Headings organize a page
 
@@ -110,14 +64,59 @@ function greet(name) {
 | Link      | `[text](url)`       |
 | Image     | `![alt](photo.jpg)` |
 
+## How to create a new page
+
+A page is a folder with an `index.md` file inside it. That folder is a *page bundle*. It keeps the page's text and its images together in one place:
+
+```
+content/example/
+├── index.md
+└── images/
+    ├── photo.jpg
+    └── diagram.png
+```
+
+Open that `index.md` and it begins with a few settings fenced by `---`, the *front matter*, followed by your writing:
+
+```
+---
+title: "About"
+description: "Who I am and what I make."
+---
+
+I'm a designer and writer based in Portland,
+sharing projects and the occasional note.
+```
+
+The front matter is just a handful of values like the title and a short description; leave them to Claude or tweak them by hand. Everything below it is ordinary Markdown, like the rest of your pages.
+
+To add a page, just ask. For a single one, say something like *"add a Contact page with my email and social links."* Claude creates the bundle, writes the front matter, and (if you like) adds it to the menu.
+
+When you want a whole collection instead of one page, ask for a *section*: a folder that holds many pages of the same kind, the way `blog/` holds your posts. For example, *"Let's add a Projects section where each project gets its own page."* Claude sets up the section along with a landing page that lists everything inside, ready for you to fill.
+
+## Images
+
+To add an image, drop a photo into the page's `images/` folder and reference it with a normal Markdown image. A wide photo fills the column edge to edge. The site automatically makes it responsive, fast, and privacy-safe. It even strips the GPS location that phones embed in photos:
+
+![A panoramic view across a forested lake dotted with small islands](images/vista.jpg)
+
+When you want a caption (or to cap how wide an image gets), use the `image` shortcode instead. It centers the image by default; add `width` to keep it from filling the whole column:
+
+{{< image src="images/sculpture.jpg" alt="A mirror-polished sculpture reflecting a blue sky" caption="A chrome sculpture in San Francisco." width="480" >}}
+
 ## Emoji
 
-Paste emoji straight into your text and they appear as-is: 🎉 📷 ✅ 🌿
+Paste emoji straight into your text and they show up as-is: 🎉 📷 ✅ 🌿
 
-You can also type them by name between colons: `:tada:` becomes 🎉 and `:camera:` becomes 📷.
+You can also type them by name between colons, like `:tada:` for 🎉 or `:camera:` for 📷. This shorthand relies on one setting, `enableEmoji: true` in `hugo.yaml`, which the site turns on for you (Hugo ships with it off). Browse the [shortcode names](https://gist.github.com/rxaviers/7360908) to find the one you want.
 
 ## Extending Markdown
 
-Raw HTML is turned off on purpose. It keeps your pages clean and safe. When you want to embed something custom (a video, a map, an interactive widget), ask Claude to make a **shortcode** for it: a small, reusable tag like the `image` one above. You write something like `{{</* video … */>}}` in your page, Claude builds the piece once, and you can reuse it anywhere.
+When you want something Markdown can't express (a video, a map, an interactive chart), the site uses a **shortcode** rather than raw HTML: a small, reusable tag like the `image` one above. Ask Claude to build it once, then drop a tag like `{{</* video … */>}}` into any page and reuse it wherever you like.
 
 That's the whole toolkit. Anything you can write in Markdown renders with this same clean styling, so go ahead and make it your own.
+
+## What's next
+
+- **[Personalize](/pages/personalize/)**: change the look and feel of your site.
+- **[Launch](/pages/launch/)**: put your site online.
