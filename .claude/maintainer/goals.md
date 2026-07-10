@@ -20,7 +20,7 @@ The companion to [`design.md`](design.md). Where `design.md` describes the *inte
 
 **Claude context (`.claude/`)**
 - All skills carry **settled outlines**. Prose done: `publish`, `launch`, `upgrade-hugo`. Prose `TODO`: `setup`, `personalize`, `nuclear`.
-- `CLAUDE.md` (owner operating context): outline **settled**; prose `TODO`.
+- `CLAUDE.md` (owner operating context): outline **settled**; prose **done**.
 - `settings.json`, `launch.json`: shipped.
 - `maintainer/design.md`: fully fleshed (the spec this pass works from).
 
@@ -39,7 +39,7 @@ The DAG order, spec first, then the owner's operating model, then each page befo
 | --- | --- | --- | --- |
 | 1 | `maintainer/design.md` | the spec | fleshed |
 | 2 | `README.md` | discover, the front door | fleshed |
-| 3 | `.claude/CLAUDE.md` | owner operating context | TODO |
+| 3 | `.claude/CLAUDE.md` | owner operating context | fleshed |
 | 4 | `content/pages/get-started` | the working model | TODO |
 | 5 | `.claude/skills/setup` | hurdle 1 | TODO |
 | 6 | `content/pages/personalize` | layout, fonts, icons, logo, look | TODO |
