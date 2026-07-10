@@ -19,13 +19,13 @@ The companion to [`design.md`](design.md). Where `design.md` describes the *inte
 *Snapshot; update as it moves.*
 
 **Claude context (`.claude/`)**
-- All skills carry **settled outlines**. Prose done: `setup`, `publish`, `launch`, `upgrade-hugo`. Prose `TODO`: `personalize`, `nuclear`.
+- All skills carry **settled outlines**. Prose done: `setup`, `personalize`, `publish`, `launch`, `upgrade-hugo`. Prose `TODO`: `nuclear`.
 - `CLAUDE.md` (owner operating context): outline **settled**; prose **done**.
 - `settings.json`, `launch.json`: shipped.
 - `maintainer/design.md`: fully fleshed (the spec this pass works from).
 
 **Content / onboarding**
-- All pages carry **settled outlines**. `get-started`: prose done. `write`: prose mostly complete. Home (`_index.md`): prose done. `personalize`, `launch`: prose `TODO`.
+- All pages carry **settled outlines**. `get-started`: prose done. `write`: prose mostly complete. Home (`_index.md`): prose done. `personalize`: prose done. `launch`: prose `TODO`.
 - `about` / `blog` demo: intentionally light placeholders, settled as-is (the demo is Threshold's own honest site; §5).
 
 **Theme / structure**
@@ -42,8 +42,8 @@ The DAG order, spec first, then the owner's operating model, then each page befo
 | 3 | `.claude/CLAUDE.md` | owner operating context | fleshed |
 | 4 | `content/pages/get-started` | the working model | fleshed |
 | 5 | `.claude/skills/setup` | hurdle 1 | fleshed |
-| 6 | `content/pages/personalize` | layout, fonts, icons, logo, look | TODO |
-| 7 | `.claude/skills/personalize` | make it yours; absorbs change-font | TODO |
+| 6 | `content/pages/personalize` | layout, fonts, icons, logo, look | fleshed |
+| 7 | `.claude/skills/personalize` | make it yours; absorbs change-font | fleshed |
 | 8 | `content/pages/write` | the Markdown tutorial | mostly done |
 | 9 | `content/_index.md` and demo | the demo as teacher | fleshed |
 | 10 | `content/pages/launch` | hosts, domain, cost | TODO |

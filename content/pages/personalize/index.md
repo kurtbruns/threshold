@@ -1,80 +1,38 @@
 ---
 title: "Personalize"
-description: "Layout, colors, fonts, icons, your logo, and site identity."
+description: "Make the site yours: identity, layout, colors, and type."
 weight: 2
 ---
 
-<!-- Outline
+Here's how to change the look and feel of your site to make it yours. Threshold ships with sensible defaults, so change as much or as little as you like.
 
-- Intro (no heading): the look and feel is yours to shape. Change any of it by
-  asking Claude or by editing the files yourself; everything lives in a few
-  predictable places.
+To be walked through it all in one guided pass, run **`/personalize`** and Claude takes you through it one choice at a time, previewing and saving as you go. You can also change anything just by asking, or by editing the plain files yourself.
 
-- Name and tagline (your identity in words; hugo.yaml)
+## Identity
 
-- Layout (how a page is arranged: content width, the overall structure). Browse a
-  reference like 1linelayouts for ideas, or show Claude a sketch; Claude offers
-  options and previews them.
+Every site carries a few marks that say whose it is. Which ones you use is up to you: a title and a tagline, a logo in the header, the icon in the browser tab, or a custom home page. You don't need all of them. Just pick the ones that feel right to you.
 
-- Colors (the palette; light + dark, auto-responsive; the tokens in
-  assets/css/variables.css)
+> Change the site name to "Field Notes" and replace the door logo with my own.
 
-- Fonts (concept home)
-    - Ships with fast system fonts, so no third-party requests
-    - Browse Google Fonts, then Claude downloads and self-hosts your pick (still
-      no calls to Google); this is part of /personalize
+## Layout and navigation
 
-- Icons (concept home)
-    - Browse Material Symbols for the icons you want
-    - Claude pulls the SVGs into assets/ and uses them, self-hosted and
-      dark-mode-aware like the logo
+Layout is how your site is arranged: how wide the text runs, what sits in the header, and where the menu lives. You might move the menu into a fixed sidebar on the left, or leave it across the top. For ideas, browse a gallery like [1linelayouts](https://1linelayouts.com/), or sketch something and hand it to Claude, and you'll see a few options in the preview.
 
-- Logo and favicon (concept home)
-    - Header logo: assets/icons/logo.svg (swap the file, or ask Claude to draw one)
-    - Browser-tab icon: assets/favicons/ (swap for your own)
+> Change the layout to a fixed sidebar on the left with the menu in it.
 
-- Spacing and type sizes (the rest of the design tokens in variables.css)
+When you change the layout, remember that people will visit on phones as well as on desktops. A design built for a wide screen often has to adapt on a narrow one: a menu might collapse behind a button, or the page might rearrange itself. It's worth checking that a new layout looks right on both.
 
-- The menu (which pages show up top; each page's own front matter decides)
+> Check that the layout looks good on both desktop and mobile.
 
-- Going further (reassurance, not a workflow): it's plain CSS and layouts under
-  assets/ and layouts/; edit directly when you're ready.
+## The look
 
-- When you're ready to make it yours in one pass: run /personalize.
+Color and type set the mood. Out of the box the site has both a light and a dark theme, and it switches between them automatically to match each visitor's device. So when you change a color, you're choosing it for both, and Claude keeps the two in balance.
 
- -->
+> Let's change the color of links to be purple and try a serif font for the headings. Show me what this looks like in both light and dark modes.
 
-Change the look and feel of the site to make it yours.
+For type, the site starts with fast system fonts that load instantly and keep it private, since nothing is fetched from another server. When you want more character, browse [Google Fonts](https://fonts.google.com/), pick one, and Claude downloads it and serves it from your own site. Most of these look-and-feel values live together in one small file, `assets/css/variables.css`, if you'd like to see them.
 
-The pages of the site live in the `content/` folder. This is where you would create a project, essay, or other piece of writing.
+## What's next
 
-## Layout
-
-TODO: https://1linelayouts.com/
-
-## Theme
-
-TODO: The site is light & dark responsive
-
-Colors, fonts, spacing, and more
-
-There is a main stylesheet called `assets/css/variables.css` which contains a handful of variables that control.
-
-### Fonts
-
-The site ships with fast system fonts, so there are no third-party requests. To use a Google Font, run **`/personalize`**. It browses Google Fonts with you, then downloads and self-hosts your pick (still no calls to Google).
-
-## Name and tagline
-
-Your site's name and description live in `hugo.yaml`. Ask Claude to *"rename the site to …"* or *"update the tagline,"* and it edits them there.
-
-## Logo and icon
-
-TODO: https://fonts.google.com/icons
-
-- The header logo is `assets/icons/logo.svg`. Swap that file, or ask Claude to draw a new mark.
-- The browser-tab icon (favicon) is `assets/favicons/icon.png`. Swap that file for your own.
-
-## The menu
-
-Each page decides whether it appears in the top menu through its own front-matter (`menus: main`, with a `weight` for order). Ask Claude to *"put this page in the menu"* or *"reorder the menu,"* and it sets that for you.
+- **[Write](/pages/write/)**: add and edit your words, images, and emoji.
+- **[Launch](/pages/launch/)**: put your site online.
