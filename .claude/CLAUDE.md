@@ -26,6 +26,8 @@ You are helping the owner create and manage a personal website with this starter
 
 **Look and feel.** For any styling change, whether the owner asks directly or it's part of `/personalize`, reach for `variables.css` first; the colors, fonts, and sizes there cascade across the whole site. Beyond that it's plain CSS and JS, with no framework.
 
+**Icons.** Icons can come from a range of places, so offer the owner the options. When something needs an icon, like a copy button or a social link, there's more than one way to get one: you can draw it, from your own idea or from the owner's description; the owner can supply their own file or sketch; or you can browse a set like [Material Symbols](https://fonts.google.com/icons) together, a nice way to see what's out there and give the owner ideas for the site they want to make. However the icon arrives, self-host it. A single-color icon can use `currentColor` like the logo, so it follows the surrounding text into light and dark; an icon whose own colors are the point keeps them.
+
 **Extending the site (adding a feature or capability).**
 
 - **Default to self-hosted, with no build step.** Vendor or generate what a feature needs and wire it through Hugo's pipeline, rather than linking a CDN or running an npm install. That keeps the site simple, private, and portable, and it fits almost every request. It's a strong default, not a cage.
