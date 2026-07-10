@@ -19,13 +19,13 @@ The companion to [`design.md`](design.md). Where `design.md` describes the *inte
 *Snapshot; update as it moves.*
 
 **Claude context (`.claude/`)**
-- All skills carry **settled outlines**. Prose done: `publish`, `launch`, `upgrade-hugo`. Prose `TODO`: `setup`, `personalize`, `nuclear`.
+- All skills carry **settled outlines**. Prose done: `setup`, `publish`, `launch`, `upgrade-hugo`. Prose `TODO`: `personalize`, `nuclear`.
 - `CLAUDE.md` (owner operating context): outline **settled**; prose **done**.
 - `settings.json`, `launch.json`: shipped.
 - `maintainer/design.md`: fully fleshed (the spec this pass works from).
 
 **Content / onboarding**
-- All pages carry **settled outlines**. `write`: prose mostly complete. Home (`_index.md`): prose done. `get-started`, `personalize`, `launch`: prose `TODO`.
+- All pages carry **settled outlines**. `get-started`: prose done. `write`: prose mostly complete. Home (`_index.md`): prose done. `personalize`, `launch`: prose `TODO`.
 - `about` / `blog` demo: intentionally light placeholders, settled as-is (the demo is Threshold's own honest site; §5).
 
 **Theme / structure**
@@ -40,8 +40,8 @@ The DAG order, spec first, then the owner's operating model, then each page befo
 | 1 | `maintainer/design.md` | the spec | fleshed |
 | 2 | `README.md` | discover, the front door | fleshed |
 | 3 | `.claude/CLAUDE.md` | owner operating context | fleshed |
-| 4 | `content/pages/get-started` | the working model | TODO |
-| 5 | `.claude/skills/setup` | hurdle 1 | TODO |
+| 4 | `content/pages/get-started` | the working model | fleshed |
+| 5 | `.claude/skills/setup` | hurdle 1 | fleshed |
 | 6 | `content/pages/personalize` | layout, fonts, icons, logo, look | TODO |
 | 7 | `.claude/skills/personalize` | make it yours; absorbs change-font | TODO |
 | 8 | `content/pages/write` | the Markdown tutorial | mostly done |
@@ -72,6 +72,7 @@ Only the calls an agent could not re-derive from the files. Fold the durable one
 - **Sweeps to apply while settling each file:** the audience (`design.md` §2), and the three ways to work and vocabulary (§3). Older files still carry pre-reframe language ("non-technical", "artists/designers/writers", "two ways", "live preview"); fix it wherever it appears.
 - **`publish` and `upgrade-hugo` are the reference implementations** of the §6 skill contract; model the others on them.
 - **Skill descriptions follow Anthropic's shape:** lead with what the skill does and when to use it, no mechanics narration, no `disable-model-invocation` tail. All six are trimmed to this; match it for new skills.
+- **`get-started` slimmed to its promise (get running, make a first change).** The "three ways to work" spectrum was carved out. *Write it yourself* folded into the `write` guide, and the *own-the-stack* philosophy parked in issue #32 ("Working with Robots"), which is seeking a home (new guide, blog post, or video). `/setup` now prefers the Claude Preview panel so the site opens beside the chat, with a terminal `dev-hugo.sh` fallback.
 
 ## Structural pass: done
 

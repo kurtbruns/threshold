@@ -2,46 +2,8 @@
 name: setup
 description: Gets a freshly downloaded copy of the kit running. Checks for the tools the site needs, helps install anything missing, initializes version control, and starts the preview. Use right after downloading the kit, when the owner says "set up" or "get started", or when the preview won't run.
 disable-model-invocation: true
-allowed-tools: Read, Edit, Write, Bash(command -v:*), Bash(uname:*), Bash(git --version), Bash(git rev-parse:*), Bash(git init:*), Bash(git add:*), Bash(git commit:*), Bash(hugo:*), Bash(bash scripts/dev-hugo.sh:*)
+allowed-tools: Read, Edit, Write, Bash(command -v:*), Bash(uname:*), Bash(git --version), Bash(git rev-parse:*), Bash(git init:*), Bash(git add:*), Bash(git commit:*), Bash(hugo:*), Bash(bash scripts/dev-hugo.sh:*), mcp__Claude_Preview__preview_start
 ---
-
-<!-- Outline
-
-Goal: take a freshly downloaded copy from nothing to a running preview, in as
-few visible steps as possible. Land the owner at a site they can see, ready to
-give their first instruction. Keep it friendly and plain; the owner may be
-setting up a dev environment for the first time.
-
-1. Take stock (a quick, visible check)
-   - Detect OS, and whether Hugo (noting if it's the extended edition), Git, and Homebrew are present.
-     These read-only checks (command -v, uname, git --version) are in the
-     skill's allowed-tools, so they run without prompting.
-   - Detect whether the project is a git repo yet (a ZIP download won't be; a
-     "Use this template" clone already is)
-
-2. Install what's missing (macOS for now; the owner runs the install)
-   - Recommended path is Homebrew (the same installer handles gh when you launch
-     later). Installing needs an admin/sudo step, so Claude gives the exact
-     command and the owner runs it in their own Terminal rather than Claude
-     running it.
-   - Hugo's *extended* edition is recommended (it outputs WebP); without it, images fall back to their original format and the build still succeeds
-   - Alternatives: the no-terminal install guide; point non-macOS owners at the
-     official install docs
-
-3. Start saving (version control, quietly)
-   - Only if not already a repo: git init, then a first commit that captures the
-     base state (the diff-able starting point; makes later "undo" work)
-   - This is the owner's automatic Save history; set it up here, don't teach it
-
-4. Start the preview
-   - Run the dev server in the background; confirm it's up and share the link
-   - If the build fails, fix it before handing back
-
-5. Hand off
-   - Invite the first real instruction and stop
-   - Natural next step: /personalize (make it yours). Later: going live with /launch
-
- -->
 
 # Set up your site
 
@@ -95,19 +57,22 @@ That first commit is the base state: the point "undo" can return to, and what th
 
 ## 3. Start the preview
 
-Start the dev server in the background and confirm it comes up:
+Get the owner looking at their running site. Which path depends on where this session runs:
 
-```
-bash scripts/dev-hugo.sh
-```
+- **Desktop or web app:** the Claude Preview panel is available. Start the preview through it with the `Preview site (Hugo server)` config (from `.claude/launch.json`), so the site opens in a pane beside the chat instead of a background process the owner has to go find.
+- **Terminal:** no panel exists, so run the dev server in the background and share the address it prints:
+  ```
+  bash scripts/dev-hugo.sh
+  ```
+  It usually serves at `http://localhost:1313`.
 
-Share the address it prints (usually `http://localhost:1313`). If the build fails, fix it before going on; the owner should land on a working site, not an error.
+Either way, confirm the site actually comes up. If the build fails, fix it before going on; the owner should land on a working site, not an error.
 
 ## 4. Hand off
 
-Tell the owner the site is running, where to see it, and what they can do next, then stop and let them steer:
+Tell the owner the site is running, where to see it (the preview pane beside the chat, or the address it's serving on in a terminal), and what they can do next, then stop and let them steer:
 
-> Your site is running at <address>. Take a look, then tell me what you'd like to change, or run `/personalize` and I'll help you make it yours.
+> Your site is running. Take a look at the preview, then tell me what you'd like to change, or run `/personalize` and I'll help you make it yours.
 
 ## Notes
 
