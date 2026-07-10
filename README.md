@@ -18,9 +18,9 @@ Threshold is for a capable, curious person building their first website. They ma
 
 ## What to expect
 
-Building a site has two genuinely technical moments: getting it running on your computer, and later putting it online. For a first-timer, these are exactly where the project tends to stall. The kit is built to get you over both. Each is a one-time setup: a guide explains the choices that are yours to make, and Claude handles the technical work. You provide anything personal, like a free account or two and, if you want one, a domain name.
+Building a site can involve a fair amount of technical work. From getting it running on your computer, to making changes, to putting it online, there are hurdles to clear and decisions to make along the way. This kit is built to make that process easy, even enjoyable, with sensible defaults out of the box and Claude Code skills like `/setup` and `/launch` to guide you through the more technical moments.
 
-Everything in between and after is the part you came to do. You work by talking to Claude, or open the Markdown and write it yourself.
+Once it's running, the technical work fades into the background, and you're left with the part that matters: your words and ideas. You describe a change and watch it appear in the preview, or open the Markdown and write in your own voice. Every edit is saved as you go, so you can experiment without fear of breaking anything.
 
 Static sites like this are typically free to host. A custom domain is optional and costs about $15 a year. The [Launch guide](https://kurtbruns.github.io/threshold/pages/launch/) covers the hosting choices and the cost in full.
 
