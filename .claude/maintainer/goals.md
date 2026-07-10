@@ -19,7 +19,7 @@ The companion to [`design.md`](design.md). Where `design.md` describes the *inte
 *Snapshot; update as it moves.*
 
 **Claude context (`.claude/`)**
-- All skills carry **settled outlines**. Prose done: `setup`, `personalize`, `publish`, `launch`, `upgrade-hugo`. Prose `TODO`: `nuclear`.
+- All skills carry **settled outlines**. Prose done: `setup`, `personalize`, `publish`, `launch`, `upgrade-hugo`, `nuclear`.
 - `CLAUDE.md` (owner operating context): outline **settled**; prose **done**.
 - `settings.json`, `launch.json`: shipped.
 - `maintainer/design.md`: fully fleshed (the spec this pass works from).
@@ -49,7 +49,7 @@ The DAG order, spec first, then the owner's operating model, then each page befo
 | 10 | `content/pages/launch` | hosts, domain, cost | fleshed |
 | 11 | `.claude/skills/launch` | hurdle 2 | fleshed |
 | 12 | `.claude/skills/publish` | everyday go-live | fleshed |
-| 13 | `.claude/skills/nuclear` | reset | TODO |
+| 13 | `.claude/skills/nuclear` | reset | fleshed |
 | 14 | `.claude/skills/upgrade-hugo` | occasional maintenance | fleshed |
 
 Flesh coupled nodes together: `CLAUDE.md` with `get-started`, and each page with the skill it hands off to.
