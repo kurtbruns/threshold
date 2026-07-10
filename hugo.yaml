@@ -17,11 +17,13 @@ params:
 
 # Hugo version pin: the single source of truth, read by scripts/hugo-version.sh
 # and CI. A floor (Hugo won't build older; CI installs this exact version).
-# Must be the extended edition, which the image pipeline needs for WebP.
+# The extended edition is recommended — the image pipeline uses it to output
+# smaller WebP images — but not required: without it, images fall back to their
+# original format (see layouts/partials/image.html). CI installs extended anyway.
 module:
   hugoVersion:
     min: "0.161.1"
-    extended: true
+    extended: false
 
 # Image resampling filter for downscaling (photos and favicons). JPEG/WebP
 # quality lives with the responsive pipeline, in layouts/partials/image.html.

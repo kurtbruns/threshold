@@ -1,17 +1,25 @@
-{{- /* Responsive <picture> for a raster image resource.
+{{- /* Responsive <img> for a raster image resource.
        Params:
          image   (resource, required)
          alt     (string)
          sizes   (string, optional - defaults to the content column)
          loading (string, optional - "lazy" by default, use "eager" above the fold)
          class   (string, optional - added to the <img>)
-       Generates WebP + original-format variants at several widths, never
-       upscaling, with intrinsic width/height to avoid layout shift. */ -}}
+       Generates variants at several widths, never upscaling, with intrinsic
+       width/height to avoid layout shift. On the Hugo extended edition the
+       variants are WebP (smaller, faster); on the standard edition they stay
+       in the image's original format and a one-time warning is logged, so the
+       build still succeeds. */ -}}
 {{- $img := .image -}}
 {{- $alt := .alt | default "" -}}
 {{- $sizes := .sizes | default "(min-width: 48rem) 768px, calc(100vw - 2.5rem)" -}}
 {{- $loading := .loading | default "lazy" -}}
 {{- $class := .class | default "" -}}
+
+{{- /* WebP encoding needs the extended edition. The format token drops straight
+       into Resize: "…x webp q82" on extended, "…x q82" (original format) else. */ -}}
+{{- $webpOK := hugo.IsExtended -}}
+{{- $fmt := cond $webpOK "webp " "" -}}
 
 {{- /* Cap the largest delivered width. */ -}}
 {{- $max := 1600 -}}
@@ -27,20 +35,21 @@
 {{- end -}}
 {{- $widths = $widths | append $src.Width -}}
 
-{{- $jpeg := slice -}}
-{{- $webp := slice -}}
+{{- $set := slice -}}
 {{- range $w := $widths -}}
-  {{- $jpeg = $jpeg | append (printf "%s %dw" ($src.Resize (printf "%dx q82" $w)).RelPermalink $w) -}}
-  {{- $webp = $webp | append (printf "%s %dw" ($src.Resize (printf "%dx webp q82" $w)).RelPermalink $w) -}}
+  {{- $set = $set | append (printf "%s %dw" ($src.Resize (printf "%dx %sq82" $w $fmt)).RelPermalink $w) -}}
 {{- end -}}
 
 {{- /* A modest fallback src for browsers without srcset support. */ -}}
 {{- $fw := cond (gt $src.Width 768) 768 $src.Width -}}
-{{- $fallback := $src.Resize (printf "%dx q82" $fw) -}}
+{{- $fallback := $src.Resize (printf "%dx %sq82" $fw $fmt) -}}
 
-<picture>
-  <source type="image/webp" srcset="{{ delimit $webp ", " }}" sizes="{{ $sizes }}">
-  <img src="{{ $fallback.RelPermalink }}" srcset="{{ delimit $jpeg ", " }}" sizes="{{ $sizes }}"
-       width="{{ $src.Width }}" height="{{ $src.Height }}"
-       alt="{{ $alt }}" loading="{{ $loading }}" decoding="async"{{ with $class }} class="{{ . }}"{{ end }}>
-</picture>
+{{- /* Warn once per build if we couldn't produce WebP. */ -}}
+{{- if and (not $webpOK) (not (hugo.Store.Get "warnedNoWebP")) -}}
+  {{- hugo.Store.Set "warnedNoWebP" true -}}
+  {{- warnf "This Hugo isn't the extended edition, so images are served in their original format instead of smaller WebP. Install Hugo extended for faster-loading images: https://gohugo.io/installation/" -}}
+{{- end -}}
+
+<img src="{{ $fallback.RelPermalink }}" srcset="{{ delimit $set ", " }}" sizes="{{ $sizes }}"
+     width="{{ $src.Width }}" height="{{ $src.Height }}"
+     alt="{{ $alt }}" loading="{{ $loading }}" decoding="async"{{ with $class }} class="{{ . }}"{{ end }}>

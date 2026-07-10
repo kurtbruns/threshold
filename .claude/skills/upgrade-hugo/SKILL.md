@@ -20,7 +20,7 @@ Stage 1 — Look before you touch (read-only)
 4. Roll up plainly + gate: current → new, what (if anything) is affected, a one-line recommendation.
 
 Stage 2 — Make the change (only after the owner says go)
-5. Bump the one pin: module.hugoVersion.min in hugo.yaml. Leave `extended: true`. Nothing else to edit.
+5. Bump the one pin: module.hugoVersion.min in hugo.yaml. Leave the `extended` flag as-is. Nothing else to edit.
 6. Apply mechanical rewrites found in step 3, same pass. Hold judgment items for hand-off.
 7. Install the matching Hugo locally (brew upgrade hugo; extended stays extended). The pin is now
    ahead of the installed binary, so Hugo won't build until the local one catches up.
@@ -106,7 +106,7 @@ Only after the owner says go.
 
 ### 5. Bump the pin
 
-Edit **`hugo.yaml`**: under `module.hugoVersion`, change `min:` to the chosen version. Leave `extended: true` exactly as it is. This one line is the whole pin — `scripts/hugo-version.sh` reads it and the deploy installs from it, so there is nothing else to change. Don't touch workflows, and don't reformat unrelated lines.
+Edit **`hugo.yaml`**: under `module.hugoVersion`, change `min:` to the chosen version. Leave the `extended` flag exactly as it is. This one line is the whole pin — `scripts/hugo-version.sh` reads it and the deploy installs from it, so there is nothing else to change. Don't touch workflows, and don't reformat unrelated lines.
 
 ### 6. Apply the mechanical rewrites
 
@@ -114,13 +114,13 @@ Apply every hit you classified as mechanical in step 3, in this same pass, so th
 
 ### 7. Install the matching Hugo
 
-The pin now names a version newer than what's installed, and Hugo refuses to build below its pin — so the local binary has to catch up before anything will build. Update it (this keeps the extended edition the kit needs):
+The pin now names a version newer than what's installed, and Hugo refuses to build below its pin — so the local binary has to catch up before anything will build. Update it (`brew upgrade` keeps you on the extended edition, so your images stay WebP):
 
 ```bash
 brew upgrade hugo
 ```
 
-If Homebrew isn't set up, take the same posture as `/setup`: point the owner at the official downloads (<https://gohugo.io/installation/>, **extended** edition) and continue once a fresh `hugo version` shows the new version. Confirm it reads the new version **and** still says `extended` before moving on.
+If Homebrew isn't set up, take the same posture as `/setup`: point the owner at the official downloads (<https://gohugo.io/installation/>, **extended** edition recommended) and continue once a fresh `hugo version` shows the new version. Confirm it reads the new version before moving on; staying on the extended edition keeps images as WebP, but the build works either way.
 
 ### 8. Rebuild to confirm
 
@@ -144,4 +144,4 @@ When they publish, the deploy installs this same version automatically from the 
 
 - **Occasional, not everyday.** This freshens the tool that builds the site. Day-to-day edits and going live are `/publish`; this is separate.
 - **One pin, one edit.** `module.hugoVersion.min` in `hugo.yaml` is the only version to change. CI reads it through `scripts/hugo-version.sh`; there is no second copy to keep in sync.
-- **Extended stays extended.** The kit encodes WebP images, which only the extended edition can do. Every step preserves that — never drop `extended: true`, and always confirm the installed binary still reports `extended`.
+- **Extended is the recommended default, not a hard requirement.** The extended edition encodes WebP; without it the image pipeline falls back to the original format and the build still succeeds (`layouts/partials/image.html`). So `hugo.yaml` sets `extended: false` — leave it there, don't flip it to `true`. Do keep the installed binary on extended where you can (`brew upgrade` does this automatically), so the owner keeps the smaller WebP images.
