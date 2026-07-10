@@ -6,8 +6,6 @@ weight: 2
 
 Here's how to change the look and feel of your site to make it yours. Threshold ships with sensible defaults, so change as much or as little as you like.
 
-To be walked through it all in one guided pass, run **`/personalize`** and Claude takes you through it one choice at a time, previewing and saving as you go. You can also change anything just by asking, or by editing the plain files yourself.
-
 ## Identity
 
 Every site carries a few marks that say whose it is. Which ones you use is up to you: a title and a tagline, a logo in the header, the icon in the browser tab, or a custom home page. You don't need all of them. Just pick the ones that feel right to you.

@@ -19,7 +19,7 @@ The companion to [`design.md`](design.md). Where `design.md` describes the *inte
 *Snapshot; update as it moves.*
 
 **Claude context (`.claude/`)**
-- All skills carry **settled outlines**. Prose done: `setup`, `personalize`, `publish`, `launch`, `upgrade-hugo`, `nuclear`.
+- All skills carry **settled outlines**. Prose done: `setup`, `publish`, `launch`, `upgrade-hugo`, `nuclear`.
 - `CLAUDE.md` (owner operating context): outline **settled**; prose **done**.
 - `settings.json`, `launch.json`: shipped.
 - `maintainer/design.md`: fully fleshed (the spec this pass works from).
@@ -43,14 +43,13 @@ The DAG order, spec first, then the owner's operating model, then each page befo
 | 4 | `content/pages/get-started` | the working model | fleshed |
 | 5 | `.claude/skills/setup` | hurdle 1 | fleshed |
 | 6 | `content/pages/personalize` | layout, fonts, icons, logo, look | fleshed |
-| 7 | `.claude/skills/personalize` | make it yours; absorbs change-font | fleshed |
-| 8 | `content/pages/write` | the Markdown tutorial | fleshed |
-| 9 | `content/_index.md` and demo | the demo as teacher | fleshed |
-| 10 | `content/pages/launch` | hosts, domain, cost | fleshed |
-| 11 | `.claude/skills/launch` | hurdle 2 | fleshed |
-| 12 | `.claude/skills/publish` | everyday go-live | fleshed |
-| 13 | `.claude/skills/nuclear` | reset | fleshed |
-| 14 | `.claude/skills/upgrade-hugo` | occasional maintenance | fleshed |
+| 7 | `content/pages/write` | the Markdown tutorial | fleshed |
+| 8 | `content/_index.md` and demo | the demo as teacher | fleshed |
+| 9 | `content/pages/launch` | hosts, domain, cost | fleshed |
+| 10 | `.claude/skills/launch` | hurdle 2 | fleshed |
+| 11 | `.claude/skills/publish` | everyday go-live | fleshed |
+| 12 | `.claude/skills/nuclear` | reset | fleshed |
+| 13 | `.claude/skills/upgrade-hugo` | occasional maintenance | fleshed |
 
 Flesh coupled nodes together: `CLAUDE.md` with `get-started`, and each page with the skill it hands off to.
 

@@ -50,7 +50,6 @@ Because every change is **saved** automatically, you can experiment freely and u
 Some common jobs also have a shortcut you can run directly:
 
 - `/setup`: installs what your site needs and starts the preview, so you land on a site you can see.
-- `/personalize`: makes the site yours, from the name and colors to layout and fonts, with options to pick from.
 - `/launch`: puts your site online for the first time.
 - `/publish`: sends your latest changes to the live site.
 - `/nuclear`: clears the demo back to a blank canvas so you can start fresh.

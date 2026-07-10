@@ -72,7 +72,7 @@ Either way, confirm the site actually comes up. If the build fails, fix it befor
 
 Tell the owner the site is running, where to see it (the preview pane beside the chat, or the address it's serving on in a terminal), and what they can do next, then stop and let them steer:
 
-> Your site is running. Take a look at the preview, then tell me what you'd like to change, or run `/personalize` and I'll help you make it yours.
+> Your site is running. Take a look at the preview, then tell me what you'd like to change.
 
 ## Notes
 

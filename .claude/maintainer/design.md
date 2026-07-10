@@ -14,7 +14,7 @@ These are the perspectives to keep in mind when authoring the kit. Most are the 
 | --- | --- | --- | --- |
 | **The shopper** (may never adopt) | "What is this? Is it for me?" | README, template page, live demo | the front door (README) |
 | **The arrival** | "How do I get this running?" | get-started page, the repo they just opened | `/setup` (hurdle 1) |
-| **The maker** | "How do I make it mine and add my stuff?" | personalize and write pages, `variables.css`, `assets/`, `content/` | `/personalize`, conversation |
+| **The maker** | "How do I make it mine and add my stuff?" | personalize and write pages, `variables.css`, `assets/`, `content/` | conversation, `CLAUDE.md` |
 | **The launcher** | "How do I put it online, and what does it cost?" | launch page, host options | `/launch` (hurdle 2) |
 | **The regular** | "How do I change something and push it live?" | nothing new, just talks to Claude | `CLAUDE.md`, automatic Save, `/publish` |
 | **The tinkerer** | "Can I just do this myself?" | `assets/`, `layouts/`, git | the kit not fighting them: plain formats, no lock-in |
@@ -61,9 +61,11 @@ A map of what is in the kit and the few decisions that shape each part, not a fi
 
 These are the rules that keep the kit coherent as it grows. Each states a constraint and, in brief, why it holds.
 
-**Pages teach; skills do.** Each concept has a single home. A page explains what something is and how to decide about it, in plain narrative with no commands. A skill does the work, with the steps and mechanics. When a page reaches the point of action it hands off to a skill, and the skill does not re-explain. Defining each concept once is what keeps a page and its skill from drifting apart.
+**Pages teach; skills do.** Each concept has a single home. A page explains what something is and how to decide about it, in plain narrative with no commands. The doing lives elsewhere: in a skill where the work is a discrete procedure, or in `CLAUDE.md` plus plain conversation where it is open-ended and taste-driven, as personalization is — the Personalize page hands off to conversation, and the mechanics behind it live in `CLAUDE.md`. Either way the page does not carry the steps, and the doing does not re-explain. Defining each concept once is what keeps the teaching and the doing from drifting apart.
 
 **Skills follow one contract.** Every skill has the same shape, and the shape is the safety model. A skill sets `disable-model-invocation`, so it runs only when the owner asks for it, and it lists a tightly scoped set of `allowed-tools`, so it can touch only what it needs. If it acts on the environment, it starts by reading that environment instead of assuming. It asks for confirmation exactly once, at the single outward or destructive step, and not for ordinary edits. And it hands back in plain language. The same shape every time makes a skill predictable to build, to read, and to trust.
+
+**Skills outlive the demo.** A skill lives in `.claude/` and is permanent tooling; the demo under `content/` is a disposable starting example that `/nuclear` clears to a blank canvas. So a skill must not hard-depend on demo content, pointing at a page as if it will always be there. It should read and run cleanly on a reset site, drawing what it needs from the skill itself or from `CLAUDE.md`, never from a page that may be gone. That is why `/launch` carries its own host guidance rather than deferring to the Launch page. Personalization works from the other side of the same rule: it has no skill, and its mechanics live in `CLAUDE.md` rather than in a page, so the owner can shape a reset site by conversation even after `/nuclear` clears the Personalize guide.
 
 **State is read, not stored.** Skills coordinate without a database. Setup has no marker at all; its state is inferred from the environment, which is why `/setup` can be run again safely. Launch writes a single marker, `params.launch` in `hugo.yaml`, and both `/publish` and `/nuclear` read it to know the site is live. A fresh clone carries no marker, so it correctly reads as not yet launched.
 
