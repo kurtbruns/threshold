@@ -10,15 +10,22 @@
   border-block-end: 1px solid var(--border-color);
 }
 
+/* The reading column: the header's content, main, and footer all center on the
+   same max width and share the same edge gutter. Change either in variables.css. */
+.site-header__inner,
+.site-main,
+.site-footer {
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
 .site-header__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   min-height: var(--header-height);
-  max-width: var(--container-width);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
 }
 
 .site-brand {
@@ -46,14 +53,6 @@
   display: block;
   width: 1.6rem;
   height: 1.6rem;
-}
-
-.site-main,
-.site-footer {
-  width: 100%;
-  max-width: var(--container-width);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
 }
 
 .site-main {
