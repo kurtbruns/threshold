@@ -5,21 +5,6 @@ disable-model-invocation: true
 allowed-tools: Read, Write, Edit, Bash(git remote:*), Bash(git push:*), Bash(git add:*), Bash(git commit:*), Bash(gh:*), Bash(hugo:*), Bash(bash scripts/hugo-version.sh), Bash(mkdir:*), Bash(cp:*)
 ---
 
-<!-- Outline
-
-- Read the environment check (remote, gh, auth, hugo, kit's Hugo pin)
-- Get the project onto GitHub (account, sign in, create repo, push)
-- Choose a host: Cloudflare Workers (default, custom domain) or GitHub Pages (fast on-ramp), then follow that host's guide:
-    - Cloudflare Workers: hosts/cloudflare-workers.md
-    - GitHub Pages: hosts/github-pages.md
-- Confirm it's live (watch the Actions run)
-- Record the launch marker (params.launch: host + date in hugo.yaml) so /publish knows a pipeline exists and where to report
-- Hand off: everyday publishing is /publish
-- Notes: one-time setup, custom domain, Hugo version pin
-- Supporting files: hosts/ (per-provider setup), templates/ (deploy workflows + wrangler.jsonc)
-
--->
-
 # Launch your site
 
 Put the owner's site on the internet for the first time. This is a one-time setup with two parts: get the project onto **GitHub**, then set up a **host** that rebuilds and serves the site whenever it changes. Both host options deploy through a **GitHub Actions** workflow, so every deploy is a run you can watch. After this, going live with new edits is just `/publish`.
