@@ -106,7 +106,7 @@ When you want a caption (or to cap how wide an image gets), use the `image` shor
 
 ## Emoji
 
-Paste emoji straight into your text and they show up as-is: 🎉 📷 ✅ 🌿
+Paste emoji straight into your text and they show up as-is: 🎉 📷 ✅ 🌿 To find the right one, [Emoji Wizard](https://emojiwizard.net) lets you search and copy any emoji, and shows how it looks across platforms.
 
 You can also type them by name between colons, like `:tada:` for 🎉 or `:camera:` for 📷. This shorthand relies on one setting, `enableEmoji: true` in `hugo.yaml`, which the site turns on for you (Hugo ships with it off). Browse the [shortcode names](https://gist.github.com/rxaviers/7360908) to find the one you want.
 
