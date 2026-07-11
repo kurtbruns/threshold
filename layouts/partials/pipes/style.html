@@ -1,7 +1,9 @@
-{{- /* Build the site stylesheet by concatenating these files in order. To add a
-       component, create css/components/<name>.css and add it to this list (just
-       like adding an @import). Production: minify + content-hash fingerprint
-       (cache-busting) + SRI. Development: served as-is for readable devtools. */ -}}
+{{- /* Build the site stylesheet by concatenating these files in cascade order.
+       Small changes go in the sheet they belong to; a substantial, self-contained
+       component earns its own css/components/<name>.css, added to this list like
+       an @import. A file in assets/css/ that isn't listed here never loads.
+       Production: minify + content-hash fingerprint (cache-busting) + SRI.
+       Development: served as-is for readable devtools. */ -}}
 {{- $sheets := slice
       (resources.Get "css/vendor/modern-normalize.css")
       (resources.Get "css/variables.css")
