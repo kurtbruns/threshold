@@ -39,11 +39,15 @@ Two audiences share this skill. You do rigorous, well-checked work; you report t
 
 ## Where things stand
 
-```!
-echo "Kit's Hugo pin:  $(bash scripts/hugo-version.sh 2>/dev/null || echo '?')"
-echo "Installed Hugo:  $(hugo version 2>/dev/null | head -1 || echo 'NOT INSTALLED')"
-echo "Latest stable:   $(gh api repos/gohugoio/hugo/releases/latest --jq '.tag_name' 2>/dev/null || curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest 2>/dev/null | jq -r '.tag_name' 2>/dev/null || echo '?')"
+As your first step, run these to see where things stand:
+
+```bash
+bash scripts/hugo-version.sh
+hugo version
+gh api repos/gohugoio/hugo/releases/latest --jq '.tag_name'
 ```
+
+`scripts/hugo-version.sh` prints the kit's current pin; `hugo version` is what's installed (a "command not found" means Hugo isn't installed); the `gh api` call is the latest stable tag. If `gh` isn't available, get the latest with `curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.tag_name'`.
 
 ---
 
@@ -53,7 +57,7 @@ Everything here is read-only. The point is to arrive at the gate knowing whether
 
 ### 1. Read the check
 
-`Kit's Hugo pin` is where the site is now; `Latest stable` is where it could go. If the pin already matches (or is newer than) the latest stable, there's nothing to do — tell the owner they're up to date and stop. Note that the pin is a *floor*: the owner's installed Hugo may already be newer than the pin, and that's fine.
+The pin is where the site is now; the latest stable is where it could go. If the pin already matches (or is newer than) the latest stable, there's nothing to do — tell the owner they're up to date and stop. Note that the pin is a *floor*: the owner's installed Hugo may already be newer than the pin, and that's fine.
 
 ### 2. Read what changed
 

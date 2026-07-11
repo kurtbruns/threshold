@@ -2,7 +2,7 @@
 name: setup
 description: Gets a freshly downloaded copy of the kit running. Checks for the tools the site needs, helps install anything missing, initializes version control, and starts the preview. Use right after downloading the kit, when the owner says "set up" or "get started", or when the preview won't run.
 disable-model-invocation: true
-allowed-tools: Read, Edit, Write, Bash(command -v:*), Bash(uname:*), Bash(git --version), Bash(git rev-parse:*), Bash(git init:*), Bash(git add:*), Bash(git commit:*), Bash(hugo:*), Bash(bash scripts/dev-hugo.sh:*), mcp__Claude_Preview__preview_start
+allowed-tools: Read, Edit, Write, Bash(uname:*), Bash(hugo:*), Bash(git --version), Bash(command -v:*), Bash(git rev-parse:*), Bash(git init:*), Bash(git add:*), Bash(git commit:*), Bash(bash scripts/dev-hugo.sh:*), mcp__Claude_Preview__preview_start, mcp__Claude_Browser__preview_start
 ---
 
 # Set up your site
@@ -13,22 +13,22 @@ Installing the tools is the one part the owner does themselves. Homebrew and the
 
 ## Take stock
 
-Run a quick, read-only check of what's already here:
+As your first step, run these to see what's already here:
 
-```!
-echo "OS:            $(uname -s)"
-echo "Hugo:          $(hugo version 2>/dev/null || echo 'not installed')"
-echo "Git:           $(git --version 2>/dev/null || echo 'not installed')"
-echo "Homebrew:      $(command -v brew >/dev/null 2>&1 && echo installed || echo 'not installed')"
-echo "In a git repo: $(git rev-parse --is-inside-work-tree >/dev/null 2>&1 && echo yes || echo no)"
+```bash
+uname -s
+hugo version
+git --version
+command -v brew
+git rev-parse --is-inside-work-tree
 ```
 
-Read the results before acting:
+Read what they show before acting. A command that prints an error like "command not found" means that tool isn't installed — that's expected here, not a problem to stop on.
 
 - **Hugo** must be installed. The **extended** edition (its version line includes the word `extended`) is recommended — it lets the image pipeline output smaller WebP images — but isn't required; without it, images fall back to their original format and the build still succeeds.
 - **Git** is needed for saving the owner's work and, later, publishing it.
-- **Homebrew** is the recommended installer on macOS.
-- **In a git repo** says whether saving is set up already: a "Use this template" clone is a repo; a downloaded ZIP is not.
+- **Homebrew** is the recommended installer on macOS (`command -v brew` prints a path if it's there, nothing if not).
+- **A git repo already?** `git rev-parse --is-inside-work-tree` prints `true` if saving is already set up: a "Use this template" clone is a repo; a downloaded ZIP is not.
 
 ## 1. Install what's missing
 
@@ -59,7 +59,7 @@ That first commit is the base state: the point "undo" can return to, and what th
 
 Get the owner looking at their running site. Which path depends on where this session runs:
 
-- **Desktop or web app:** the Claude Preview panel is available. Start the preview through it with the `Preview site (Hugo server)` config (from `.claude/launch.json`), so the site opens in a pane beside the chat instead of a background process the owner has to go find.
+- **Desktop or web app:** the in-app preview pane is available (labeled Preview in older versions, Browser in newer ones). Start it with `preview_start`, selecting the `Preview site (Hugo server)` config (from `.claude/launch.json`), so the site opens in a pane beside the chat instead of a background process the owner has to go find.
 - **Terminal:** no panel exists, so run the dev server in the background and share the address it prints:
   ```
   bash scripts/dev-hugo.sh
