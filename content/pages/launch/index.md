@@ -4,75 +4,48 @@ description: "The steps you need to take to launch your site out into the big wi
 weight: 4
 ---
 
-<!-- Outline
+Launching is how your site moves from the preview on your computer to a live address on the web. It's a one-time setup. Your site is just a folder of files, so putting it online means keeping a copy on GitHub and connecting a host that rebuilds and serves the site whenever it changes.
 
-- Intro (no heading): going live is a one-time setup. Your site is a folder of
-  files, so putting it online means keeping a copy on GitHub and connecting a
-  host that rebuilds and serves it whenever it changes. Claude handles the
-  machinery; a few steps are yours. After this, new changes go live with Publish.
+This guide walks through each step. You can follow it yourself, or run `/launch` and Claude takes you through it together, one step at a time, pausing wherever a step is yours to do. Either way you only do this once; from then on, sending later changes live is the `/publish` skill.
 
-- The one decision: do you want a custom domain?
-    - This is the question that picks your host; everything else follows from it.
+## Connect to GitHub
 
-- Choosing a host
-    - Cloudflare Workers (recommended): your own custom domain, more control
-      (crawlers, settings kept with the project). A little more setup.
-    - GitHub Pages (the fast on-ramp): a free yourname.github.io address, online
-      today, needs only a free GitHub account. No domain yet? Start here; move to
-      Cloudflare later.
-    - Both are free to host. Other hosts work too, with a tradeoff (only these two
-      let Claude watch the go-live for you without extra tools).
+Your site needs a home online before it can go live, and that home is [GitHub](https://github.com): a free service that stores a copy of your files and runs the step that builds and deploys the site whenever you publish. You'll need a free GitHub account, which is the one part of this step that's yours; creating it takes a minute.
 
-- Custom domain (optional)
-    - What it is and why you'd want one (a name that's yours).
-    - Don't own one yet: register through Cloudflare (buy and connect in one place).
-    - Already own one: point it at your host (its DNS settings), or move it to
-      Cloudflare.
-    - About $15/year; not required to go live.
+From there, the work runs through GitHub's command-line tool, `gh`. It's what lets Claude handle the GitHub side from the command line, rather than leaving you to click through the website. If you run `/launch`, Claude installs `gh` for you, the same way [`/setup`](/pages/get-started/) installed Hugo and Git. To install it yourself on a Mac, use Homebrew:
 
-- What it costs
-    - Hosting is free on both hosts. A domain is optional, about $15/year. That's it.
+```
+brew install gh
+```
 
-- Who does what
-    - Yours: creating the accounts, payment, a domain, pasting any secret values.
-    - Claude's: everything else, and watching the first go-live for you.
-
-- When you're ready
-    - Run /launch to do it together, one step at a time.
-    - After launch, going live with later changes is just Publish (/publish).
-
- -->
-
-You are ready to launch your static site on the World Wide Web 🌐. The good news is a static site is about as easy as it gets. Because a static site is just a collection of files in a folder, publishing your site is as simple as syncing this folder with some remote location. Many hosting providers will host your site for little to no cost and you can have the peace of mind that it will stay online for many years to come. The bad news is, there are some hoops you will need to jump through.
-
-This guide walks through the steps to set up and publish your website. Once you have completed the guide, you can ask Claude Code to publish the website, and your changes will automatically get published to the live site.
-
-There is also a `/launch` skill that you can run to have Claude Code help you walk through the guide.
-
-## Connect to Github (needs a GitHub account)
-
-- To start, you need a GitHub account.
-
-We are using Git to orchestrate publishing changes to the site. Once this is set up we'll have a "push to publish" deploy pipeline where when you push changes from your local machine to a repository online, the site will get built and deployed along the way.
-
-Connect the local project you've been working with to a GitHub repository. This repository is a remote copy of all of the files that are in the project.
-
-
-- Requires a GitHub account
-
+The [GitHub CLI install page](https://cli.github.com/) covers other systems. With that in place, Claude signs you in, creates a repository on GitHub (a remote copy of your project folder), and connects the two, so from then on every publish sends your changes up and the site rebuilds automatically.
 
 ## Choose a host
 
-Next, you'll want to choose a hosting provider for the site. 
+A host is the service that stores your built site and serves it to visitors. This kit recommends two, and both are free:
 
-https://gohugo.io/host-and-deploy/
+- **Cloudflare Workers** — the one to reach for if you want a site you mean to keep: your own custom domain (Cloudflare can sell you one too), more control over details like which crawlers may visit, and its deploy settings kept in the project alongside everything else. It takes a little more setup.
+- **GitHub Pages** — the fast on-ramp: your site already lives on GitHub, so this needs almost nothing and gives you a free `yourname.github.io` address. Ideal when you just want to be online today.
 
-## Custom Domain (optional)
+If you're not sure, start with GitHub Pages; moving to Cloudflare later is easy.
 
-In many cases, you're going to want a custom domain for your website. To purchase a domain, you'll need to go through a registrar like Cloudflare domains and first check that the domain you are interested in is available.
+With either one, `/launch` sets up a GitHub Action, a small automation stored in your repository that builds the site with Hugo and deploys it every time you publish. That's what makes publishing a single step later: there's no build command for you to configure, and the deploy runs where Claude can watch it.
 
-## First deploy (go live)
+You're not limited to these two. [Hugo's host-and-deploy guide](https://gohugo.io/host-and-deploy/) lists many more hosts and, for each, the ways to build and deploy to it. The difference is that you'd wire up that build-and-deploy step yourself, and Claude can't follow a deploy that runs on the host's side unless you install that host's own command-line tool.
 
-## After launch
+## Custom domain
 
-## Cost summary
+A custom domain is a web address that belongs to you, like `yourname.com`, instead of a free one the host hands out. For a site you mean to keep it's worth having, the difference between a name that's yours and a name that's borrowed.
+
+- **If you don't own one yet**, register it through Cloudflare and buy and connect it in one place, the simplest path. You can also skip this for now, launch on a free address, and add the domain whenever you're ready.
+- **If you already own one**, point it at your host by changing its DNS settings, or move it to Cloudflare to keep everything together.
+
+## What it costs
+
+Hosting is free on both options. The only cost is a custom domain, about $15 a year, and even that can wait. There's no monthly hosting bill and no build fees.
+
+## What you get
+
+What launching gets you is a pipeline between the site on your computer and the site on the web. Whenever you want your latest changes live, you publish, and they're usually online in under a minute, with no files to upload and nothing to click through. Ask Claude to publish, or run `/publish`, and the pipeline does the rest.
+
+You're not tied to Claude for it, either. The pipeline deploys on every push to your GitHub repository, so publishing is really just a `git push`, and you can send changes live yourself with git whenever you prefer.
