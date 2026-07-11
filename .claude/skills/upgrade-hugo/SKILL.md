@@ -23,7 +23,8 @@ Stage 2 — Make the change (only after the owner says go)
 5. Bump the one pin: module.hugoVersion.min in hugo.yaml. Leave the `extended` flag as-is. Nothing else to edit.
 6. Apply mechanical rewrites found in step 3, same pass. Hold judgment items for hand-off.
 7. Install the matching Hugo locally (brew upgrade hugo; extended stays extended). The pin is now
-   ahead of the installed binary, so Hugo won't build until the local one catches up.
+   ahead of the installed binary, which only warns (never blocks the build) — match it so local
+   runs the version the deploy will.
 8. Rebuild the way the deploy will (hugo --gc --minify). If it fails, stop and offer to fix or revert.
 9. Hand off: nothing is live until /publish, which installs the same version in the deploy
    automatically. List any judgment items. Don't commit or push — the everyday loop handles that.
@@ -114,7 +115,7 @@ Apply every hit you classified as mechanical in step 3, in this same pass, so th
 
 ### 7. Install the matching Hugo
 
-The pin now names a version newer than what's installed, and Hugo refuses to build below its pin — so the local binary has to catch up before anything will build. Update it (`brew upgrade` keeps you on the extended edition, so your images stay WebP):
+The pin now names a version newer than what's installed. Hugo still builds — a version below the pin is a warning, not an error — but you'd be testing an older Hugo than the deploy runs. Bring the local binary up to the pin so local matches the deploy and the warning clears (`brew upgrade` keeps you on the extended edition, so your images stay WebP):
 
 ```bash
 brew upgrade hugo
@@ -130,7 +131,7 @@ Build the way the live deploy will, so a green build here means a green deploy:
 hugo --gc --minify
 ```
 
-If it **fails**, stop. Show the owner the problem in plain language and don't leave them on a pin their machine can't build — offer to fix the cause or to revert the bump in `hugo.yaml`. If it **passes**, say so, and if a preview server was running, restart it so they can see the site still looks right.
+If it **fails**, stop. Show the owner the problem in plain language and don't leave them with a version their machine can't build — offer to fix the cause or to revert the bump in `hugo.yaml`. If it **passes**, say so, and if a preview server was running, restart it so they can see the site still looks right.
 
 ### 9. Hand off
 

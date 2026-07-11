@@ -16,7 +16,7 @@ params:
   author: "Your Name"
 
 # Hugo version pin: the single source of truth, read by scripts/hugo-version.sh
-# and CI. A floor (Hugo won't build older; CI installs this exact version).
+# and CI. A floor (Hugo warns if older; CI installs this exact version).
 # The extended edition is recommended — the image pipeline uses it to output
 # smaller WebP images — but not required: without it, images fall back to their
 # original format (see layouts/partials/image.html). CI installs extended anyway.
