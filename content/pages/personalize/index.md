@@ -10,7 +10,7 @@ Here's how to change the look and feel of your site to make it yours. Threshold 
 
 Every site carries a few marks that say whose it is. Which ones you use is up to you: a title and a tagline, a logo in the header, the icon in the browser tab, or a custom home page. You don't need all of them. Just pick the ones that feel right to you.
 
-> Change the site name to "Field Notes" and replace the door logo with my own.
+> Change the site name to "Leo's Digital Garden" and replace the door logo with my own.
 
 ## Layout and navigation
 
