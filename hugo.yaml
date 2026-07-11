@@ -22,13 +22,22 @@ params:
 # original format (see layouts/partials/image.html). CI installs extended anyway.
 module:
   hugoVersion:
-    min: "0.161.1"
+    min: "0.164.0"
     extended: false
 
 # Image resampling filter for downscaling (photos and favicons). JPEG/WebP
 # quality lives with the responsive pipeline, in layouts/partials/image.html.
 imaging:
   resampleFilter: "Lanczos"
+
+# Syntax highlighting for fenced code blocks. `noClasses: false` makes Hugo emit
+# CSS classes instead of inline colors, so the colors come from a stylesheet —
+# assets/css/vendor/syntax.css — which follows the site's light/dark theme.
+# `wrapperClass: highlight` names the wrapper Hugo puts around each block.
+markup:
+  highlight:
+    noClasses: false
+    wrapperClass: highlight
 
 # The top navigation menu is built from front matter: set `menus: main` (with a
 # `weight` for order) on a page to list it in the header. Example: content/about/index.md.
