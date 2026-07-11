@@ -78,7 +78,7 @@ content/example/
 
 Open that `index.md` and it begins with a few settings fenced by `---`, the *front matter*, followed by your writing:
 
-```
+```md
 ---
 title: "About"
 description: "Who I am and what I make."
