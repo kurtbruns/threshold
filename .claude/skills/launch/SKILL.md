@@ -17,26 +17,30 @@ This is an outward-facing action: it creates a public repository and a public we
 
 ## Where the site stands
 
-```!
-echo "GitHub remote:  $(git remote get-url origin 2>/dev/null || echo 'none yet')"
-echo "GitHub CLI:     $(gh --version 2>/dev/null | head -1 || echo 'not installed')"
-echo "Signed in:      $(gh auth status >/dev/null 2>&1 && echo 'yes' || echo 'no')"
-echo "Hugo (local):   $(hugo version 2>/dev/null | head -1 || echo 'not installed')"
-echo "Kit's Hugo pin: $(bash scripts/hugo-version.sh 2>/dev/null || echo '?') (extended; the workflow installs this automatically)"
+Before anything else, run these to see where the site stands:
+
+```bash
+git remote get-url origin
+gh --version
+gh auth status
+hugo version
+bash scripts/hugo-version.sh
 ```
+
+A command that errors is telling you something: `git remote get-url origin` failing means there's no remote yet; `gh auth status` failing means not signed in; a missing `gh` or `hugo` prints "command not found."
 
 ## 1. Get the project onto GitHub
 
-Read the check above. If **GitHub remote** already shows an address, the project is already on GitHub (this is the case for anyone who used "Use this template"). Push anything local that isn't up there yet, then go to step 2.
+From what those show: if the project already has a remote, it's already on GitHub (this is the case for anyone who used "Use this template"). Push anything local that isn't up there yet, then go to step 2.
 
-If the remote is **none yet**, the owner downloaded the kit and needs a home for it on GitHub. This is where a **GitHub account is required**, so explain that plainly:
+If there's **no remote yet**, the owner downloaded the kit and needs a home for it on GitHub. This is where a **GitHub account is required**, so explain that plainly:
 
 > To put your site online, it needs to live on GitHub first. GitHub is a free service that stores your site and runs the step that publishes it. You'll need a free account. Want me to walk you through it?
 
 Then:
 
 1. **Account.** If they don't have one, send them to <https://github.com/signup> to create a free account, and wait until they're done.
-2. **Sign in from this computer.** If **Signed in** is `no`, run `gh auth login` and walk them through the browser prompt. (If `gh` isn't installed, install it first, the same way `/setup` handles tools, or point them at GitHub Desktop.)
+2. **Sign in from this computer.** If `gh auth status` showed you're not signed in, run `gh auth login` and walk them through the browser prompt. (If `gh` isn't installed, install it first, the same way `/setup` handles tools, or point them at GitHub Desktop.)
 3. **Create the repository and push.** Confirm the name and whether it should be **public** (anyone can see the source files) or **private**, then create it:
    ```bash
    gh repo create <name> --source=. --remote=origin --push

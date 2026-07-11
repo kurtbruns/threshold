@@ -2,7 +2,7 @@
 name: nuclear
 description: Resets the site to a true blank canvas so the owner can start fresh: deletes the demo pages (About, blog, onboarding guides), blanks the home page, strips the layout back to bare content, and neutralizes the site's identity and launch marker. The engine, styles, config, and .claude context stay, and a recovery checkpoint is saved first so nothing is lost. Use when the owner wants to start over, clear the demo, wipe the example content, or reset the site to nothing.
 disable-model-invocation: true
-allowed-tools: Read, Edit, Write, Bash(git status:*), Bash(git rm:*), Bash(git add:*), Bash(git commit:*), Bash(hugo:*)
+allowed-tools: Read, Edit, Write, Bash(grep:*), Bash(git rev-list:*), Bash(git status:*), Bash(git rm:*), Bash(git add:*), Bash(git commit:*), Bash(hugo:*)
 ---
 
 # Reset to a blank canvas
@@ -13,20 +13,23 @@ Two things are true at once, so hold both. This **deletes real files**, which is
 
 ## Where things stand
 
-```!
-echo "Launch marker:   $(grep -qE '^[[:space:]]+launch:' hugo.yaml 2>/dev/null && echo 'present — the site has been launched' || echo 'none — the site is not launched')"
-echo "Site title:      $(awk -F'"' '/^title:/{print $2; exit}' hugo.yaml 2>/dev/null)"
-echo "Commits so far:  $(git rev-list --count HEAD 2>/dev/null || echo '?')"
-echo "Uncommitted:     $(git status --porcelain 2>/dev/null | wc -l | tr -d ' ') file(s) with pending changes"
+As your first step, run these to see where things stand:
+
+```bash
+grep -nE '^title:|^[[:space:]]+launch:' hugo.yaml
+git rev-list --count HEAD
+git status --porcelain
 ```
+
+The first line shows the site's `title` and whether a `launch:` marker is present; the count is how many commits exist; the `git status` lines are pending changes.
 
 ## 1. Size up the site
 
 Everything here is read-only. The point is to know, before the gate, whether this is someone clearing the demo (the common case) or someone wiping real work — because that changes how hard you warn, not whether you add a second gate.
 
-Read the check, then glance at `content/` to judge which it is:
+Read what those show, then glance at `content/` to judge which it is:
 
-- **Still the demo.** The `Site title` is `Threshold`, there's no launch marker, few commits, and `content/` still holds the shipped example (an About page that says "example About page", the two demo blog posts, the demo home page). This is the common case: clearing the demo to begin.
+- **Still the demo.** The title is still `Threshold`, there's no launch marker, few commits, and `content/` still holds the shipped example (an About page that says "example About page", the two demo blog posts, the demo home page). This is the common case: clearing the demo to begin.
 - **Real work.** A launch marker is present (the site is live), and/or the title is the owner's, there are many commits, and `content/` carries their own pages, home page, or posts. Treat this as high-stakes.
 
 ## 2. Confirm once, plainly
