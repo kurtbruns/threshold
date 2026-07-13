@@ -15,7 +15,7 @@ The companion to [`design.md`](design.md). Where `design.md` describes the *inte
 - **Spec & front door:** `maintainer/design.md`, `README.md`.
 - **Owner context:** `.claude/CLAUDE.md`.
 - **Onboarding pages:** `get-started`, `personalize`, `write`, `launch`, plus `content/_index.md` and the demo.
-- **Skills:** `setup`, `personalize`, `launch`, `publish`, `nuclear`, `upgrade-hugo`.
+- **Skills:** `setup`, `launch`, `publish`, `nuclear`, `upgrade-hugo`.
 
 Theme, layouts, image system, `hugo.yaml`, and scripts are shipped and working. `design.md` §5 is the map of what's where. A structural audit already ran and passed clean (the self-hosted and no-dependencies invariants), so what's left is coherence, not structure.
 
@@ -27,8 +27,8 @@ Check, across surfaces:
 
 - **Vocabulary** (`design.md` §3). The kit speaks a small, deliberate vocabulary: two places (**preview**, **live**) and two verbs (**Save**, **Publish**), with git, commits, pushes, and deploys under the hood. Flag any drift, and watch for outdated phrasings that contradict §2–§3: "non-technical", "artists/designers/writers", "two ways", "live preview".
 - **Audience** (`design.md` §2). Every surface is pitched to the one audience: a capable, curious first-time site-builder, met where the project stalls, never talked down to.
-- **Page ↔ skill seams** (`design.md` §6, "pages teach; skills do"). Each concept has one home: the page explains and hands off, the skill does the work and doesn't re-explain. Read each page against the skill it hands to (get-started↔setup, personalize↔personalize, launch↔launch) and check the seam holds.
-- **Skill contract** (`design.md` §6). All six skills share one shape: `disable-model-invocation`, tightly scoped `allowed-tools`, read the environment before acting, one confirmation gate, plain-language hand-back — and a description that leads with what and when, no mechanics narration. `publish` and `upgrade-hugo` are the reference implementations; judge the rest against them.
+- **Page ↔ skill seams** (`design.md` §6, "pages teach; skills do"). Each concept has one home: the page explains and hands off, the skill does the work and doesn't re-explain. Read each page against what it hands to (get-started↔setup and launch↔launch to their skills; personalize↔`CLAUDE.md`, since personalization has no skill and hands off to conversation) and check the seam holds.
+- **Skill contract** (`design.md` §6). All five skills share one shape: `disable-model-invocation`, tightly scoped `allowed-tools`, read the environment before acting, one confirmation gate, plain-language hand-back — and a description that leads with what and when, no mechanics narration. `publish` and `upgrade-hugo` are the reference implementations; judge the rest against them.
 - **Cross-links and shared facts.** Inline links and "What's next" footers resolve and point sensibly, and any fact stated in more than one place agrees (which skill installs which tool, the two hosts, the launch marker, cost figures).
 - **Invariants across surfaces** (`design.md` §6): self-hosted / no dependencies, the build fails loud, state is read not stored, git history stays a plain trail.
 

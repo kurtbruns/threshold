@@ -40,7 +40,7 @@ If there's **no remote yet**, the owner downloaded the kit and needs a home for 
 Then:
 
 1. **Account.** If they don't have one, send them to <https://github.com/signup> to create a free account, and wait until they're done.
-2. **Sign in from this computer.** If `gh auth status` showed you're not signed in, run `gh auth login` and walk them through the browser prompt. (If `gh` isn't installed, install it first, the same way `/setup` handles tools, or point them at GitHub Desktop.)
+2. **Sign in from this computer.** If `gh auth status` showed you're not signed in, run `gh auth login` and walk them through the browser prompt. (If `gh` isn't installed, install it with `brew install gh`, the same way `/setup` installs the tools. If Homebrew's missing, the owner installs that first, since it needs their password. Or point them at GitHub Desktop.)
 3. **Create the repository and push.** Confirm the name and whether it should be **public** (anyone can see the source files) or **private**, then create it:
    ```bash
    gh repo create <name> --source=. --remote=origin --push

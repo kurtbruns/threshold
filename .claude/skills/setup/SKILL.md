@@ -9,7 +9,7 @@ allowed-tools: Read, Edit, Write, Bash(uname:*), Bash(hugo:*), Bash(git --versio
 
 Take a freshly downloaded copy of the kit from nothing to a running preview, and leave the owner looking at a site they can see, ready for their first instruction. The owner may be setting up a development environment for the first time, so keep it friendly and plain, and say what each step is for.
 
-Installing the tools is the one part the owner does themselves. Homebrew and the installers need an admin step and are deliberately not among this skill's tools, so hand over the exact command and have the owner run it in their own Terminal. Everything else, the checks, version control, and the preview, is yours.
+**Homebrew** is the owner's to install, since it needs their admin password: hand over the one-line installer and have them run it in their own Terminal. Installing the tools with it, `brew install hugo git`, is yours to run. Everything else, the checks, version control, and the preview, is yours too.
 
 ## Take stock
 
@@ -32,16 +32,16 @@ Read what they show before acting. A command that prints an error like "command 
 
 ## 1. Install what's missing
 
-If Hugo or Git is missing, the owner installs it and you supply the commands. On macOS, Homebrew is the simplest path.
+If Hugo or Git is missing, get them installed. On macOS, Homebrew is the simplest path.
 
 - If Homebrew itself is missing, point the owner to the one-line installer at [brew.sh](https://brew.sh/). It asks for their password, so they run it in their own Terminal.
-- Then have them install the tools:
+- With Homebrew present, install the tools yourself:
   ```
   brew install hugo git
   ```
-  Homebrew's Hugo is the extended edition, which gives you the smaller WebP images.
+  Homebrew's Hugo is the extended edition, which gives the smaller WebP images.
 
-Once they confirm the commands have run, re-run the stock check to make sure both tools are present. On Windows or Linux, point them to [Hugo's installation guide](https://gohugo.io/installation/) (the extended edition is recommended for WebP) and [Git's downloads](https://git-scm.com/downloads).
+Then re-run the stock check to confirm both tools are present. On Windows or Linux there's no Homebrew, so point the owner to [Hugo's installation guide](https://gohugo.io/installation/) (the extended edition is recommended for WebP) and [Git's downloads](https://git-scm.com/downloads), which they install themselves.
 
 ## 2. Set up saving
 
@@ -77,4 +77,4 @@ Tell the owner the site is running, where to see it (the preview pane beside the
 ## Notes
 
 - **Nothing here is public or destructive,** so there's no confirmation step, and `/setup` is safe to run again anytime; it reads the environment rather than leaving a marker.
-- **The owner runs the installs, not you.** The tool installers need an admin step and are kept out of this skill's tools by design; your part is to hand over the exact commands and verify the result.
+- **Homebrew is the owner's to install; the tools are yours.** Installing Homebrew needs an admin password, so that step is the owner's, run in their own Terminal. `brew install hugo git` needs none, so you run it. On Windows or Linux the owner runs the OS installers themselves.
