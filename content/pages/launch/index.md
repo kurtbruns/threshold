@@ -49,3 +49,6 @@ Hosting is free on both options. The only cost is a custom domain, about $15 a y
 What launching gets you is a pipeline between the site on your computer and the site on the web. Whenever you want your latest changes live, you publish, and they're usually online in under a minute, with no files to upload and nothing to click through. Ask Claude to publish, or run `/publish`, and the pipeline does the rest.
 
 You're not tied to Claude for it, either. The pipeline deploys on every push to your GitHub repository, so publishing is really just a `git push`, and you can send changes live yourself with git whenever you prefer.
+
+<!-- Terminal page by design: no "What's next" footer. This is the last step and ends on the payoff. -->
+
