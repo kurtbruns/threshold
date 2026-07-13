@@ -1,6 +1,6 @@
 # GitHub Pages (the fast on-ramp)
 
-The quickest way to be live. The project is already on GitHub, so this needs nothing but a workflow file, no third-party account, and it deploys from GitHub Actions where `/publish` can watch it. Best when a free address under your GitHub name (like `yourname.github.io/site`) is fine for now, or you just want the site online today. You can migrate to Cloudflare later.
+The quickest way to be live. The project is already on GitHub, so this needs nothing but a workflow file, no third-party account, and it deploys from GitHub Actions where `/publish` can watch it. Best when a free address under your GitHub name (like `yourname.github.io/your-repo`) is fine for now, or you just want the site online today. You can migrate to Cloudflare later.
 
 ## Set it up
 
@@ -15,3 +15,5 @@ The quickest way to be live. The project is already on GitHub, so this needs not
 4. The workflow runs on that push. Return to the skill's "Confirm it's live" step to watch it.
 
 Record `host: github-pages` in the launch marker (see the skill's "Record the launch marker" step).
+
+**The address.** GitHub serves this repo at `yourname.github.io/your-repo`, and the workflow resolves `--baseURL` from GitHub at deploy time, so it always matches. A bare `yourname.github.io` is GitHub's one-per-account personal site: it requires the repo to be named exactly that. If the owner wants it for a site they mean to keep, rename the repo to `yourname.github.io` and the next deploy adopts the new address automatically; otherwise leave the name as is.

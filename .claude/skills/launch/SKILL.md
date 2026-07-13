@@ -52,7 +52,7 @@ Then:
 Both are free and both deploy through GitHub Actions, so the deploy is a run you can watch. Pick by how far along the owner is:
 
 - **Cloudflare Workers (recommended).** The default for a site they mean to keep: their own **custom domain** (Cloudflare is also a registrar), control over crawlers, and deploy settings kept in the repo as `wrangler.jsonc`. A bit more setup (an API token), and it's the platform Cloudflare builds on going forward.
-- **GitHub Pages (the fast on-ramp).** The quickest way to be live: the project is already on GitHub, so this needs nothing but a workflow file and gives a free `yourname.github.io` address. Great when they don't have a domain yet or just want it online today.
+- **GitHub Pages (the fast on-ramp).** The quickest way to be live: the project is already on GitHub, so this needs nothing but a workflow file and gives a free `yourname.github.io/your-repo` address. Great when they don't have a domain yet or just want it online today.
 
 When in doubt, or in a hurry, start with GitHub Pages; switching to Cloudflare later is easy (swap the workflow, add `wrangler.jsonc`, set `baseURL`, point the domain).
 

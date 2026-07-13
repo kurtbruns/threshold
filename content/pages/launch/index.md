@@ -25,7 +25,7 @@ The [GitHub CLI install page](https://cli.github.com/) covers other systems. Wit
 A host is the service that stores your built site and serves it to visitors. This kit recommends two, and both are free:
 
 - **Cloudflare Workers** — the one to reach for if you want a site you mean to keep: your own custom domain (Cloudflare can sell you one too), more control over details like which crawlers may visit, and its deploy settings kept in the project alongside everything else. It takes a little more setup.
-- **GitHub Pages** — the fast on-ramp: your site already lives on GitHub, so this needs almost nothing and gives you a free `yourname.github.io` address. Ideal when you just want to be online today.
+- **GitHub Pages** — the fast on-ramp: your site already lives on GitHub, so this needs almost nothing and gives you a free `yourname.github.io/your-repo` address. Ideal when you just want to be online today.
 
 If you're not sure, start with GitHub Pages; moving to Cloudflare later is easy.
 
